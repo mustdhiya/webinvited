@@ -5,14 +5,12 @@ import {
   Clock,
   Volume2,
   VolumeX,
-  Copy,
   Check,
   Sparkles,
   Heart,
   ChevronDown,
   Maximize2,
   X,
-  Sliders,
   Smartphone,
   Monitor,
   Send,
@@ -22,140 +20,188 @@ import {
   Menu,
   MailOpen,
   RotateCcw,
+  Lock,
+  QrCode,
+  Download,
+  Copy,
+  ExternalLink,
 } from 'lucide-react';
 
 // ============================================================================
-// IKON INSTAGRAM KUSTOM (Mencegah Error Export dari Lucide-React)
+// DAFTAR RESMI TAMU UNDANGAN (WHITELIST 38 TAMU)
+// Selain nama yang ada di daftar ini, halaman undangan tidak dapat dibuka.
 // ============================================================================
-const InstagramIcon = ({ className = 'w-4 h-4' }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.8"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-    aria-hidden="true"
-  >
-    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-  </svg>
-);
+const INVITED_GUESTS = [
+  'Ais & partner',
+  'Sarah & partner',
+  'Pute & partner',
+  'Tiwi & partner',
+  'Fina & partner',
+  'Alifia & partner',
+  'Sella & partner',
+  'Nayla & partner',
+  'Nisa & partner',
+  'Agni & Thorieq',
+  'Anggun & Partner',
+  'Awdilla & Partner',
+  'Tika & Partner',
+  'Titin & Partner',
+  'Muthia & Partner',
+  'Dela & Partner',
+  'Andi & Partner',
+  'Bibil & Partner',
+  'Wira & Partner',
+  'Ara & Partner',
+  'Adonk & partner',
+  'Lyna & partner',
+  'Widya & partner',
+  'Alya & partner',
+  'Diva & partner',
+  'Caca & partner',
+  'Said & partner',
+  'Jali & Partner',
+  'Rafi & Neltha',
+  'Hendri & Amel',
+  'Alya & Aji',
+  'Aish & partner',
+  'Radit & partner',
+  'Bhita & partner',
+  'Naypit & Partner',
+  'Zelda & Partner',
+  'Brutal Trailrun',
+  'Uno Jaesan',
+  '7icon',
+];
+
+// Fungsi pembantu untuk mengubah nama tamu menjadi slug URL yang rapi
+// Contoh: "Ais & partner" -> "ais-partner", "Agni & Thorieq" -> "agni-thorieq"
+const createGuestSlug = (text = '') =>
+  text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/&/g, ' ')
+    .replace(/\bdan\b/g, ' ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
+// Fungsi pencocokan tamu dari URL path (/ais-partner) atau query (?to=Ais+%26+partner)
+const findAuthorizedGuest = (rawCandidate) => {
+  if (!rawCandidate) return null;
+  const decoded = decodeURIComponent(rawCandidate).trim();
+  if (!decoded) return null;
+
+  const targetSlug = createGuestSlug(decoded);
+  const targetNormalized = decoded.toLowerCase().replace(/\s+/g, ' ');
+
+  return (
+    INVITED_GUESTS.find((guest) => {
+      const guestSlug = createGuestSlug(guest);
+      const guestNormalized = guest.toLowerCase().replace(/\s+/g, ' ');
+      return guestSlug === targetSlug || guestNormalized === targetNormalized;
+    }) || null
+  );
+};
 
 // ============================================================================
-// KONFIGURASI DATA PERNIKAHAN — TEMA "NAVY SERENITY"
+// KONFIGURASI DATA PERNIKAHAN — TIARA & RIFQI (TEMA "NAVY SERENITY")
 // ============================================================================
 const DEFAULT_WEDDING_CONFIG = {
   couple: {
-    brideShort: 'Aurelia',
-    brideFull: 'Aurelia Maharani Putri, S.Ars.',
-    brideBio:
-      'Putri bungsu yang mencintai seni arsitektur Eropa klasik, sastra puisi, dan ketenangan pagi.',
-    brideParents: 'Putri tercinta dari Bapak H. Hendra Wijaya & Ibu Hj. Sofia Kartika',
-    brideInstagram: '@aureliamaharani',
+    brideShort: 'Tiara',
+    brideFull: 'Tiara Nazwa Andira Ali',
+    brideBio: '', // Tidak digunakan sesuai permintaan klien
+    brideParents: 'Putri keempat dari Bapak H. Alimuddin & Ibu Hj. Siti Zubaidah',
+    brideInstagram: '', // Tidak digunakan sesuai permintaan klien
     bridePhoto:
       'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=85',
 
-    groomShort: 'Keenan',
-    groomFull: 'Keenan Aditya Pratama, M.B.A.',
-    groomBio:
-      'Sosok tenang penikmat fotografi analog, musik klasik, dan perjalanan menyusuri kota tua.',
-    groomParents: 'Putra pertama dari Bapak Ir. Darmawan Pratama & Ibu Ratna Prameswari',
-    groomInstagram: '@keenanaditya',
+    groomShort: 'Rifqi',
+    groomFull: 'Muhammad Rifqi Ihsan',
+    groomBio: '', // Tidak digunakan sesuai permintaan klien
+    groomParents: 'Putra pertama dari Bapak Rusdi Anwar, S.P. & Ibu Maisyarah',
+    groomInstagram: '', // Tidak digunakan sesuai permintaan klien
     groomPhoto:
       'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=85',
 
-    monogram: 'A & K',
+    monogram: 'T & R',
   },
   weddingDate: {
-    displayDate: 'Sabtu, 24 Oktober 2026',
-    dotDate: '24 . 10 . 2026',
-    isoDate: '2026-10-24T08:00:00+07:00',
-    calendarTitle: 'The Wedding of Aurelia & Keenan',
+    dayNumber: '08',
+    monthYear: 'November 2026',
+    displayDate: 'Minggu, 08 November 2026',
+    dotDate: '08 . 11 . 2026',
+    isoDate: '2026-11-08T10:00:00+08:00',
+    calendarTitle: 'The Wedding of Tiara & Rifqi',
     calendarDetails:
-      'Mohon doa restu dan kehadiran Bapak/Ibu/Saudara/i pada acara pernikahan Aurelia & Keenan.',
+      'Mohon doa restu dan kehadiran Bapak/Ibu/Saudara/i pada acara pernikahan Tiara Nazwa Andira Ali & Muhammad Rifqi Ihsan.',
   },
   welcome: {
     salutation: 'Assalamu’alaikum Warahmatullahi Wabarakatuh',
     openingText:
-      'Dengan memohon rahmat dan ridho Tuhan Yang Maha Esa, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir dan berbagi kebahagiaan dalam momen sakral penyatuan janji suci pernikahan kami.',
+      'Dengan memohon rahmat dan ridho Allah Subhanahu Wa Ta’ala, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir serta berbagi kebahagiaan dalam momen sakral penyatuan janji suci pernikahan kami.',
     quote:
       '“Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.”',
     quoteSource: 'QS. Ar-Rum : 21',
     gratitude:
       'Kehadiran serta untaian doa tulus dari keluarga dan sahabat tercinta merupakan anugerah terindah bagi awal perjalanan rumah tangga kami.',
   },
-  dressCode: {
-    themeTitle: 'Navy Serenity',
-    subtitle: 'European Wedding • Luxury Blue • Timeless Romance',
-    note: 'Warna navy memberikan kesan elegan sementara dusty blue membuat keseluruhan tampak lebih lembut dan modern.',
-    colors: [
-      { name: 'Midnight Navy', hex: '#1B2A49', textLight: true },
-      { name: 'Dusty Blue', hex: '#AEBFD6', textLight: false },
-      { name: 'White Smoke', hex: '#F5F5F5', textLight: false },
-      { name: 'Silver', hex: '#C5CCD6', textLight: false },
-      { name: 'Soft Grey', hex: '#A8ADB5', textLight: false },
-    ],
-  },
   events: {
     akad: {
       title: 'Akad Nikah',
-      dayDate: 'Sabtu, 24 Oktober 2026',
-      time: '08.00 — 10.00 WIB',
-      venueName: 'Glasshouse Heritage Ballroom',
-      address: 'Jl. Wijaya Kusuma No. 42, Kebayoran Baru, Jakarta Selatan 12120',
-      mapsUrl: 'https://maps.google.com/?q=Kebayoran+Baru+Jakarta+Selatan',
+      dayDate: 'Minggu, 08 November 2026',
+      time: '09:00 WITA',
+      venueName: 'Kediaman Mempelai Wanita',
+      address: 'Kelurahan Nenang RT 001',
+      mapsUrl: '', // Klien memilih tidak menggunakan link Google Maps pada Akad
     },
     resepsi: {
       title: 'Resepsi Pernikahan',
-      dayDate: 'Sabtu, 24 Oktober 2026',
-      time: '11.30 — 14.30 WIB',
-      venueName: 'The Grand Majapahit Conservatory',
-      address: 'Jl. Wijaya Kusuma No. 42, Kebayoran Baru, Jakarta Selatan 12120',
-      mapsUrl: 'https://maps.google.com/?q=Kebayoran+Baru+Jakarta+Selatan',
+      dayDate: 'Minggu, 08 November 2026',
+      time: '10:00 WITA s/d Selesai',
+      venueName: 'Hotel GPN',
+      address: 'Jl. Propinsi KM 3,5',
+      mapsUrl: 'https://share.google/wpTAIXb6UZofpht1J',
     },
   },
   loveStory: [
     {
       stage: 'The First Meeting',
-      date: 'Oktober 2021',
+      date: 'Mei 2025',
       description:
-        'Pertemuan pertama yang tak terduga di sebuah pameran arsitektur dan fotografi klasik. Sebuah percakapan singkat tentang cahaya sore yang membuka lembaran baru.',
+        'Pertama kali bertemu pada akhir Mei 2025 melalui perkenalan keluarga. Saat itu, kami tidak pernah menyangka bahwa pertemuan sederhana tersebut akan membawa kami sampai sejauh ini.',
       photo:
         'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=700&q=80',
     },
     {
       stage: 'The Beginning',
-      date: 'Maret 2022',
+      date: 'Juni 2025',
       description:
-        'Dari secangkir kopi hangat dan surat-surat pendek, kami menyadari bahwa ketenangan terbaik adalah saat berbagi cerita tanpa perlu berpura-pura.',
+        'Dari perkenalan itu, kami mulai saling mengenal dan memahami satu sama lain. Seiring berjalannya waktu, kami merasa nyaman dan mulai melihat kemungkinan untuk membangun masa depan bersama.',
       photo:
         'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=700&q=80',
     },
     {
       stage: 'The Special Moment',
-      date: 'Desember 2024',
+      date: '2025',
       description:
-        'Melalui berbagai musim, jarak, dan doa yang dipanjatkan dalam diam, kami tumbuh bersama menjadi tempat pulang yang paling teduh.',
+        'Kami belajar bahwa sebuah hubungan bukan hanya tentang kebahagiaan, tetapi juga tentang saling memahami dan mendukung. Dari perjalanan yang kami lalui, tumbuh keyakinan untuk terus bersama dan melangkah ke tahap yang lebih serius.',
       photo:
         'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=700&q=80',
     },
     {
       stage: 'The Proposal',
-      date: 'Mei 2025',
+      date: '2026',
       description:
-        'Di bawah langit senja yang temaram, sebuah janji diikrarkan di hadapan kedua keluarga besar untuk melangkah menuju ikatan seumur hidup.',
+        'Tanpa harus menunggu cerita yang sempurna, kami sepakat untuk membawa hubungan ini ke jenjang pernikahan. Dengan restu keluarga dan niat yang tulus, kami memilih untuk memulai babak baru bersama.',
       photo:
         'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=700&q=80',
     },
     {
       stage: 'Forever Begins',
-      date: '24 Oktober 2026',
+      date: '08 November 2026',
       description:
-        'Hari di mana dua perjalanan menyatu dalam ikatan suci pernikahan. Awal dari selamanya yang kami tulis bersama.',
+        'Pada tanggal 08 November 2026, kami akan mengikat janji suci untuk memulai kehidupan sebagai suami dan istri. Sebuah perjalanan baru akan dimulai, dengan harapan untuk selalu saling menjaga, mencintai, dan menemani dalam setiap keadaan.',
       photo:
         'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=700&q=80',
     },
@@ -194,46 +240,41 @@ const DEFAULT_WEDDING_CONFIG = {
   ],
   closingPhoto:
     'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1400&q=85',
-  gifts: [
-    {
-      bankName: 'Bank Central Asia (BCA)',
-      accountNumber: '8420 1928 37',
-      accountHolder: 'a.n. Aurelia Maharani Putri [Placeholder]',
-    },
-    {
-      bankName: 'Bank Mandiri',
-      accountNumber: '1240 0098 2341 2',
-      accountHolder: 'a.n. Keenan Aditya Pratama [Placeholder]',
-    },
-  ],
+  // Tanda Kasih Pernikahan menggunakan Foto QRIS saja (Simpan gambar QRIS di public/qris.jpg)
+  qrisGift: {
+    title: 'QRIS Tanda Kasih Pernikahan',
+    merchantName: 'Tiara Nazwa Andira Ali & Muhammad Rifqi Ihsan',
+    imageUrl: '/qris.jpg',
+    note: 'Silakan pindai (scan) atau unduh kode QRIS di atas melalui aplikasi Mobile Banking atau E-Wallet (GoPay, OVO, DANA, ShopeePay, LinkAja, BRI, Mandiri, BCA, dll).',
+  },
   music: {
-    title: 'Lagu Pilihan Pernikahan',
-    audioUrl: '/The Script - Never Seen Anything Quite Like You (Audio).mp3', // Mengarah ke file di dalam folder public/musik.mp3
-    startTime: 0,           // Mulai dari 00:00 (0 detik)
-    endTime: 66,            // Berhenti & ulangi di 01:06 (66 detik)
-    maxVolume: 0.65,        // Volume maksimal (0.0 sampai 1.0)
-    fadeDuration: 2.5,      // Durasi transisi halus (2.5 detik sebelum habis)
+    title: 'The Script - Never Seen Anything Quite Like You',
+    audioUrl: '/The Script - Never Seen Anything Quite Like You (Audio).mp3',
+    startTime: 0,
+    endTime: 66,
+    maxVolume: 0.65,
+    fadeDuration: 2.5,
   },
 };
 
 const INITIAL_WISHES = [
   {
     id: 'w-1',
-    name: 'Keluarga Besar Bapak H. Surya Atmaja',
+    name: 'Ais & partner',
     attendance: 'Hadir',
     guests: 2,
     message:
-      'Selamat menempuh hidup baru Aurelia & Keenan. Semoga menjadi keluarga yang sakinah, mawaddah, warahmah, serta diberkahi kebahagiaan sepanjang masa.',
+      'Selamat menempuh hidup baru Tiara & Rifqi! Semoga menjadi keluarga yang sakinah, mawaddah, warahmah, dan bahagia selalu sampai tua.',
     createdAt: 'Baru saja',
   },
   {
     id: 'w-2',
-    name: 'Clara & Julian Wijaya',
+    name: 'Agni & Thorieq',
     attendance: 'Hadir',
     guests: 2,
     message:
-      'Undangan dengan nuansa Navy Serenity yang sangat anggun! Tidak sabar menyaksikan hari bahagia kalian berdua.',
-    createdAt: '2 jam yang lalu',
+      'Lancar sampai hari H Tiara dan Rifqi! Semoga cinta kasih dan keberkahan selalu menyertai rumah tangga kalian.',
+    createdAt: '1 jam yang lalu',
   },
 ];
 
@@ -301,18 +342,7 @@ const NavySerenityFloralCrest = memo(({ className = 'w-44 h-28' }) => (
   </svg>
 ));
 
-const BotanicalSprigSvg = memo(({ strokeColor = '#1B2A49' }) => (
-  <svg viewBox="0 0 60 90" fill="none" className="w-8 h-12 sm:w-9 sm:h-14" aria-hidden="true">
-    <path d="M12 84 C24 62, 34 40, 48 12" stroke={strokeColor} strokeWidth="1.1" strokeLinecap="round" />
-    <path d="M20 68 C14 63, 13 55, 22 57 C25 62, 23 66, 20 68 Z" stroke={strokeColor} strokeWidth="0.9" fill="none" />
-    <path d="M27 56 C35 55, 39 61, 31 64 C27 62, 26 59, 27 56 Z" stroke={strokeColor} strokeWidth="0.9" fill="none" />
-    <path d="M32 45 C25 40, 25 32, 33 35 C36 39, 34 43, 32 45 Z" stroke={strokeColor} strokeWidth="0.9" fill="none" />
-    <path d="M38 34 C46 33, 49 39, 41 42 C38 40, 37 37, 38 34 Z" stroke={strokeColor} strokeWidth="0.9" fill="none" />
-    <path d="M43 22 C38 17, 39 11, 46 14 C47 18, 45 20, 43 22 Z" stroke={strokeColor} strokeWidth="0.9" fill="none" />
-  </svg>
-));
-
-const WaxSealStamp = memo(({ monogram = 'A&K', size = 'w-20 h-20' }) => (
+const WaxSealStamp = memo(({ monogram = 'T & R', size = 'w-20 h-20' }) => (
   <div className={`relative inline-flex items-center justify-center select-none ${size}`}>
     <svg viewBox="0 0 120 120" className="w-full h-full drop-shadow-xl" aria-hidden="true">
       <defs>
@@ -374,7 +404,7 @@ const VintageCarriageIllustration = memo(({ className = 'w-64 h-32' }) => (
 ));
 
 // ============================================================================
-// KOMPONEN COUNTDOWN MANDIRI (Mencegah Re-Render Seluruh Halaman Setiap Detik)
+// KOMPONEN COUNTDOWN MANDIRI
 // ============================================================================
 const CountdownTimer = memo(({ isoDate }) => {
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -426,7 +456,7 @@ const CountdownTimer = memo(({ isoDate }) => {
 });
 
 // ============================================================================
-// GENERATOR AUDIO AMBIENT ROMANTIS (DENGAN CLEANUP MEMORI)
+// GENERATOR AUDIO AMBIENT FALLBACK
 // ============================================================================
 class RomanticAmbientSynth {
   constructor() {
@@ -498,7 +528,7 @@ class RomanticAmbientSynth {
 }
 
 // ============================================================================
-// KOMPONEN SCROLL REVEAL (UNOBSERVE SETELAH MUNCUL AGAR RINGAN DI HP)
+// KOMPONEN SCROLL REVEAL
 // ============================================================================
 const RevealOnScroll = ({ children, className = '', delay = 0 }) => {
   const ref = useRef(null);
@@ -518,7 +548,7 @@ const RevealOnScroll = ({ children, className = '', delay = 0 }) => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setVisible(true);
-          observer.unobserve(node); // Hemat memori setelah elemen terlihat
+          observer.unobserve(node);
         }
       },
       { threshold: 0.12, rootMargin: '0px 0px -30px 0px' }
@@ -535,7 +565,9 @@ const RevealOnScroll = ({ children, className = '', delay = 0 }) => {
         transitionDelay: `${delay}ms`,
         transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
       }}
-      className={`transition-all duration-1000 will-change-transform ${ visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-7' } ${className}`}
+      className={`transition-all duration-1000 will-change-transform ${
+        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-7'
+      } ${className}`}
     >
       {children}
     </div>
@@ -546,24 +578,31 @@ const RevealOnScroll = ({ children, className = '', delay = 0 }) => {
 // KOMPONEN UTAMA APLIKASI
 // ============================================================================
 export default function App() {
-  const [config, setConfig] = useState(DEFAULT_WEDDING_CONFIG);
+  const [config] = useState(DEFAULT_WEDDING_CONFIG);
   const [envelopeStage, setEnvelopeStage] = useState('closed'); // 'closed' | 'opening' | 'opened'
   const [isInvitationOpened, setIsInvitationOpened] = useState(false);
   const [isOpeningTransition, setIsOpeningTransition] = useState(false);
-  const [guestName, setGuestName] = useState('Bapak/Ibu/Saudara/i Tamu Kehormatan');
+
+  // State Validasi Nama Tamu Berdasarkan Daftar Resmi (Whitelist)
+  const [guestName, setGuestName] = useState('');
+  const [isAuthorizedGuest, setIsAuthorizedGuest] = useState(false);
+  const [isAdminMode, setIsAdminMode] = useState(false);
+  const [isGuestListModalOpen, setIsGuestListModalOpen] = useState(false);
+  const [copiedGuestLink, setCopiedGuestLink] = useState(null);
+
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
-  const [copiedAccount, setCopiedAccount] = useState(null);
+  const [isQrisZoomOpen, setIsQrisZoomOpen] = useState(false);
+  const [qrisImageError, setQrisImageError] = useState(false);
 
   const [viewportMode, setViewportMode] = useState('responsive');
-  const [isCustomizeOpen, setIsCustomizeOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('section-cover');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Simpan RSVP di localStorage agar tidak hilang saat di-refresh
+  // Simpan RSVP di localStorage
   const [wishes, setWishes] = useState(() => {
     try {
-      const saved = localStorage.getItem('navy_serenity_wishes_v1');
+      const saved = localStorage.getItem('tiara_rifqi_wishes_v1');
       return saved ? JSON.parse(saved) : INITIAL_WISHES;
     } catch {
       return INITIAL_WISHES;
@@ -582,15 +621,32 @@ export default function App() {
   const htmlAudioRef = useRef(null);
   const mainContentRef = useRef(null);
 
+  // Validasi URL terhadap daftar 38 tamu yang diundang
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const toParam = params.get('to') || params.get('guest');
-    if (toParam) {
-      setGuestName(toParam);
+    const adminParam = params.get('admin');
+    if (adminParam === 'mdt' || adminParam === '1') {
+      setIsAdminMode(true);
+    }
+
+    // Ambil kandidat nama dari query (?to=... / ?guest=... / ?u=...) atau dari path URL (/ais-partner)
+    const queryCandidate = params.get('to') || params.get('guest') || params.get('u');
+    const pathCandidate = window.location.pathname.replace(/^\/+|\/+$/g, '');
+
+    const matchedGuest =
+      findAuthorizedGuest(queryCandidate) || findAuthorizedGuest(pathCandidate);
+
+    if (matchedGuest) {
+      setGuestName(matchedGuest);
+      setIsAuthorizedGuest(true);
+      setRsvpForm((prev) => ({ ...prev, name: matchedGuest }));
+    } else {
+      setIsAuthorizedGuest(false);
     }
   }, []);
 
   useEffect(() => {
+    if (!isAuthorizedGuest) return;
     const sectionIds = NAV_ITEMS.map((item) => item.id);
     const observer = new IntersectionObserver(
       (entries) => {
@@ -609,7 +665,7 @@ export default function App() {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [isAuthorizedGuest]);
 
   useEffect(() => {
     synthRef.current = new RomanticAmbientSynth();
@@ -619,12 +675,17 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    if (!isAuthorizedGuest) {
+      document.body.style.overflow = '';
+      return;
+    }
     document.body.style.overflow = envelopeStage !== 'opened' ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
-  }, [envelopeStage]);
-// Mengatur Smooth Loop dari 00:00 (0s) ke 01:06 (66s) dengan efek Fade-In & Fade-Out
+  }, [envelopeStage, isAuthorizedGuest]);
+
+  // Smooth Loop 00:00 (0s) sampai 01:06 (66s) dengan Fade-In & Fade-Out
   useEffect(() => {
     const audio = htmlAudioRef.current;
     if (!audio || !config.music.audioUrl) return;
@@ -637,7 +698,6 @@ export default function App() {
     const handleTimeUpdate = () => {
       const current = audio.currentTime;
 
-      // 1. Jika melewati batas 01:06 (66 detik), kembalikan ke 00:00 secara halus
       if (current >= end || current < start) {
         audio.currentTime = start;
         audio.volume = 0;
@@ -645,18 +705,13 @@ export default function App() {
         return;
       }
 
-      // 2. Efek Smooth Fade-In saat baru mulai dari 00:00
       if (current - start <= fade) {
         const progress = Math.max(0, (current - start) / fade);
         audio.volume = Math.min(maxVol, progress * maxVol);
-      }
-      // 3. Efek Smooth Fade-Out saat mendekati 01:06 (mulai mengecil di 01:03.5)
-      else if (end - current <= fade) {
+      } else if (end - current <= fade) {
         const progress = Math.max(0, (end - current) / fade);
         audio.volume = Math.min(maxVol, progress * maxVol);
-      }
-      // 4. Volume stabil di tengah lagu
-      else {
+      } else {
         audio.volume = maxVol;
       }
     };
@@ -664,6 +719,7 @@ export default function App() {
     audio.addEventListener('timeupdate', handleTimeUpdate);
     return () => audio.removeEventListener('timeupdate', handleTimeUpdate);
   }, [config.music]);
+
   const toggleMusic = () => {
     if (isPlayingMusic) {
       if (config.music.audioUrl && htmlAudioRef.current) {
@@ -678,12 +734,13 @@ export default function App() {
         const start = config.music.startTime ?? 0;
         const end = config.music.endTime ?? 66;
 
-        // Pastikan mulai dari rentang 00:00 - 01:06 dan mulai dengan volume lembut
         if (audio.currentTime < start || audio.currentTime >= end) {
           audio.currentTime = start;
         }
         audio.volume = 0.05;
-        audio.play().catch(() => {});
+        audio.play().catch(() => {
+          if (synthRef.current) synthRef.current.start();
+        });
       } else if (synthRef.current) {
         synthRef.current.start();
       }
@@ -725,11 +782,12 @@ export default function App() {
     }, 550);
   };
 
-  const handleCopyAccount = (number, index) => {
-    const cleanNumber = number.replace(/\s+/g, '');
-    navigator.clipboard?.writeText(cleanNumber);
-    setCopiedAccount(index);
-    setTimeout(() => setCopiedAccount(null), 2500);
+  const handleCopyGuestUrl = (guest) => {
+    const slug = createGuestSlug(guest);
+    const url = `${window.location.origin}/${slug}`;
+    navigator.clipboard?.writeText(url);
+    setCopiedGuestLink(guest);
+    setTimeout(() => setCopiedGuestLink(null), 2200);
   };
 
   const handleRsvpSubmit = (e) => {
@@ -743,19 +801,19 @@ export default function App() {
       attendance: rsvpForm.attendance,
       message:
         rsvpForm.message.trim() ||
-        'Selamat berbahagia untuk kedua mempelai, semoga cinta kasih selalu menyertai.',
+        'Selamat berbahagia untuk Tiara & Rifqi, semoga cinta kasih selalu menyertai.',
       createdAt: 'Baru saja',
     };
 
     const updated = [newEntry, ...wishes];
     setWishes(updated);
     try {
-      localStorage.setItem('navy_serenity_wishes_v1', JSON.stringify(updated));
+      localStorage.setItem('tiara_rifqi_wishes_v1', JSON.stringify(updated));
     } catch {
-      // Abaikan jika mode private browser memblokir storage
+      // Abaikan jika browser memblokir localStorage
     }
     setRsvpSubmitted(true);
-    setRsvpForm({ name: '', guests: '2', attendance: 'Hadir', message: '' });
+    setRsvpForm((prev) => ({ ...prev, message: '' }));
   };
 
   const scrollToSection = (id) => {
@@ -767,10 +825,123 @@ export default function App() {
 
   const isForcedMobile = viewportMode === 'mobile-preview';
 
+  // ==========================================================================
+  // TAMPILAN JIKA URL TIDAK MEMILIKI NAMA TAMU ATAU NAMA TIDAK ADA DI DAFTAR
+  // ==========================================================================
+  if (!isAuthorizedGuest) {
+    return (
+      <div className="min-h-screen bg-[#0B1220] text-[#F5F5F5] flex flex-col items-center justify-center px-5 py-12 relative overflow-hidden">
+        <style>{`
+          @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap');
+          .font-serif-luxury { font-family: 'Cormorant Garamond', Georgia, serif; }
+          .font-sans-refined { font-family: 'Montserrat', sans-serif; }
+          .font-script { font-family: 'Great Vibes', cursive; }
+        `}</style>
+
+        <div
+          className="pointer-events-none absolute inset-0 opacity-40"
+          style={{
+            backgroundImage:
+              'radial-gradient(circle at 50% 35%, rgba(36, 56, 97, 0.85) 0%, rgba(9, 15, 28, 0.99) 75%)',
+          }}
+        />
+
+        <div className="relative z-10 max-w-md w-full bg-[#101A30]/90 backdrop-blur-xl border border-[#AEBFD6]/35 p-7 sm:p-10 text-center shadow-[0_25px_70px_rgba(0,0,0,0.85)]">
+          <div className="flex justify-center mb-3">
+            <NavySerenityFloralCrest className="w-36 h-20" />
+          </div>
+
+          <div className="w-12 h-12 rounded-full bg-[#1B2A49] border border-[#AEBFD6]/50 flex items-center justify-center mx-auto mb-4">
+            <Lock className="w-5 h-5 text-[#AEBFD6]" />
+          </div>
+
+          <p className="font-sans-refined text-[9px] uppercase tracking-[0.35em] text-[#AEBFD6]">
+            Private Wedding Invitation
+          </p>
+          <h1 className="font-script text-4xl sm:text-5xl text-[#F5F5F5] mt-2">
+            {config.couple.brideShort} &amp; {config.couple.groomShort}
+          </h1>
+          <p className="font-sans-refined text-[10px] uppercase tracking-[0.25em] text-[#C5CCD6] mt-1">
+            {config.weddingDate.displayDate}
+          </p>
+
+          <div className="w-16 h-[1px] bg-[#AEBFD6]/40 mx-auto my-5" />
+
+          <h2 className="font-serif-luxury text-xl sm:text-2xl text-[#F5F5F5] font-semibold">
+            Tautan Undangan Khusus Tamu Terdaftar
+          </h2>
+          <p className="font-serif-luxury text-sm text-[#C5CCD6] leading-relaxed mt-2.5">
+            Mohon maaf, halaman undangan pernikahan ini bersifat privat dan hanya dapat diakses
+            melalui tautan personal resmi yang dikirimkan kepada masing-masing tamu undangan.
+          </p>
+
+          <div className="mt-6 p-3.5 bg-[#0B1220]/70 border border-[#AEBFD6]/25 text-left">
+            <p className="font-sans-refined text-[8px] uppercase tracking-[0.22em] text-[#AEBFD6]">
+              Petunjuk Bagi Tamu Undangan:
+            </p>
+            <p className="font-serif-luxury text-xs text-[#F5F5F5]/85 mt-1 leading-relaxed">
+              Silakan buka kembali pesan WhatsApp undangan Anda dan klik tautan lengkap yang
+              mencantumkan nama Anda (contoh:{' '}
+              <span className="text-[#AEBFD6] underline">
+                wedding.mustdhiya.com/ais-partner
+              </span>
+              ).
+            </p>
+          </div>
+
+          {/* Jika admin membuka dengan ?admin=mdt, tampilkan daftar link seluruh 38 tamu */}
+          {isAdminMode && (
+            <div className="mt-6 pt-5 border-t border-[#AEBFD6]/30 text-left">
+              <p className="font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#AEBFD6] mb-3">
+                Panel Admin — Daftar 39 Link Undangan Tamu:
+              </p>
+              <div className="max-h-60 overflow-y-auto space-y-2 pr-1">
+                {INVITED_GUESTS.map((g) => {
+                  const slug = createGuestSlug(g);
+                  return (
+                    <div
+                      key={g}
+                      className="flex items-center justify-between gap-2 bg-[#1B2A49]/70 border border-[#AEBFD6]/25 px-3 py-2 text-xs"
+                    >
+                      <div className="truncate">
+                        <p className="font-serif-luxury font-semibold text-[#F5F5F5] truncate">
+                          {g}
+                        </p>
+                        <p className="font-sans-refined text-[9px] text-[#AEBFD6] truncate">
+                          /{slug}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        <button
+                          type="button"
+                          onClick={() => handleCopyGuestUrl(g)}
+                          className="px-2.5 py-1 bg-[#AEBFD6] text-[#101A30] font-sans-refined text-[8px] uppercase tracking-wider font-semibold"
+                        >
+                          {copiedGuestLink === g ? 'Tersalin' : 'Salin Link'}
+                        </button>
+                        <a
+                          href={`/${slug}`}
+                          className="p-1 bg-[#0B1220] text-[#AEBFD6] border border-[#AEBFD6]/40"
+                          title="Buka Undangan Tamu Ini"
+                        >
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#0B1220] text-[#1B2A49] selection:bg-[#1B2A49] selection:text-[#F5F5F5] antialiased overflow-x-hidden pb-20 sm:pb-0">
       {config.music.audioUrl && (
-        <audio ref={htmlAudioRef} src={config.music.audioUrl} loop preload="none" />
+        <audio ref={htmlAudioRef} src={config.music.audioUrl} loop preload="auto" />
       )}
 
       <style>{`
@@ -897,7 +1068,6 @@ export default function App() {
               'radial-gradient(circle at 50% 35%, rgba(36, 56, 97, 0.8) 0%, rgba(9, 15, 28, 0.99) 78%)',
           }}
         >
-          {/* Ambient Glow */}
           <div
             className="pointer-events-none absolute inset-0 opacity-40"
             style={{
@@ -984,7 +1154,7 @@ export default function App() {
                   </div>
                   <div className="w-full pt-1.5 border-t border-[#C5CCD6]/70 flex items-center justify-between text-[8px] sm:text-[9px] font-sans-refined uppercase tracking-[0.2em] text-[#1B2A49]">
                     <span>{config.weddingDate.dotDate}</span>
-                    <span className="text-[#889BB5]">Navy Serenity</span>
+                    <span className="text-[#889BB5]">Tiara &amp; Rifqi</span>
                   </div>
                 </div>
               </div>
@@ -1135,13 +1305,16 @@ export default function App() {
             </>
           )}
         </button>
-        <button
-          onClick={() => setIsCustomizeOpen(true)}
-          className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#1B2A49]/95 backdrop-blur-md border border-[#AEBFD6]/50 text-[#F5F5F5] font-sans-refined text-[10px] sm:text-[11px] tracking-wider uppercase hover:bg-[#101A30] transition-colors shadow-lg"
-        >
-          <Sliders className="w-3.5 h-3.5 text-[#AEBFD6]" />
-          <span>Data Undangan</span>
-        </button>
+
+        {isAdminMode && (
+          <button
+            onClick={() => setIsGuestListModalOpen(true)}
+            className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#1B2A49]/95 backdrop-blur-md border border-[#AEBFD6]/50 text-[#F5F5F5] font-sans-refined text-[10px] tracking-wider uppercase hover:bg-[#101A30] transition-colors shadow-lg"
+          >
+            <Copy className="w-3 h-3 text-[#AEBFD6]" />
+            <span>Link Tamu</span>
+          </button>
+        )}
       </div>
 
       {/* =====================================================================
@@ -1170,7 +1343,7 @@ export default function App() {
           />
           <div className="relative z-10 text-center pt-4 sm:pt-0">
             <p className="font-sans-refined text-[9px] sm:text-[11px] uppercase tracking-[0.34em] text-[#1B2A49]/80">
-              Navy Serenity • Wedding Stationery
+              The Wedding Of {config.couple.brideShort} &amp; {config.couple.groomShort}
             </p>
           </div>
 
@@ -1193,7 +1366,7 @@ export default function App() {
                   Save Our Date
                 </p>
                 <p className="font-serif-luxury italic text-[11px] sm:text-xs text-[#1B2A49]/80 mt-0.5">
-                  European Elegance
+                  {config.weddingDate.dotDate}
                 </p>
               </div>
 
@@ -1239,10 +1412,10 @@ export default function App() {
               <div className="relative z-30 flex items-center justify-center gap-2 sm:gap-3 -mt-2 sm:-mt-3">
                 <div className="bg-[#F5F5F5] border border-[#C5CCD6] px-3 sm:px-4 py-2 sm:py-3 shadow-md -rotate-2 text-center">
                   <span className="font-serif-luxury text-2xl sm:text-3xl md:text-4xl text-[#1B2A49] font-light tracking-tighter">
-                    24
+                    {config.weddingDate.dayNumber}
                   </span>
                   <span className="block font-sans-refined text-[7px] sm:text-[8px] uppercase tracking-[0.22em] text-[#1B2A49]/80">
-                    Oktober 2026
+                    {config.weddingDate.monthYear}
                   </span>
                 </div>
                 <WaxSealStamp
@@ -1361,7 +1534,7 @@ export default function App() {
           </RevealOnScroll>
         </section>
 
-        {/* SECTION 3 — COUPLE & COUNTDOWN */}
+        {/* SECTION 3 — COUPLE & COUNTDOWN (TANPA DRESS CODE, BIO, DAN INSTAGRAM SESUAI PERMINTAAN KLIEN) */}
         <section
           id="section-couple"
           className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-8 md:px-14 bg-silver-drape overflow-hidden"
@@ -1372,49 +1545,6 @@ export default function App() {
                 Menghitung Hari Bahagia
               </p>
               <CountdownTimer isoDate={config.weddingDate.isoDate} />
-
-              <div className="mb-16 sm:mb-20 bg-[#F5F5F5]/85 backdrop-blur-md border border-[#C5CCD6] p-5 sm:p-8 md:p-10 shadow-lg max-w-[680px] mx-auto">
-                <p className="font-sans-refined text-[9px] sm:text-[10px] uppercase tracking-[0.35em] text-[#1B2A49]/70">
-                  D R E S S &nbsp; C O D E &nbsp; P A L E T T E
-                </p>
-                <h3 className="font-serif-luxury text-2xl sm:text-3xl md:text-4xl text-[#1B2A49] mt-1">
-                  Navy <span className="text-[#889BB5] font-light">Serenity</span>
-                </h3>
-                <p className="font-serif-luxury italic text-xs sm:text-sm text-[#1B2A49]/75 mt-1">
-                  {config.dressCode.subtitle}
-                </p>
-                <div
-                  className={`grid ${
-                    isForcedMobile ? 'grid-cols-3' : 'grid-cols-3 sm:grid-cols-5'
-                  } gap-3 sm:gap-4 justify-items-center my-6 sm:my-8`}
-                >
-                  {config.dressCode.colors.map((c, idx) => (
-                    <div key={idx} className="flex flex-col items-center">
-                      <div
-                        className="relative w-16 h-24 sm:w-20 sm:h-28 rounded-full p-1 border border-[#C5CCD6] shadow-md flex items-center justify-center overflow-hidden transition-transform duration-300 hover:-translate-y-1"
-                        style={{ backgroundColor: c.hex }}
-                      >
-                        <div className="w-full h-full rounded-full border border-white/60 relative overflow-hidden">
-                          <div className="absolute -bottom-1 right-1 opacity-85">
-                            <BotanicalSprigSvg
-                              strokeColor={c.textLight ? '#C5CCD6' : '#1B2A49'}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <span className="font-serif-luxury text-xs sm:text-sm font-semibold text-[#1B2A49] mt-2">
-                        {c.name}
-                      </span>
-                      <span className="font-sans-refined text-[8px] sm:text-[9px] tracking-widest uppercase text-[#A8ADB5]">
-                        {c.hex}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                <p className="font-serif-luxury text-xs sm:text-sm text-[#1B2A49]/80 max-w-md mx-auto leading-relaxed">
-                  {config.dressCode.note}
-                </p>
-              </div>
             </RevealOnScroll>
 
             <RevealOnScroll>
@@ -1431,88 +1561,62 @@ export default function App() {
                 isForcedMobile ? '' : 'md:grid-cols-2'
               } gap-8 sm:gap-10 items-stretch justify-items-center`}
             >
+              {/* Mempelai Wanita */}
               <RevealOnScroll className="w-full max-w-[340px] sm:max-w-[360px]">
                 <div className="h-full bg-[#1B2A49] text-[#F5F5F5] rounded-t-[175px] p-4 sm:p-5 shadow-2xl border border-[#101A30]">
-                  <div className="h-full rounded-t-[160px] border border-[#AEBFD6]/45 pt-8 pb-7 px-4 sm:px-6 flex flex-col items-center justify-between">
-                    <div className="flex flex-col items-center">
-                      <span className="font-sans-refined text-[8px] uppercase tracking-[0.3em] text-[#AEBFD6] mb-4">
-                        The Bride
-                      </span>
-                      <div className="w-32 h-40 sm:w-36 sm:h-44 rounded-t-full overflow-hidden border-2 border-[#AEBFD6]/80 shadow-lg mb-5 bg-[#101A30]">
-                        <img
-                          src={config.couple.bridePhoto}
-                          alt={config.couple.brideFull}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                      <h3 className="font-script text-3xl sm:text-4xl text-[#AEBFD6]">
-                        {config.couple.brideShort}
-                      </h3>
-                      <p className="font-serif-luxury text-lg sm:text-xl font-medium tracking-wide text-[#F5F5F5] mt-1">
-                        {config.couple.brideFull}
-                      </p>
-                      <p className="font-serif-luxury italic text-xs sm:text-sm text-[#C5CCD6] mt-3 leading-relaxed">
-                        {config.couple.brideBio}
-                      </p>
-                      <div className="w-10 h-[1px] bg-[#AEBFD6]/40 my-4" />
-                      <p className="font-serif-luxury text-xs sm:text-sm text-[#F5F5F5]/90 leading-relaxed">
-                        {config.couple.brideParents}
-                      </p>
+                  <div className="h-full rounded-t-[160px] border border-[#AEBFD6]/45 pt-8 pb-9 px-4 sm:px-6 flex flex-col items-center justify-center">
+                    <span className="font-sans-refined text-[8px] uppercase tracking-[0.3em] text-[#AEBFD6] mb-4">
+                      The Bride
+                    </span>
+                    <div className="w-32 h-40 sm:w-36 sm:h-44 rounded-t-full overflow-hidden border-2 border-[#AEBFD6]/80 shadow-lg mb-5 bg-[#101A30]">
+                      <img
+                        src={config.couple.bridePhoto}
+                        alt={config.couple.brideFull}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                      />
                     </div>
-                    <a
-                      href={`https://instagram.com/${config.couple.brideInstagram.replace('@', '')}`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-5 min-h-[38px] inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-[#AEBFD6]/50 text-[10px] font-sans-refined tracking-widest uppercase text-[#AEBFD6] hover:bg-[#AEBFD6] hover:text-[#1B2A49] transition-colors"
-                    >
-                      <InstagramIcon className="w-3 h-3" />
-                      <span>{config.couple.brideInstagram}</span>
-                    </a>
+                    <h3 className="font-script text-3xl sm:text-4xl text-[#AEBFD6]">
+                      {config.couple.brideShort}
+                    </h3>
+                    <p className="font-serif-luxury text-lg sm:text-xl font-medium tracking-wide text-[#F5F5F5] mt-1">
+                      {config.couple.brideFull}
+                    </p>
+                    <div className="w-10 h-[1px] bg-[#AEBFD6]/40 my-4" />
+                    <p className="font-serif-luxury text-xs sm:text-sm text-[#F5F5F5]/90 leading-relaxed">
+                      {config.couple.brideParents}
+                    </p>
                   </div>
                 </div>
               </RevealOnScroll>
 
+              {/* Mempelai Pria */}
               <RevealOnScroll className="w-full max-w-[340px] sm:max-w-[360px]" delay={120}>
                 <div className="h-full bg-[#1B2A49] text-[#F5F5F5] rounded-b-[175px] md:rounded-b-none md:rounded-t-[175px] p-4 sm:p-5 shadow-2xl border border-[#101A30]">
-                  <div className="h-full rounded-b-[160px] md:rounded-b-none md:rounded-t-[160px] border border-[#AEBFD6]/45 pt-7 pb-10 md:pt-8 md:pb-7 px-4 sm:px-6 flex flex-col items-center justify-between">
-                    <div className="flex flex-col items-center">
-                      <span className="font-sans-refined text-[8px] uppercase tracking-[0.3em] text-[#AEBFD6] mb-4">
-                        The Groom
-                      </span>
-                      <div className="w-32 h-40 sm:w-36 sm:h-44 rounded-t-full overflow-hidden border-2 border-[#AEBFD6]/80 shadow-lg mb-5 bg-[#101A30]">
-                        <img
-                          src={config.couple.groomPhoto}
-                          alt={config.couple.groomFull}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                      <h3 className="font-script text-3xl sm:text-4xl text-[#AEBFD6]">
-                        {config.couple.groomShort}
-                      </h3>
-                      <p className="font-serif-luxury text-lg sm:text-xl font-medium tracking-wide text-[#F5F5F5] mt-1">
-                        {config.couple.groomFull}
-                      </p>
-                      <p className="font-serif-luxury italic text-xs sm:text-sm text-[#C5CCD6] mt-3 leading-relaxed">
-                        {config.couple.groomBio}
-                      </p>
-                      <div className="w-10 h-[1px] bg-[#AEBFD6]/40 my-4" />
-                      <p className="font-serif-luxury text-xs sm:text-sm text-[#F5F5F5]/90 leading-relaxed">
-                        {config.couple.groomParents}
-                      </p>
+                  <div className="h-full rounded-b-[160px] md:rounded-b-none md:rounded-t-[160px] border border-[#AEBFD6]/45 pt-8 pb-9 px-4 sm:px-6 flex flex-col items-center justify-center">
+                    <span className="font-sans-refined text-[8px] uppercase tracking-[0.3em] text-[#AEBFD6] mb-4">
+                      The Groom
+                    </span>
+                    <div className="w-32 h-40 sm:w-36 sm:h-44 rounded-t-full overflow-hidden border-2 border-[#AEBFD6]/80 shadow-lg mb-5 bg-[#101A30]">
+                      <img
+                        src={config.couple.groomPhoto}
+                        alt={config.couple.groomFull}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                      />
                     </div>
-                    <a
-                      href={`https://instagram.com/${config.couple.groomInstagram.replace('@', '')}`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-5 min-h-[38px] inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-[#AEBFD6]/50 text-[10px] font-sans-refined tracking-widest uppercase text-[#AEBFD6] hover:bg-[#AEBFD6] hover:text-[#1B2A49] transition-colors"
-                    >
-                      <InstagramIcon className="w-3 h-3" />
-                      <span>{config.couple.groomInstagram}</span>
-                    </a>
+                    <h3 className="font-script text-3xl sm:text-4xl text-[#AEBFD6]">
+                      {config.couple.groomShort}
+                    </h3>
+                    <p className="font-serif-luxury text-lg sm:text-xl font-medium tracking-wide text-[#F5F5F5] mt-1">
+                      {config.couple.groomFull}
+                    </p>
+                    <div className="w-10 h-[1px] bg-[#AEBFD6]/40 my-4" />
+                    <p className="font-serif-luxury text-xs sm:text-sm text-[#F5F5F5]/90 leading-relaxed">
+                      {config.couple.groomParents}
+                    </p>
                   </div>
                 </div>
               </RevealOnScroll>
@@ -1829,17 +1933,20 @@ export default function App() {
                         </p>
                       </div>
                     </div>
-                    <div className="mt-7">
-                      <a
-                        href={ev.data.mapsUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="min-h-[44px] inline-flex items-center justify-center gap-2 w-full py-2.5 px-5 bg-[#1B2A49] text-[#F5F5F5] font-sans-refined text-[10px] uppercase tracking-[0.25em] hover:bg-[#101A30] transition-colors"
-                      >
-                        <MapPin className="w-3.5 h-3.5 text-[#AEBFD6]" />
-                        <span>View Location</span>
-                      </a>
-                    </div>
+
+                    {ev.data.mapsUrl && (
+                      <div className="mt-7">
+                        <a
+                          href={ev.data.mapsUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="min-h-[44px] inline-flex items-center justify-center gap-2 w-full py-2.5 px-5 bg-[#1B2A49] text-[#F5F5F5] font-sans-refined text-[10px] uppercase tracking-[0.25em] hover:bg-[#101A30] transition-colors"
+                        >
+                          <MapPin className="w-3.5 h-3.5 text-[#AEBFD6]" />
+                          <span>View Location</span>
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </RevealOnScroll>
               ))}
@@ -1879,13 +1986,17 @@ export default function App() {
                   {config.weddingDate.displayDate}
                 </p>
                 <p className="font-serif-luxury text-xs sm:text-sm text-[#1B2A49]/75 mt-1">
-                  {config.events.resepsi.venueName}
+                  {config.events.resepsi.venueName} — {config.events.resepsi.address}
                 </p>
                 <div className="mt-6 sm:mt-7">
                   <a
                     href={`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
                       config.weddingDate.calendarTitle
-                    )}&details=${encodeURIComponent( config.weddingDate.calendarDetails )}&location=${encodeURIComponent(config.events.resepsi.address)}`}
+                    )}&details=${encodeURIComponent(
+                      config.weddingDate.calendarDetails
+                    )}&location=${encodeURIComponent(
+                      `${config.events.resepsi.venueName}, ${config.events.resepsi.address}`
+                    )}`}
                     target="_blank"
                     rel="noreferrer"
                     className="min-h-[42px] inline-flex items-center justify-center gap-2 px-5 py-2.5 border border-[#1B2A49] text-[#1B2A49] font-sans-refined text-[9px] uppercase tracking-[0.25em] hover:bg-[#1B2A49] hover:text-[#F5F5F5] transition-colors"
@@ -1899,7 +2010,7 @@ export default function App() {
           </RevealOnScroll>
         </section>
 
-        {/* SECTION 8 — RSVP & GIFTS */}
+        {/* SECTION 8 — RSVP & TANDA KASIH PERNIKAHAN (QRIS ONLY) */}
         <section
           id="section-rsvp"
           className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-10 md:px-14 bg-fine-paper text-[#1B2A49] border-t border-[#C5CCD6]"
@@ -1925,7 +2036,7 @@ export default function App() {
                     htmlFor="rsvp-name"
                     className="block font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#1B2A49] mb-2"
                   >
-                    Nama Lengkap Tamu *
+                    Nama Tamu Undangan *
                   </label>
                   <input
                     id="rsvp-name"
@@ -1933,7 +2044,6 @@ export default function App() {
                     required
                     value={rsvpForm.name}
                     onChange={(e) => setRsvpForm({ ...rsvpForm, name: e.target.value })}
-                    placeholder="Contoh: Bpk. Adrian & Ibu Nadia"
                     className="w-full min-h-[44px] bg-[#FFFFFF] border border-[#C5CCD6] px-4 py-3 font-serif-luxury text-sm text-[#1B2A49] focus:outline-none focus:border-[#1B2A49]"
                   />
                 </div>
@@ -1991,7 +2101,7 @@ export default function App() {
                     rows={3}
                     value={rsvpForm.message}
                     onChange={(e) => setRsvpForm({ ...rsvpForm, message: e.target.value })}
-                    placeholder="Tuliskan doa dan harapan terbaik Anda..."
+                    placeholder="Tuliskan doa dan harapan terbaik Anda untuk Tiara & Rifqi..."
                     className="w-full bg-[#FFFFFF] border border-[#C5CCD6] px-4 py-3 font-serif-luxury text-sm text-[#1B2A49] focus:outline-none focus:border-[#1B2A49]"
                   />
                 </div>
@@ -2044,6 +2154,7 @@ export default function App() {
               </div>
             </RevealOnScroll>
 
+            {/* TANDA KASIH PERNIKAHAN — MENGGUNAKAN FOTO QRIS SAJA */}
             <RevealOnScroll className="mt-14 sm:mt-16 text-center">
               <p className="font-sans-refined text-[9px] uppercase tracking-[0.3em] text-[#1B2A49]/75">
                 Wedding Gift
@@ -2051,42 +2162,73 @@ export default function App() {
               <h3 className="font-serif-luxury text-2xl sm:text-3xl text-[#1B2A49] mt-1">
                 Tanda Kasih Pernikahan
               </h3>
-              <div className="space-y-4 max-w-[400px] mx-auto mt-6">
-                {config.gifts.map((gift, idx) => (
+              <p className="font-serif-luxury italic text-xs sm:text-sm text-[#1B2A49]/75 mt-2 max-w-md mx-auto leading-relaxed">
+                Doa restu Anda merupakan karunia terindah bagi kami. Namun apabila Bapak/Ibu/Saudara/i
+                ingin memberikan tanda kasih secara digital, dapat melalui pindai kode QRIS berikut:
+              </p>
+
+              <div className="mt-6 max-w-[360px] mx-auto bg-[#FFFFFF] border border-[#C5CCD6] p-5 sm:p-7 shadow-xl relative">
+                <div className="border border-[#1B2A49]/20 p-4 sm:p-5 bg-[#F8F9FA]">
+                  <div className="flex items-center justify-between border-b border-[#C5CCD6] pb-2.5 mb-4">
+                    <span className="font-sans-refined text-[9px] font-semibold uppercase tracking-[0.24em] text-[#1B2A49]">
+                      QRIS • ALL PAYMENT
+                    </span>
+                    <QrCode className="w-4 h-4 text-[#1B2A49]" />
+                  </div>
+
+                  {/* Frame Gambar QRIS (Ketuk untuk memperbesar) */}
                   <div
-                    key={idx}
-                    className="bg-[#FFFFFF] border border-[#C5CCD6] rounded-lg p-4 sm:p-5 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-left"
+                    onClick={() => setIsQrisZoomOpen(true)}
+                    className="group relative aspect-square w-full max-w-[240px] mx-auto bg-[#FFFFFF] border border-[#C5CCD6] p-3 flex items-center justify-center cursor-pointer overflow-hidden shadow-inner"
                   >
-                    <div>
-                      <span className="inline-block font-sans-refined text-[9px] uppercase tracking-[0.22em] text-[#1B2A49] font-semibold">
-                        {gift.bankName}
-                      </span>
-                      <p className="font-serif-luxury text-lg sm:text-xl font-semibold text-[#1B2A49] tracking-wider mt-1">
-                        {gift.accountNumber}
-                      </p>
-                      <p className="font-serif-luxury italic text-xs text-[#A8ADB5]">
-                        {gift.accountHolder}
-                      </p>
-                    </div>
+                    {!qrisImageError ? (
+                      <img
+                        src={config.qrisGift.imageUrl}
+                        alt="QRIS Tanda Kasih Pernikahan Tiara & Rifqi"
+                        onError={() => setQrisImageError(true)}
+                        className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="text-center p-4">
+                        <QrCode className="w-24 h-24 text-[#1B2A49]/80 mx-auto mb-2 stroke-[1.2]" />
+                        <p className="font-sans-refined text-[9px] uppercase tracking-[0.2em] text-[#1B2A49]">
+                          Foto QRIS
+                        </p>
+                        <p className="font-serif-luxury italic text-xs text-[#A8ADB5] mt-1">
+                          Simpan file foto QRIS Anda di folder{' '}
+                          <code className="text-[#1B2A49] font-semibold">public/qris.jpg</code>
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                  <p className="font-serif-luxury font-semibold text-sm sm:text-base text-[#1B2A49] mt-4">
+                    {config.qrisGift.merchantName}
+                  </p>
+                  <p className="font-serif-luxury italic text-[11px] sm:text-xs text-[#1B2A49]/75 mt-1 leading-relaxed">
+                    {config.qrisGift.note}
+                  </p>
+
+                  <div className="mt-5 grid grid-cols-2 gap-2.5">
                     <button
                       type="button"
-                      onClick={() => handleCopyAccount(gift.accountNumber, idx)}
-                      className="min-h-[40px] shrink-0 inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-[#1B2A49] text-[#F5F5F5] font-sans-refined text-[9px] uppercase tracking-widest hover:bg-[#101A30] transition-colors"
+                      onClick={() => setIsQrisZoomOpen(true)}
+                      className="min-h-[40px] inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-[#1B2A49] text-[#1B2A49] font-sans-refined text-[9px] uppercase tracking-widest hover:bg-[#1B2A49] hover:text-[#F5F5F5] transition-colors"
                     >
-                      {copiedAccount === idx ? (
-                        <>
-                          <Check className="w-3 h-3 text-[#AEBFD6]" />
-                          <span>Tersalin</span>
-                        </>
-                      ) : (
-                        <>
-                          <Copy className="w-3 h-3 text-[#AEBFD6]" />
-                          <span>Salin Rekening</span>
-                        </>
-                      )}
+                      <Maximize2 className="w-3 h-3" />
+                      <span>Perbesar</span>
                     </button>
+
+                    <a
+                      href={config.qrisGift.imageUrl}
+                      download="QRIS-Tiara-Rifqi.jpg"
+                      className="min-h-[40px] inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-[#1B2A49] text-[#F5F5F5] font-sans-refined text-[9px] uppercase tracking-widest hover:bg-[#101A30] transition-colors"
+                    >
+                      <Download className="w-3 h-3 text-[#AEBFD6]" />
+                      <span>Unduh QRIS</span>
+                    </a>
                   </div>
-                ))}
+                </div>
               </div>
             </RevealOnScroll>
           </div>
@@ -2135,7 +2277,7 @@ export default function App() {
       </div>
 
       {/* =====================================================================
-          BOTTOM NAVIGATION BAR (MOBILE-FIRST ERGONOMIC DOCK)
+          BOTTOM NAVIGATION BAR
       ===================================================================== */}
       {envelopeStage === 'opened' && (
         <nav
@@ -2222,7 +2364,7 @@ export default function App() {
         </nav>
       )}
 
-      {/* LIGHTBOX MODAL */}
+      {/* LIGHTBOX MODAL GALERI */}
       {selectedPhoto && (
         <div
           onClick={() => setSelectedPhoto(null)}
@@ -2252,118 +2394,90 @@ export default function App() {
         </div>
       )}
 
-      {/* DRAWER KUSTOMISASI REAL-TIME LENGKAP */}
-      {isCustomizeOpen && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex justify-end">
+      {/* MODAL ZOOM FOTO QRIS */}
+      {isQrisZoomOpen && (
+        <div
+          onClick={() => setIsQrisZoomOpen(false)}
+          className="fixed inset-0 z-50 bg-[#0A101E]/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-md w-full bg-[#FFFFFF] p-5 sm:p-7 border border-[#C5CCD6] shadow-2xl text-center"
+          >
+            <button
+              onClick={() => setIsQrisZoomOpen(false)}
+              className="absolute -top-4 -right-4 w-9 h-9 rounded-full bg-[#1B2A49] text-[#F5F5F5] border border-[#AEBFD6] flex items-center justify-center shadow-lg"
+            >
+              <X className="w-4 h-4" />
+            </button>
+            <p className="font-sans-refined text-[9px] uppercase tracking-[0.28em] text-[#1B2A49]/75 mb-3">
+              {config.qrisGift.title}
+            </p>
+            <div className="aspect-square w-full bg-[#F8F9FA] border border-[#C5CCD6] p-3 flex items-center justify-center">
+              {!qrisImageError ? (
+                <img
+                  src={config.qrisGift.imageUrl}
+                  alt="QRIS Tiara & Rifqi"
+                  className="w-full h-full object-contain"
+                />
+              ) : (
+                <QrCode className="w-32 h-32 text-[#1B2A49]" />
+              )}
+            </div>
+            <p className="font-serif-luxury font-semibold text-base text-[#1B2A49] mt-3">
+              {config.qrisGift.merchantName}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL DAFTAR 39 LINK TAMU (KHUSUS MODE ADMIN ?admin=mdt) */}
+      {isGuestListModalOpen && (
+        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex justify-end">
           <div className="w-full max-w-md bg-[#F5F5F5] text-[#1B2A49] h-full overflow-y-auto p-6 sm:p-8 shadow-2xl border-l border-[#C5CCD6]">
-            <div className="flex items-center justify-between border-b border-[#C5CCD6] pb-4 mb-6">
+            <div className="flex items-center justify-between border-b border-[#C5CCD6] pb-4 mb-5">
               <div>
                 <p className="font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#1B2A49]/70">
-                  Live Configuration
+                  Whitelisted Guests ({INVITED_GUESTS.length})
                 </p>
                 <h3 className="font-serif-luxury text-2xl font-semibold">
-                  Kustomisasi Data Undangan
+                  Daftar Link Undangan Tamu
                 </h3>
               </div>
               <button
-                onClick={() => setIsCustomizeOpen(false)}
+                onClick={() => setIsGuestListModalOpen(false)}
                 className="p-2 text-[#1B2A49] hover:bg-[#E4E9F0] rounded-full"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="space-y-4 font-serif-luxury text-sm">
-              <div>
-                <label className="block font-sans-refined text-[9px] uppercase tracking-widest text-[#1B2A49] mb-1">
-                  Nama Tamu di Amplop &amp; Sampul
-                </label>
-                <input
-                  type="text"
-                  value={guestName}
-                  onChange={(e) => setGuestName(e.target.value)}
-                  className="w-full border border-[#C5CCD6] px-3 py-2 bg-[#FFFFFF]"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block font-sans-refined text-[9px] uppercase tracking-widest text-[#1B2A49] mb-1">
-                    Panggilan Wanita
-                  </label>
-                  <input
-                    type="text"
-                    value={config.couple.brideShort}
-                    onChange={(e) =>
-                      setConfig({
-                        ...config,
-                        couple: { ...config.couple, brideShort: e.target.value },
-                      })
-                    }
-                    className="w-full border border-[#C5CCD6] px-3 py-2 bg-[#FFFFFF]"
-                  />
-                </div>
-                <div>
-                  <label className="block font-sans-refined text-[9px] uppercase tracking-widest text-[#1B2A49] mb-1">
-                    Panggilan Pria
-                  </label>
-                  <input
-                    type="text"
-                    value={config.couple.groomShort}
-                    onChange={(e) =>
-                      setConfig({
-                        ...config,
-                        couple: { ...config.couple, groomShort: e.target.value },
-                      })
-                    }
-                    className="w-full border border-[#C5CCD6] px-3 py-2 bg-[#FFFFFF]"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block font-sans-refined text-[9px] uppercase tracking-widest text-[#1B2A49] mb-1">
-                  Tanggal Tampilan
-                </label>
-                <input
-                  type="text"
-                  value={config.weddingDate.displayDate}
-                  onChange={(e) =>
-                    setConfig({
-                      ...config,
-                      weddingDate: { ...config.weddingDate, displayDate: e.target.value },
-                    })
-                  }
-                  className="w-full border border-[#C5CCD6] px-3 py-2 bg-[#FFFFFF]"
-                />
-              </div>
-
-              <div>
-                <label className="block font-sans-refined text-[9px] uppercase tracking-widest text-[#1B2A49] mb-1">
-                  Lokasi Resepsi
-                </label>
-                <input
-                  type="text"
-                  value={config.events.resepsi.venueName}
-                  onChange={(e) =>
-                    setConfig({
-                      ...config,
-                      events: {
-                        ...config.events,
-                        resepsi: { ...config.events.resepsi, venueName: e.target.value },
-                      },
-                    })
-                  }
-                  className="w-full border border-[#C5CCD6] px-3 py-2 bg-[#FFFFFF]"
-                />
-              </div>
-
-              <button
-                onClick={() => setIsCustomizeOpen(false)}
-                className="w-full mt-6 py-3 bg-[#1B2A49] text-[#F5F5F5] font-sans-refined text-[10px] uppercase tracking-[0.25em]"
-              >
-                Terapkan Perubahan
-              </button>
+            <div className="space-y-2.5">
+              {INVITED_GUESTS.map((guest, idx) => {
+                const slug = createGuestSlug(guest);
+                return (
+                  <div
+                    key={guest}
+                    className="bg-[#FFFFFF] border border-[#C5CCD6] p-3 flex items-center justify-between gap-2"
+                  >
+                    <div className="truncate">
+                      <p className="font-serif-luxury font-semibold text-sm text-[#1B2A49]">
+                        {idx + 1}. {guest}
+                      </p>
+                      <p className="font-sans-refined text-[10px] text-[#889BB5] truncate">
+                        wedding.mustdhiya.com/{slug}
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => handleCopyGuestUrl(guest)}
+                      className="shrink-0 px-3 py-1.5 bg-[#1B2A49] text-[#F5F5F5] font-sans-refined text-[9px] uppercase tracking-wider"
+                    >
+                      {copiedGuestLink === guest ? 'Tersalin' : 'Salin'}
+                    </button>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
