@@ -28,8 +28,7 @@ import {
 } from 'lucide-react';
 
 // ============================================================================
-// DAFTAR RESMI TAMU UNDANGAN (WHITELIST 39 TAMU)
-// Selain nama yang ada di daftar ini, halaman undangan tidak dapat dibuka.
+// 1. DAFTAR RESMI TAMU UNDANGAN (WHITELIST 39 TAMU)
 // ============================================================================
 const INVITED_GUESTS = [
   'Ais & partner',
@@ -101,28 +100,18 @@ const findAuthorizedGuest = (rawCandidate) => {
 };
 
 // ============================================================================
-// KONFIGURASI DATA PERNIKAHAN — TIARA & RIFQI (TEMA "CHOCOLATE LILAC")
-// Palet Warna:
-// - Chocolate Brown : #4A3428
-// - Lilac           : #D8C9E8
-// - Soft White      : #FAF9F7
-// - Silver Sage     : #B9C4B7
-// - Bronze          : #A77B4D
+// 2. KONFIGURASI DATA PERNIKAHAN - TIARA & RIFQI (TEMA "CHOCOLATE LILAC")
 // ============================================================================
 const DEFAULT_WEDDING_CONFIG = {
   couple: {
     brideShort: 'Tiara',
     brideFull: 'Tiara Nazwa Andira Ali',
-    brideBio: '',
     brideParents: 'Putri keempat dari Bapak H. Alimuddin & Ibu Hj. Siti Zubaidah',
-    brideInstagram: '',
     bridePhoto: '/galeryfoto/2.JPG',
 
     groomShort: 'Rifqi',
     groomFull: 'Muhammad Rifqi Ihsan',
-    groomBio: '',
     groomParents: 'Putra pertama dari Bapak Rusdi Anwar, S.P. & Ibu Maisyarah',
-    groomInstagram: '',
     groomPhoto: '/galeryfoto/3.jpg',
 
     monogram: 'T & R',
@@ -149,6 +138,7 @@ const DEFAULT_WEDDING_CONFIG = {
   },
   events: {
     akad: {
+      badge: 'Sacred Ceremony',
       title: 'Akad Nikah',
       dayDate: 'Minggu, 08 November 2026',
       time: '09:00 WITA',
@@ -157,6 +147,7 @@ const DEFAULT_WEDDING_CONFIG = {
       mapsUrl: '',
     },
     resepsi: {
+      badge: 'Wedding Reception',
       title: 'Resepsi Pernikahan',
       dayDate: 'Minggu, 08 November 2026',
       time: '10:00 WITA s/d Selesai',
@@ -203,48 +194,13 @@ const DEFAULT_WEDDING_CONFIG = {
     },
   ],
   gallery: [
-    {
-      id: 1,
-      url: '/galeryfoto/1.PNG',
-      type: 'portrait-left',
-      caption: 'I. Dalam Teduh Cahaya Senja',
-    },
-    {
-      id: 2,
-      url: '/galeryfoto/2.JPG',
-      type: 'portrait-right',
-      caption: 'II. Langkah yang Searah',
-    },
-    {
-      id: 3,
-      url: '/lovestory/the beginning.JPG',
-      type: 'full-landscape',
-      caption: 'III. Harmoni Kasih — Fine Art Editorial Series',
-    },
-    {
-      id: 4,
-      url: '/galeryfoto/4.jpg',
-      type: 'paper-frame',
-      caption: 'IV. Menggenggam Waktu',
-    },
-    {
-      id: 5,
-      url: '/galeryfoto/5.JPEG',
-      type: 'magazine-margin',
-      caption: 'V. Menuju Hari Bahagia',
-    },
-    {
-      id: 6,
-      url: '/galeryfoto/6.jpg',
-      type: 'portrait-extra-left',
-      caption: 'VI. Senyum dalam Doa',
-    },
-    {
-      id: 7,
-      url: '/galeryfoto/7.JPEG',
-      type: 'portrait-extra-right',
-      caption: 'VII. Janji Selamanya',
-    },
+    { id: 1, url: '/galeryfoto/1.PNG', caption: 'Galeri 1' },
+    { id: 2, url: '/galeryfoto/5.JPEG', caption: 'Galeri 2' },
+    { id: 3, url: '/lovestory/the beginning.JPG', caption: 'Galeri 3' },
+    { id: 4, url: '/galeryfoto/4.jpg', caption: 'Galeri 4' },
+    { id: 5, url: '/galeryfoto/8.png', caption: 'Galeri 5' },
+    { id: 6, url: '/galeryfoto/6.jpg', caption: 'Galeri 6' },
+    { id: 7, url: '/galeryfoto/7.JPEG', caption: 'Galeri 7' },
   ],
   closingPhoto: '/galeryfoto/7.JPEG',
   gifts: [
@@ -268,10 +224,7 @@ const DEFAULT_WEDDING_CONFIG = {
   music: {
     title: 'The Script - Never Seen Anything Quite Like You',
     audioUrl: '/The Script - Never Seen Anything Quite Like You (Audio).mp3',
-    startTime: 5,           // Mulai dari detik ke-5
-    endTime: null,          // null = Mainkan sampai akhir lagu
-    maxVolume: 0.65,        // Volume maksimal (0.0 - 1.0)
-    fadeDuration: 3.0,      // Durasi smooth fade-in & fade-out (3 detik)
+    startTime: 5, // Mulai dari detik ke-5 dengan suara normal (100%)
   },
   support: {
     companyName: 'PT. MUSTDHIYA TEKNOLOGI INDONESIA',
@@ -312,8 +265,7 @@ const NAV_ITEMS = [
 ];
 
 // ============================================================================
-// KOMPONEN ORNAMEN SVG ARTISTIK — TEMA "CHOCOLATE LILAC"
-// (Mawar Chocolate Brown #4A3428, Bunga Lilac #D8C9E8, Daun Silver Sage #B9C4B7, Aksen Bronze #A77B4D)
+// 3. KOMPONEN ORNAMEN FLORAL & IKON ARTISTIK (MEMOIZED)
 // ============================================================================
 const ChocolateLilacFloralCrest = memo(({ className = 'w-44 h-28' }) => (
   <svg viewBox="0 0 240 130" fill="none" className={className} aria-hidden="true">
@@ -329,12 +281,10 @@ const ChocolateLilacFloralCrest = memo(({ className = 'w-44 h-28' }) => (
       strokeWidth="1.1"
       strokeLinecap="round"
     />
-    {/* Daun Eucalyptus Silver Sage */}
     <ellipse cx="62" cy="48" rx="14" ry="6" transform="rotate(-25 62 48)" fill="#B9C4B7" opacity="0.9" />
     <ellipse cx="178" cy="48" rx="14" ry="6" transform="rotate(25 178 48)" fill="#B9C4B7" opacity="0.9" />
     <ellipse cx="48" cy="76" rx="12" ry="5" transform="rotate(15 48 76)" fill="#D8C9E8" opacity="0.85" />
     <ellipse cx="192" cy="76" rx="12" ry="5" transform="rotate(-15 192 76)" fill="#D8C9E8" opacity="0.85" />
-    {/* Mawar Utama Chocolate Brown */}
     <circle cx="120" cy="64" r="28" fill="#35241B" />
     <circle cx="116" cy="61" r="22" fill="#4A3428" />
     <path
@@ -344,7 +294,6 @@ const ChocolateLilacFloralCrest = memo(({ className = 'w-44 h-28' }) => (
       fill="none"
       opacity="0.9"
     />
-    {/* Mawar Lilac & Soft White di Kiri & Kanan */}
     <circle cx="84" cy="70" r="16" fill="#D8C9E8" />
     <path
       d="M76 68 C80 60, 90 60, 92 68 C94 75, 82 78, 78 72"
@@ -361,7 +310,6 @@ const ChocolateLilacFloralCrest = memo(({ className = 'w-44 h-28' }) => (
       fill="none"
       opacity="0.8"
     />
-    {/* Putik Bronze & Lilac */}
     <circle cx="38" cy="36" r="2.5" fill="#FAF9F7" stroke="#4A3428" strokeWidth="0.8" />
     <circle cx="52" cy="28" r="2" fill="#D8C9E8" />
     <circle cx="202" cy="36" r="2.5" fill="#FAF9F7" stroke="#4A3428" strokeWidth="0.8" />
@@ -369,6 +317,110 @@ const ChocolateLilacFloralCrest = memo(({ className = 'w-44 h-28' }) => (
     <circle cx="96" cy="36" r="2.2" fill="#A77B4D" />
     <circle cx="144" cy="36" r="2.2" fill="#D8C9E8" />
   </svg>
+));
+
+// Ornamen Bunga Samping Vertikal (Untuk Mengapit Sisi Kiri & Kanan Halaman)
+const SideFloralBouquet = memo(({ className = 'w-20 sm:w-28 md:w-36 h-auto', flip = false }) => (
+  <svg
+    viewBox="0 0 140 420"
+    fill="none"
+    className={`${className} ${flip ? 'scale-x-[-1]' : ''}`}
+    aria-hidden="true"
+  >
+    {/* Batang Utama Sulur Bronze & Silver Sage */}
+    <path
+      d="M-10 40 C45 95, 55 170, 28 240 C5 300, 40 355, -5 400"
+      stroke="#A77B4D"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      opacity="0.7"
+    />
+    <path
+      d="M5 90 C65 120, 85 185, 52 255 C30 300, 60 340, 20 385"
+      stroke="#B9C4B7"
+      strokeWidth="1.1"
+      strokeDasharray="3 3"
+      strokeLinecap="round"
+      opacity="0.75"
+    />
+
+    {/* Daun Eucalyptus Silver Sage */}
+    <ellipse cx="38" cy="82" rx="18" ry="7" transform="rotate(28 38 82)" fill="#B9C4B7" opacity="0.8" />
+    <ellipse cx="58" cy="135" rx="20" ry="8" transform="rotate(-18 58 135)" fill="#B9C4B7" opacity="0.85" />
+    <ellipse cx="26" cy="175" rx="16" ry="6.5" transform="rotate(35 26 175)" fill="#D8C9E8" opacity="0.75" />
+    <ellipse cx="62" cy="235" rx="19" ry="7.5" transform="rotate(-24 62 235)" fill="#B9C4B7" opacity="0.8" />
+    <ellipse cx="32" cy="295" rx="17" ry="7" transform="rotate(22 32 295)" fill="#D8C9E8" opacity="0.75" />
+    <ellipse cx="48" cy="348" rx="16" ry="6" transform="rotate(-15 48 348)" fill="#B9C4B7" opacity="0.8" />
+
+    {/* Bunga Mawar Chocolate Brown #1 (Atas) */}
+    <g transform="translate(42, 110)">
+      <circle cx="0" cy="0" r="20" fill="#35241B" />
+      <circle cx="-2" cy="-2" r="15" fill="#4A3428" />
+      <path
+        d="M-9 -4 C-5 -13, 8 -13, 12 -4 C15 6, 0 13, -7 6 C-13 0, -6 -9, 2 -8 C8 -7, 9 0, 2 2"
+        stroke="#D8C9E8"
+        strokeWidth="1.1"
+        fill="none"
+        opacity="0.9"
+      />
+    </g>
+
+    {/* Bunga Peony Soft White & Lilac (Tengah) */}
+    <g transform="translate(56, 192)">
+      <circle cx="0" cy="0" r="22" fill="#D8C9E8" />
+      <circle cx="-3" cy="-2" r="16" fill="#FAF9F7" stroke="#A77B4D" strokeWidth="0.8" />
+      <path
+        d="M-8 -3 C-4 -10, 6 -10, 8 -3 C10 4, -2 8, -6 2"
+        stroke="#4A3428"
+        strokeWidth="0.9"
+        fill="none"
+        opacity="0.7"
+      />
+      <circle cx="-1" cy="-1" r="2.5" fill="#A77B4D" />
+    </g>
+
+    {/* Bunga Mawar Chocolate Brown #2 (Bawah) */}
+    <g transform="translate(35, 268)">
+      <circle cx="0" cy="0" r="18" fill="#4A3428" />
+      <path
+        d="M-8 -3 C-4 -11, 7 -11, 10 -3 C12 5, 0 11, -6 5 C-11 0, -5 -7, 2 -6"
+        stroke="#FAF9F7"
+        strokeWidth="1"
+        fill="none"
+        opacity="0.85"
+      />
+    </g>
+
+    {/* Kuncup Bunga Lilac & Putik Bronze */}
+    <circle cx="24" cy="142" r="11" fill="#D8C9E8" />
+    <circle cx="24" cy="142" r="6" fill="#FAF9F7" />
+    <circle cx="52" cy="318" r="12" fill="#D8C9E8" />
+    <circle cx="50" cy="316" r="7" fill="#4A3428" />
+
+    {/* Taburan Baby's Breath / Berry Kecil */}
+    <circle cx="72" cy="95" r="3" fill="#FAF9F7" stroke="#A77B4D" strokeWidth="0.8" />
+    <circle cx="82" cy="160" r="2.5" fill="#D8C9E8" />
+    <circle cx="78" cy="218" r="3" fill="#A77B4D" opacity="0.8" />
+    <circle cx="68" cy="282" r="2.5" fill="#FAF9F7" stroke="#4A3428" strokeWidth="0.7" />
+    <circle cx="22" cy="365" r="3" fill="#D8C9E8" />
+  </svg>
+));
+
+// Komponen Pembungkus Bunga Samping Kiri & Kanan di Setiap Section
+const SectionSideFlorals = memo(({ opacity = 'opacity-75 sm:opacity-90', topOffset = 'top-12' }) => (
+  <>
+    <div
+      className={`pointer-events-none absolute left-0 ${topOffset} z-0 -translate-x-5 sm:-translate-x-3 ${opacity} animate-float-slow`}
+    >
+      <SideFloralBouquet />
+    </div>
+    <div
+      className={`pointer-events-none absolute right-0 ${topOffset} z-0 translate-x-5 sm:translate-x-3 ${opacity} animate-float-slow`}
+      style={{ animationDelay: '2.2s' }}
+    >
+      <SideFloralBouquet flip />
+    </div>
+  </>
 ));
 
 const WaxSealStamp = memo(({ monogram = 'T & R', size = 'w-20 h-20' }) => (
@@ -433,131 +485,7 @@ const VintageCarriageIllustration = memo(({ className = 'w-64 h-32' }) => (
 ));
 
 // ============================================================================
-// KOMPONEN COUNTDOWN MANDIRI
-// ============================================================================
-const CountdownTimer = memo(({ isoDate }) => {
-  const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-
-  useEffect(() => {
-    const updateCountdown = () => {
-      const target = new Date(isoDate).getTime();
-      const now = Date.now();
-      const diff = Math.max(0, target - now);
-
-      setCountdown({
-        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((diff / 1000 / 60) % 60),
-        seconds: Math.floor((diff / 1000) % 60),
-      });
-    };
-
-    updateCountdown();
-    const timer = setInterval(updateCountdown, 1000);
-    return () => clearInterval(timer);
-  }, [isoDate]);
-
-  const items = [
-    { label: 'Hari', value: countdown.days },
-    { label: 'Jam', value: countdown.hours },
-    { label: 'Menit', value: countdown.minutes },
-    { label: 'Detik', value: countdown.seconds },
-  ];
-
-  return (
-    <div className="grid grid-cols-4 gap-2.5 sm:gap-4 max-w-[340px] sm:max-w-[420px] mx-auto mt-5 mb-12 sm:mb-16">
-      {items.map((item, idx) => (
-        <div
-          key={idx}
-          className="bg-[#FAF9F7]/95 backdrop-blur-sm border border-[#D8C9E8] py-3 sm:py-4 px-2 shadow-[0_10px_25px_-5px_rgba(74,52,40,0.08)] relative overflow-hidden group"
-        >
-          <div className="absolute inset-x-1 top-1 h-[1px] bg-gradient-to-r from-transparent via-[#A77B4D]/50 to-transparent" />
-          <span className="block font-serif-luxury text-2xl sm:text-3xl md:text-4xl font-semibold text-[#4A3428] tracking-tight">
-            {String(item.value).padStart(2, '0')}
-          </span>
-          <span className="font-sans-refined text-[7px] sm:text-[8px] uppercase tracking-[0.22em] text-[#4A3428]/70 mt-1 block">
-            {item.label}
-          </span>
-        </div>
-      ))}
-    </div>
-  );
-});
-
-// ============================================================================
-// GENERATOR AUDIO AMBIENT FALLBACK
-// ============================================================================
-class RomanticAmbientSynth {
-  constructor() {
-    this.ctx = null;
-    this.isPlaying = false;
-    this.intervalId = null;
-    this.step = 0;
-    this.notes = [
-      349.23, 440.0, 523.25, 659.25, 329.63, 392.0, 493.88, 587.33, 293.66, 349.23, 440.0, 523.25,
-      261.63, 329.63, 392.0, 493.88,
-    ];
-  }
-
-  start() {
-    if (this.isPlaying) return;
-    const AudioCtx = window.AudioContext || window.webkitAudioContext;
-    if (!AudioCtx) return;
-
-    if (!this.ctx) {
-      this.ctx = new AudioCtx();
-    }
-    if (this.ctx.state === 'suspended') {
-      this.ctx.resume();
-    }
-
-    this.isPlaying = true;
-    this.playNote();
-    this.intervalId = setInterval(() => {
-      if (this.isPlaying) this.playNote();
-    }, 1450);
-  }
-
-  playNote() {
-    if (!this.ctx || !this.isPlaying) return;
-    const now = this.ctx.currentTime;
-    const freq = this.notes[this.step % this.notes.length];
-    this.step += 1;
-
-    const osc = this.ctx.createOscillator();
-    const subOsc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
-
-    osc.type = 'sine';
-    subOsc.type = 'triangle';
-    osc.frequency.setValueAtTime(freq, now);
-    subOsc.frequency.setValueAtTime(freq * 0.5, now);
-
-    gain.gain.setValueAtTime(0.0001, now);
-    gain.gain.exponentialRampToValueAtTime(0.03, now + 0.4);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + 2.8);
-
-    osc.connect(gain);
-    subOsc.connect(gain);
-    gain.connect(this.ctx.destination);
-
-    osc.start(now);
-    subOsc.start(now);
-    osc.stop(now + 2.9);
-    subOsc.stop(now + 2.9);
-  }
-
-  stop() {
-    this.isPlaying = false;
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-      this.intervalId = null;
-    }
-  }
-}
-
-// ============================================================================
-// KOMPONEN SCROLL REVEAL
+// 4. SUB-KOMPONEN UI MODULAR BERBASIS DAISY-UI (CLEAN & DRY CODE)
 // ============================================================================
 const RevealOnScroll = ({ children, className = '', delay = 0 }) => {
   const ref = useRef(null);
@@ -567,8 +495,7 @@ const RevealOnScroll = ({ children, className = '', delay = 0 }) => {
     const node = ref.current;
     if (!node) return;
 
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setVisible(true);
       return;
     }
@@ -603,12 +530,285 @@ const RevealOnScroll = ({ children, className = '', delay = 0 }) => {
   );
 };
 
+const CountdownTimer = memo(({ isoDate }) => {
+  const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const updateCountdown = () => {
+      const target = new Date(isoDate).getTime();
+      const diff = Math.max(0, target - Date.now());
+
+      setCountdown({
+        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((diff / 1000 / 60) % 60),
+        seconds: Math.floor((diff / 1000) % 60),
+      });
+    };
+
+    updateCountdown();
+    const timer = setInterval(updateCountdown, 1000);
+    return () => clearInterval(timer);
+  }, [isoDate]);
+
+  const items = [
+    { label: 'Hari', value: countdown.days },
+    { label: 'Jam', value: countdown.hours },
+    { label: 'Menit', value: countdown.minutes },
+    { label: 'Detik', value: countdown.seconds },
+  ];
+
+  return (
+    <div className="grid grid-cols-4 gap-2.5 sm:gap-4 max-w-[340px] sm:max-w-[420px] mx-auto mt-5 mb-12 sm:mb-16">
+      {items.map((item) => (
+        <div
+          key={item.label}
+          className="card bg-[#FAF9F7]/95 backdrop-blur-sm border border-[#D8C9E8] py-3 sm:py-4 px-2 shadow-sm relative overflow-hidden"
+        >
+          <div className="absolute inset-x-1 top-1 h-[1px] bg-gradient-to-r from-transparent via-[#A77B4D]/50 to-transparent" />
+          <span className="block font-serif-luxury text-2xl sm:text-3xl md:text-4xl font-semibold text-[#4A3428] tracking-tight">
+            {String(item.value).padStart(2, '0')}
+          </span>
+          <span className="font-sans-refined text-[7px] sm:text-[8px] uppercase tracking-[0.22em] text-[#4A3428]/70 mt-1 block">
+            {item.label}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+});
+
+const CoupleProfileCard = memo(({ roleLabel, shortName, fullName, parents, photo, isGroom, onSelectPhoto }) => (
+  <div className="card bg-[#4A3428] text-[#FAF9F7] rounded-t-[175px] p-4 sm:p-5 shadow-2xl border border-[#35241B] h-full">
+    <div className="rounded-t-[160px] border border-[#D8C9E8]/50 pt-8 pb-9 px-4 sm:px-6 flex flex-col items-center justify-center h-full">
+      <span className="badge badge-outline border-[#D8C9E8]/60 text-[#D8C9E8] font-sans-refined text-[8px] uppercase tracking-[0.3em] mb-4 px-3 py-2">
+        {roleLabel}
+      </span>
+      <div
+        onClick={() => onSelectPhoto({ url: photo, caption: fullName })}
+        className="w-36 h-44 sm:w-40 sm:h-48 rounded-t-full overflow-hidden border-2 border-[#D8C9E8] shadow-lg mb-5 bg-[#2B1D16] cursor-pointer group"
+      >
+        <img
+          src={photo}
+          alt={fullName}
+          className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <h3 className="font-script text-3xl sm:text-4xl text-[#D8C9E8]">{shortName}</h3>
+      <p className="font-serif-luxury text-lg sm:text-xl font-medium tracking-wide text-[#FAF9F7] mt-1">
+        {fullName}
+      </p>
+      <div className="divider before:bg-[#A77B4D]/50 after:bg-[#A77B4D]/50 my-3 w-16 mx-auto" />
+      <p className="font-serif-luxury text-xs sm:text-sm text-[#FAF9F7]/90 leading-relaxed">
+        {parents}
+      </p>
+    </div>
+  </div>
+));
+
+// Komponen Item Love Story - Disesuaikan agar Foto Tidak Terpotong (Revisi 1)
+const StoryTimelineItem = memo(({ item, index, isForcedMobile, onSelectPhoto }) => {
+  const isEven = index % 2 === 0;
+  return (
+    <div
+      className={`relative flex flex-col ${
+        isForcedMobile ? 'items-center' : isEven ? 'sm:flex-row items-center' : 'sm:flex-row-reverse items-center'
+      } gap-4 sm:gap-6`}
+    >
+      {/* Bingkai Foto Fleksibel (Tidak Memotong Wajah Kiri/Kanan) */}
+      <div
+        onClick={() => onSelectPhoto({ url: item.photo, caption: `${item.stage} (${item.date})` })}
+        className="group relative z-10 w-32 sm:w-36 rounded-2xl p-1.5 bg-[#35241B] border border-[#D8C9E8] shadow-xl shrink-0 cursor-pointer"
+        title="Ketuk untuk memperbesar foto"
+      >
+        <div className="overflow-hidden rounded-xl bg-[#241812] flex items-center justify-center">
+          <img
+            src={item.photo}
+            alt={item.stage}
+            className="w-full h-auto max-h-36 object-contain transition-transform duration-500 group-hover:scale-105 block"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <span className="badge bg-[#4A3428] border border-[#D8C9E8]/70 px-2.5 py-0.5 text-[8px] font-sans-refined tracking-widest uppercase text-[#D8C9E8] absolute -bottom-2.5 left-1/2 -translate-x-1/2 shadow">
+          0{index + 1}
+        </span>
+      </div>
+
+      {/* Kartu Deskripsi Cerita */}
+      <div
+        className={`card w-full flex-1 bg-[#2D1F18]/85 backdrop-blur-sm border border-[#D8C9E8]/35 p-4 sm:p-6 text-center ${
+          isForcedMobile ? '' : isEven ? 'sm:text-left' : 'sm:text-right'
+        }`}
+      >
+        <span className="font-sans-refined text-[8px] sm:text-[9px] uppercase tracking-[0.28em] text-[#D8C9E8]">
+          {item.date}
+        </span>
+        <h3 className="font-serif-luxury text-xl sm:text-2xl text-[#FAF9F7] mt-0.5">
+          {item.stage}
+        </h3>
+        <p className="font-serif-luxury text-xs sm:text-sm text-[#FAF9F7]/85 leading-relaxed mt-2">
+          {item.description}
+        </p>
+      </div>
+    </div>
+  );
+});
+
+const EventScheduleCard = memo(({ eventData }) => (
+  <div className="card h-full bg-[#FAF9F7] border border-[#D8C9E8] p-6 sm:p-8 shadow-lg text-center flex flex-col justify-between relative">
+    <div className="absolute top-3 left-3 right-3 bottom-3 border border-[#D8C9E8]/60 pointer-events-none" />
+    <div className="relative z-10">
+      <span className="badge bg-[#F3EDF9] border-[#D8C9E8] text-[#4A3428] font-sans-refined text-[8px] uppercase tracking-[0.3em] px-3 py-2.5">
+        {eventData.badge}
+      </span>
+      <h3 className="font-serif-luxury text-2xl sm:text-3xl text-[#4A3428] mt-4">
+        {eventData.title}
+      </h3>
+      <div className="w-10 h-[1px] bg-[#A77B4D] mx-auto my-4" />
+      <div className="space-y-2 text-xs sm:text-sm font-serif-luxury">
+        <p className="flex items-center justify-center gap-2 text-[#4A3428] font-semibold">
+          <Calendar className="w-3.5 h-3.5 text-[#A77B4D]" />
+          <span>{eventData.dayDate}</span>
+        </p>
+        <p className="flex items-center justify-center gap-2 text-[#4A3428]/80">
+          <Clock className="w-3.5 h-3.5 text-[#A77B4D]" />
+          <span>{eventData.time}</span>
+        </p>
+      </div>
+      <div className="mt-5 pt-4 border-t border-[#D8C9E8]">
+        <p className="font-serif-luxury text-base font-semibold text-[#4A3428]">
+          {eventData.venueName}
+        </p>
+        <p className="font-serif-luxury text-xs sm:text-sm text-[#4A3428]/75 mt-1 leading-relaxed">
+          {eventData.address}
+        </p>
+      </div>
+    </div>
+
+    {eventData.mapsUrl && (
+      <div className="relative z-10 mt-7">
+        <a
+          href={eventData.mapsUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="btn min-h-[44px] inline-flex items-center justify-center gap-2 w-full py-2.5 px-5 bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[10px] uppercase tracking-[0.25em] hover:bg-[#35241B] transition-colors border-none rounded-none"
+        >
+          <MapPin className="w-3.5 h-3.5 text-[#D8C9E8]" />
+          <span>View Location</span>
+        </a>
+      </div>
+    )}
+  </div>
+));
+
+const BankAccountCard = memo(({ gift, index, copiedAccount, onCopy }) => (
+  <div className="card bg-[#FFFFFF] border border-[#D8C9E8] p-4 sm:p-5 shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-left relative rounded-none">
+    <div>
+      <span className="inline-block font-sans-refined text-[9px] uppercase tracking-[0.22em] text-[#A77B4D] font-semibold">
+        {gift.bankName}
+      </span>
+      <p className="font-serif-luxury text-lg sm:text-xl font-semibold text-[#4A3428] tracking-wider mt-1">
+        {gift.accountNumber}
+      </p>
+      <p className="font-serif-luxury italic text-xs text-[#4A3428]/75">{gift.accountHolder}</p>
+    </div>
+    <button
+      type="button"
+      onClick={() => onCopy(gift.accountNumber, index)}
+      className="btn min-h-[40px] shrink-0 inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[9px] uppercase tracking-widest hover:bg-[#35241B] transition-colors rounded-none border-none"
+    >
+      {copiedAccount === index ? (
+        <>
+          <Check className="w-3 h-3 text-[#D8C9E8]" />
+          <span>Tersalin</span>
+        </>
+      ) : (
+        <>
+          <Copy className="w-3 h-3 text-[#D8C9E8]" />
+          <span>Salin Rekening</span>
+        </>
+      )}
+    </button>
+  </div>
+));
+
 // ============================================================================
-// KOMPONEN UTAMA APLIKASI
+// 5. GENERATOR AUDIO AMBIENT FALLBACK
+// ============================================================================
+class RomanticAmbientSynth {
+  constructor() {
+    this.ctx = null;
+    this.isPlaying = false;
+    this.intervalId = null;
+    this.step = 0;
+    this.notes = [
+      349.23, 440.0, 523.25, 659.25, 329.63, 392.0, 493.88, 587.33, 293.66, 349.23, 440.0, 523.25,
+      261.63, 329.63, 392.0, 493.88,
+    ];
+  }
+
+  start() {
+    if (this.isPlaying) return;
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+
+    if (!this.ctx) this.ctx = new AudioCtx();
+    if (this.ctx.state === 'suspended') this.ctx.resume();
+
+    this.isPlaying = true;
+    this.playNote();
+    this.intervalId = setInterval(() => {
+      if (this.isPlaying) this.playNote();
+    }, 1450);
+  }
+
+  playNote() {
+    if (!this.ctx || !this.isPlaying) return;
+    const now = this.ctx.currentTime;
+    const freq = this.notes[this.step % this.notes.length];
+    this.step += 1;
+
+    const osc = this.ctx.createOscillator();
+    const subOsc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+
+    osc.type = 'sine';
+    subOsc.type = 'triangle';
+    osc.frequency.setValueAtTime(freq, now);
+    subOsc.frequency.setValueAtTime(freq * 0.5, now);
+
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(0.04, now + 0.4);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 2.8);
+
+    osc.connect(gain);
+    subOsc.connect(gain);
+    gain.connect(this.ctx.destination);
+
+    osc.start(now);
+    subOsc.start(now);
+    osc.stop(now + 2.9);
+    subOsc.stop(now + 2.9);
+  }
+
+  stop() {
+    this.isPlaying = false;
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+    }
+  }
+}
+
+// ============================================================================
+// 6. KOMPONEN UTAMA APLIKASI
 // ============================================================================
 export default function App() {
   const [config] = useState(DEFAULT_WEDDING_CONFIG);
-  const [envelopeStage, setEnvelopeStage] = useState('closed'); // 'closed' | 'opening' | 'opened'
+  const [envelopeStage, setEnvelopeStage] = useState('closed');
   const [isInvitationOpened, setIsInvitationOpened] = useState(false);
   const [isOpeningTransition, setIsOpeningTransition] = useState(false);
 
@@ -649,9 +849,9 @@ export default function App() {
   const htmlAudioRef = useRef(null);
   const mainContentRef = useRef(null);
 
-  // Pasang Favicon Tab otomatis menggunakan /logo.png (PT. MUSTDHIYA TEKNOLOGI INDONESIA)
+  // Pasang Favicon & Judul Halaman Otomatis
   useEffect(() => {
-    document.title = `The Wedding of ${config.couple.brideShort} & ${config.couple.groomShort} — Supported by ${config.support.companyName}`;
+    document.title = `The Wedding of ${config.couple.brideShort} & ${config.couple.groomShort} - Supported by ${config.support.companyName}`;
     let link = document.querySelector("link[rel~='icon']");
     if (!link) {
       link = document.createElement('link');
@@ -662,7 +862,7 @@ export default function App() {
     link.href = config.support.logoUrl;
   }, [config]);
 
-  // Validasi URL terhadap daftar tamu yang diundang
+  // Validasi URL terhadap Whitelist Tamu
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const adminParam = params.get('admin');
@@ -685,21 +885,19 @@ export default function App() {
     }
   }, []);
 
+  // Scroll Spy Navigation
   useEffect(() => {
     if (!isAuthorizedGuest) return;
-    const sectionIds = NAV_ITEMS.map((item) => item.id);
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
         });
       },
       { rootMargin: '-30% 0px -50% 0px', threshold: 0.05 }
     );
 
-    sectionIds.forEach((id) => {
+    NAV_ITEMS.forEach(({ id }) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
@@ -725,39 +923,32 @@ export default function App() {
     };
   }, [envelopeStage, isAuthorizedGuest]);
 
-  // Smooth Loop 00:00 (0s) sampai 01:06 (66s) dengan Fade-In & Fade-Out
+  // REVISI 3: Suara Musik Normal (100% Volume Tanpa Pembatas maxVolume), Mulai dari Detik ke-5 & Loop Sampai Akhir
   useEffect(() => {
     const audio = htmlAudioRef.current;
     if (!audio || !config.music.audioUrl) return;
 
-    const start = config.music.startTime ?? 0;
-    const end = config.music.endTime ?? 66;
-    const maxVol = config.music.maxVolume ?? 0.65;
-    const fade = config.music.fadeDuration ?? 2.5;
+    const start = config.music.startTime ?? 5;
+    audio.volume = 1.0;
 
     const handleTimeUpdate = () => {
-      const current = audio.currentTime;
-
-      if (current >= end || current < start) {
+      if (audio.currentTime < start) {
         audio.currentTime = start;
-        audio.volume = 0;
-        audio.play().catch(() => {});
-        return;
-      }
-
-      if (current - start <= fade) {
-        const progress = Math.max(0, (current - start) / fade);
-        audio.volume = Math.min(maxVol, progress * maxVol);
-      } else if (end - current <= fade) {
-        const progress = Math.max(0, (end - current) / fade);
-        audio.volume = Math.min(maxVol, progress * maxVol);
-      } else {
-        audio.volume = maxVol;
       }
     };
 
+    const handleEnded = () => {
+      audio.currentTime = start;
+      audio.volume = 1.0;
+      audio.play().catch(() => {});
+    };
+
     audio.addEventListener('timeupdate', handleTimeUpdate);
-    return () => audio.removeEventListener('timeupdate', handleTimeUpdate);
+    audio.addEventListener('ended', handleEnded);
+    return () => {
+      audio.removeEventListener('timeupdate', handleTimeUpdate);
+      audio.removeEventListener('ended', handleEnded);
+    };
   }, [config.music]);
 
   const toggleMusic = () => {
@@ -771,13 +962,12 @@ export default function App() {
     } else {
       if (config.music.audioUrl && htmlAudioRef.current) {
         const audio = htmlAudioRef.current;
-        const start = config.music.startTime ?? 0;
-        const end = config.music.endTime ?? 66;
+        const start = config.music.startTime ?? 5;
 
-        if (audio.currentTime < start || audio.currentTime >= end) {
+        if (audio.currentTime < start) {
           audio.currentTime = start;
         }
-        audio.volume = 0.05;
+        audio.volume = 1.0; // Normal penuh tanpa maxVolume
         audio.play().catch(() => {
           if (synthRef.current) synthRef.current.start();
         });
@@ -792,9 +982,7 @@ export default function App() {
     if (envelopeStage !== 'closed') return;
     setEnvelopeStage('opening');
 
-    if (!isPlayingMusic) {
-      toggleMusic();
-    }
+    if (!isPlayingMusic) toggleMusic();
 
     setTimeout(() => {
       setEnvelopeStage('opened');
@@ -810,9 +998,8 @@ export default function App() {
 
   const handleOpenInvitation = () => {
     setIsOpeningTransition(true);
-    if (!isPlayingMusic) {
-      toggleMusic();
-    }
+    if (!isPlayingMusic) toggleMusic();
+
     setTimeout(() => {
       setIsInvitationOpened(true);
       setIsOpeningTransition(false);
@@ -857,7 +1044,7 @@ export default function App() {
     try {
       localStorage.setItem('tiara_rifqi_wishes_v1', JSON.stringify(updated));
     } catch {
-      // Abaikan jika browser memblokir localStorage
+      // Abaikan jika localStorage diblokir
     }
     setRsvpSubmitted(true);
     setRsvpForm((prev) => ({ ...prev, message: '' }));
@@ -873,11 +1060,14 @@ export default function App() {
   const isForcedMobile = viewportMode === 'mobile-preview';
 
   // ==========================================================================
-  // TAMPILAN JIKA URL TIDAK MEMILIKI NAMA TAMU ATAU NAMA TIDAK ADA DI DAFTAR
+  // LAYAR AKSES TERBATAS JIKA URL TIDAK TERDAFTAR
   // ==========================================================================
   if (!isAuthorizedGuest) {
     return (
-      <div className="min-h-screen bg-[#FAF9F7] text-[#4A3428] flex flex-col items-center justify-center px-5 py-12 relative overflow-hidden">
+      <div
+        data-theme="chocolatelilac"
+        className="min-h-screen bg-[#FAF9F7] text-[#4A3428] flex flex-col items-center justify-center px-5 py-12 relative overflow-hidden"
+      >
         <style>{`
           @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap');
           .font-serif-luxury { font-family: 'Cormorant Garamond', Georgia, serif; }
@@ -885,15 +1075,9 @@ export default function App() {
           .font-script { font-family: 'Great Vibes', cursive; }
         `}</style>
 
-        <div
-          className="pointer-events-none absolute inset-0 opacity-75"
-          style={{
-            backgroundImage:
-              'radial-gradient(circle at 50% 35%, rgba(216, 201, 232, 0.65) 0%, rgba(250, 249, 247, 0.98) 75%)',
-          }}
-        />
+        <SectionSideFlorals opacity="opacity-65" topOffset="top-16" />
 
-        <div className="relative z-10 max-w-md w-full bg-[#FAF9F7]/95 backdrop-blur-xl border border-[#D8C9E8] p-7 sm:p-10 text-center shadow-[0_25px_70px_rgba(74,52,40,0.16)]">
+        <div className="card relative z-10 max-w-md w-full bg-[#FAF9F7]/95 backdrop-blur-xl border border-[#D8C9E8] p-7 sm:p-10 text-center shadow-2xl rounded-none">
           <div className="flex justify-center mb-3">
             <ChocolateLilacFloralCrest className="w-36 h-20" />
           </div>
@@ -936,11 +1120,10 @@ export default function App() {
             </p>
           </div>
 
-          {/* Jika admin membuka dengan ?admin=mdt, tampilkan daftar link seluruh tamu */}
           {isAdminMode && (
             <div className="mt-6 pt-5 border-t border-[#D8C9E8] text-left">
               <p className="font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#4A3428] font-semibold mb-3">
-                Panel Admin — Daftar 39 Link Undangan Tamu:
+                Panel Admin - Daftar 39 Link Undangan Tamu:
               </p>
               <div className="max-h-60 overflow-y-auto space-y-2 pr-1">
                 {INVITED_GUESTS.map((g) => {
@@ -962,7 +1145,7 @@ export default function App() {
                         <button
                           type="button"
                           onClick={() => handleCopyGuestUrl(g)}
-                          className="px-2.5 py-1 bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[8px] uppercase tracking-wider font-semibold"
+                          className="btn btn-xs bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[8px] uppercase tracking-wider rounded-none border-none"
                         >
                           {copiedGuestLink === g ? 'Tersalin' : 'Salin Link'}
                         </button>
@@ -981,7 +1164,6 @@ export default function App() {
             </div>
           )}
 
-          {/* Footer Support PT. Mustdhiya Teknologi Indonesia */}
           <div className="mt-8 pt-4 border-t border-[#D8C9E8]/70 flex flex-col items-center">
             <a
               href={config.support.websiteUrl}
@@ -1007,20 +1189,34 @@ export default function App() {
     );
   }
 
+  // ==========================================================================
+  // TAMPILAN UTAMA UNDANGAN PERNIKAHAN
+  // ==========================================================================
   return (
-    <div className="min-h-screen bg-[#FAF9F7] text-[#4A3428] selection:bg-[#4A3428] selection:text-[#FAF9F7] antialiased overflow-x-hidden pb-20 sm:pb-0">
+    <div
+      data-theme="chocolatelilac"
+      className="min-h-screen bg-[#FAF9F7] text-[#4A3428] selection:bg-[#4A3428] selection:text-[#FAF9F7] antialiased overflow-x-hidden pb-20 sm:pb-0"
+    >
       {config.music.audioUrl && (
-        <audio ref={htmlAudioRef} src={config.music.audioUrl} loop preload="auto" />
+        <audio ref={htmlAudioRef} src={config.music.audioUrl} preload="auto" />
       )}
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap');
 
+        :root, [data-theme="chocolatelilac"] {
+          --p: #4A3428;
+          --s: #D8C9E8;
+          --a: #A77B4D;
+          --n: #35241B;
+          --b1: #FAF9F7;
+          --b2: #F4EFFA;
+        }
+
         .font-serif-luxury { font-family: 'Cormorant Garamond', Georgia, serif; }
         .font-sans-refined { font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif; }
         .font-script { font-family: 'Great Vibes', cursive; }
 
-        /* Base Soft White & Lilac Satin (Sesuai Revisi 1: Base Lilac & Soft White) */
         .bg-lilac-softwhite-satin {
           background-color: #FAF9F7;
           background-image:
@@ -1029,7 +1225,6 @@ export default function App() {
             linear-gradient(128deg, #FAF9F7 0%, #F2ECF9 26%, #FAF9F7 50%, #E8DDF4 76%, #FAF9F7 100%);
         }
 
-        /* Drape Satin Lilac & Silver Sage Lembut */
         .bg-lilac-drape {
           background-color: #F4EFFA;
           background-image:
@@ -1037,7 +1232,6 @@ export default function App() {
             linear-gradient(112deg, #F3EDF9 0%, #FAF9F7 30%, #E7DCF2 55%, #FAF9F7 80%, #EFE8F6 100%);
         }
 
-        /* Chocolate Brown & Lilac Satin untuk Section Kontras Romantis */
         .bg-chocolate-lilac-satin {
           background-color: #4A3428;
           background-image:
@@ -1046,7 +1240,6 @@ export default function App() {
             linear-gradient(135deg, #35241B 0%, #4A3428 32%, #3D2B21 60%, #4A3428 82%, #2B1D16 100%);
         }
 
-        /* Kertas Halus Soft White & Lilac */
         .bg-fine-paper {
           background-color: #FAF9F7;
           background-image:
@@ -1095,7 +1288,6 @@ export default function App() {
         }
 
         .envelope-perspective { perspective: 1500px; }
-
         .envelope-flap-3d {
           transform-origin: top center;
           transform-style: preserve-3d;
@@ -1129,7 +1321,7 @@ export default function App() {
       `}</style>
 
       {/* =====================================================================
-          STAGE PEMBUKA SURAT 3D INTERAKTIF (BASE LILAC & SOFT WHITE)
+          STAGE PEMBUKA SURAT 3D INTERAKTIF
       ===================================================================== */}
       {envelopeStage !== 'opened' && (
         <div
@@ -1141,13 +1333,7 @@ export default function App() {
               'radial-gradient(circle at 50% 35%, rgba(250, 249, 247, 0.96) 0%, rgba(216, 201, 232, 0.68) 78%)',
           }}
         >
-          <div
-            className="pointer-events-none absolute inset-0 opacity-60"
-            style={{
-              backgroundImage:
-                'radial-gradient(ellipse 65% 40% at 20% 15%, rgba(255, 255, 255, 0.9) 0%, transparent 65%), radial-gradient(ellipse 70% 45% at 85% 85%, rgba(185, 196, 183, 0.35) 0%, transparent 65%)',
-            }}
-          />
+          <SectionSideFlorals opacity="opacity-70" topOffset="top-20" />
 
           <div
             className={`relative z-20 text-center transition-all duration-500 ${
@@ -1179,7 +1365,6 @@ export default function App() {
               <ChocolateLilacFloralCrest className="w-48 h-28 sm:w-56 sm:h-32" />
             </div>
 
-            {/* Amplop 3D */}
             <div
               onClick={handleTriggerEnvelopeOpen}
               role="button"
@@ -1206,7 +1391,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Kartu Surat yang Meluncur Naik */}
               <div
                 className={`letter-slide-3d absolute left-[6%] right-[6%] top-[7%] bottom-[6%] z-20 bg-fine-paper border border-[#D8C9E8] p-3.5 sm:p-5 flex flex-col items-center justify-between text-center shadow-xl ${
                   envelopeStage === 'opening' ? 'letter-slide-out' : ''
@@ -1232,13 +1416,11 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Lipatan Samping & Bawah Amplop (Soft White & Lilac) */}
               <div
                 className="pointer-events-none absolute inset-0 z-30"
                 style={{
                   background: 'linear-gradient(135deg, #EFE8F7 0%, #FAF9F7 55%, #E3D6F0 100%)',
                   clipPath: 'polygon(0 0, 52% 52%, 0 100%)',
-                  filter: 'drop-shadow(2px 0px 4px rgba(74,52,40,0.12))',
                 }}
               />
               <div
@@ -1246,7 +1428,6 @@ export default function App() {
                 style={{
                   background: 'linear-gradient(-135deg, #EFE8F7 0%, #FAF9F7 55%, #E3D6F0 100%)',
                   clipPath: 'polygon(100% 0, 48% 52%, 100% 100%)',
-                  filter: 'drop-shadow(-2px 0px 4px rgba(74,52,40,0.12))',
                 }}
               />
               <div
@@ -1254,7 +1435,6 @@ export default function App() {
                 style={{
                   background: 'linear-gradient(to top, #F2EBF8 0%, #FAF9F7 68%, #E6D9F3 100%)',
                   clipPath: 'polygon(0 100%, 50% 44%, 100% 100%)',
-                  boxShadow: 'inset 0 -8px 25px rgba(74,52,40,0.06)',
                 }}
               >
                 <div className="bg-[#FAF9F7]/95 border border-[#D8C9E8] px-4 sm:px-6 py-2 sm:py-2.5 shadow-sm text-center max-w-[85%]">
@@ -1271,7 +1451,6 @@ export default function App() {
                 <path d="M0 0 L200 156 L0 300 M400 0 L200 156 L400 300" stroke="#D8C9E8" strokeWidth="1" fill="none" opacity="0.8" />
               </svg>
 
-              {/* Flap Atas 3D */}
               <div
                 className={`envelope-flap-3d pointer-events-none absolute inset-x-0 top-0 h-[60%] ${
                   envelopeStage === 'opening' ? 'envelope-flap-open z-10' : 'z-40'
@@ -1285,7 +1464,6 @@ export default function App() {
                         ? 'linear-gradient(to bottom, #4A3428 0%, #35241B 100%)'
                         : 'linear-gradient(180deg, #FAF9F7 0%, #F3ECF9 70%, #E5D7F2 100%)',
                     clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
-                    boxShadow: '0 12px 25px rgba(74, 52, 40, 0.18)',
                   }}
                 >
                   <svg viewBox="0 0 400 180" className="w-full h-full" preserveAspectRatio="none">
@@ -1301,7 +1479,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Segel Lilin */}
               <div
                 className={`absolute left-1/2 top-[54%] -translate-x-1/2 -translate-y-1/2 z-50 transition-all duration-500 ${
                   envelopeStage === 'opening'
@@ -1324,7 +1501,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={handleTriggerEnvelopeOpen}
-                className="btn-luxury-shimmer min-h-[46px] inline-flex items-center justify-center gap-2.5 px-7 sm:px-9 py-3.5 rounded-full bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[10px] sm:text-xs uppercase tracking-[0.26em] font-medium shadow-[0_12px_32px_rgba(74,52,40,0.3)] border border-[#A77B4D] hover:bg-[#35241B] transition-all active:scale-95"
+                className="btn btn-luxury-shimmer min-h-[46px] inline-flex items-center justify-center gap-2.5 px-7 sm:px-9 py-3.5 rounded-full bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[10px] sm:text-xs uppercase tracking-[0.26em] font-medium shadow-xl border border-[#A77B4D] hover:bg-[#35241B] transition-all active:scale-95"
               >
                 <MailOpen className="w-4 h-4 text-[#D8C9E8]" />
                 <span>Buka Surat Undangan</span>
@@ -1354,7 +1531,7 @@ export default function App() {
         {envelopeStage === 'opened' && (
           <button
             onClick={handleReplayEnvelope}
-            className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#4A3428]/90 backdrop-blur-md border border-[#D8C9E8]/55 text-[#FAF9F7] font-sans-refined text-[9px] sm:text-[10px] tracking-wider uppercase hover:bg-[#35241B] transition-colors shadow-lg"
+            className="btn btn-xs sm:btn-sm inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#4A3428]/90 backdrop-blur-md border border-[#D8C9E8]/55 text-[#FAF9F7] font-sans-refined text-[9px] sm:text-[10px] tracking-wider uppercase hover:bg-[#35241B] transition-colors shadow-lg"
           >
             <RotateCcw className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#D8C9E8]" />
             <span>Ulangi Surat</span>
@@ -1364,7 +1541,7 @@ export default function App() {
           onClick={() =>
             setViewportMode((prev) => (prev === 'responsive' ? 'mobile-preview' : 'responsive'))
           }
-          className="hidden lg:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#4A3428]/90 backdrop-blur-md border border-[#D8C9E8]/50 text-[#FAF9F7] font-sans-refined text-[10px] tracking-wider uppercase hover:bg-[#35241B] transition-colors shadow-lg"
+          className="btn btn-xs sm:btn-sm hidden lg:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#4A3428]/90 backdrop-blur-md border border-[#D8C9E8]/50 text-[#FAF9F7] font-sans-refined text-[10px] tracking-wider uppercase hover:bg-[#35241B] transition-colors shadow-lg"
         >
           {viewportMode === 'responsive' ? (
             <>
@@ -1382,7 +1559,7 @@ export default function App() {
         {isAdminMode && (
           <button
             onClick={() => setIsGuestListModalOpen(true)}
-            className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#4A3428]/95 backdrop-blur-md border border-[#D8C9E8]/60 text-[#FAF9F7] font-sans-refined text-[10px] tracking-wider uppercase hover:bg-[#35241B] transition-colors shadow-lg"
+            className="btn btn-xs sm:btn-sm inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#4A3428]/95 backdrop-blur-md border border-[#D8C9E8]/60 text-[#FAF9F7] font-sans-refined text-[10px] tracking-wider uppercase hover:bg-[#35241B] transition-colors shadow-lg"
           >
             <Copy className="w-3 h-3 text-[#D8C9E8]" />
             <span>Link Tamu</span>
@@ -1400,20 +1577,15 @@ export default function App() {
             : 'w-full max-w-[1140px] shadow-[0_0_90px_rgba(74,52,40,0.22)]'
         }`}
       >
-        {/* SECTION 1 — HERO STATIONERY COLLAGE (REVISI 2: TANPA KARTU KANAN "WE INVITE YOU") */}
+        {/* SECTION 1 - HERO STATIONERY COLLAGE */}
         <header
           id="section-cover"
           className={`relative min-h-screen bg-lilac-softwhite-satin flex flex-col items-center justify-between py-10 sm:py-14 px-4 sm:px-8 md:px-14 overflow-hidden transition-all duration-700 ${
             isOpeningTransition ? 'scale-[1.02] opacity-90' : 'scale-100 opacity-100'
           }`}
         >
-          <div
-            className="pointer-events-none absolute inset-0 opacity-70"
-            style={{
-              background:
-                'radial-gradient(circle at 15% 20%, rgba(255,255,255,0.95), transparent 45%), radial-gradient(circle at 85% 80%, rgba(216,201,232,0.55), transparent 55%)',
-            }}
-          />
+          <SectionSideFlorals opacity="opacity-80" topOffset="top-24" />
+
           <div className="relative z-10 text-center pt-4 sm:pt-0">
             <p className="font-sans-refined text-[9px] sm:text-[11px] uppercase tracking-[0.34em] text-[#4A3428]/80">
               The Wedding Of {config.couple.brideShort} &amp; {config.couple.groomShort}
@@ -1425,7 +1597,6 @@ export default function App() {
               isForcedMobile ? 'max-w-[340px]' : 'max-w-[330px] sm:max-w-[400px] md:max-w-[440px]'
             } my-4 sm:my-6 flex flex-col items-center`}
           >
-            {/* Ornamen Crest Bunga Chocolate Lilac */}
             <div className="relative z-30 -mb-5 sm:-mb-6 animate-float-slow">
               <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-[#FAF9F7] border border-[#D8C9E8] shadow-md flex items-center justify-center rotate-45 overflow-hidden">
                 <div className="-rotate-45">
@@ -1434,9 +1605,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* Komposisi Kartu Utama (Kartu kanan "WE INVITE YOU" sudah dihapus sesuai Revisi 2) */}
             <div className="relative w-full pt-6 sm:pt-8 pb-4 sm:pb-6 px-2 flex flex-col items-center">
-              {/* Label Save Our Date di Atas */}
               <div className="relative z-10 -mb-3 mr-24 sm:mr-32 w-36 sm:w-44 bg-[#FAF9F7] border border-[#D8C9E8] p-2.5 sm:p-3 shadow-md -rotate-3 text-left">
                 <p className="font-sans-refined text-[7px] sm:text-[8px] tracking-[0.25em] uppercase text-[#A77B4D]">
                   Save Our Date
@@ -1446,8 +1615,7 @@ export default function App() {
                 </p>
               </div>
 
-              {/* Kartu Tunggal Utama "THE WEDDING OF Tiara & Rifqi" di Tengah */}
-              <div className="relative z-20 w-full max-w-[250px] sm:max-w-[280px] bg-[#4A3428] text-[#FAF9F7] p-5 sm:p-7 shadow-2xl border border-[#35241B] relative overflow-hidden">
+              <div className="card relative z-20 w-full max-w-[250px] sm:max-w-[280px] bg-[#4A3428] text-[#FAF9F7] p-5 sm:p-7 shadow-2xl border border-[#35241B] rounded-none">
                 <div className="border border-[#D8C9E8]/45 p-4 sm:p-5 text-center">
                   <p className="font-sans-refined text-[7px] sm:text-[8px] uppercase tracking-[0.28em] text-[#D8C9E8]">
                     The Wedding Of
@@ -1466,7 +1634,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Tanggal, Segel Lilin & Lencana RSVP */}
               <div className="relative z-30 flex items-center justify-center gap-2 sm:gap-3 -mt-3">
                 <div className="bg-[#FAF9F7] border border-[#D8C9E8] px-3.5 sm:px-4 py-2 sm:py-3 shadow-md -rotate-2 text-center">
                   <span className="font-serif-luxury text-2xl sm:text-3xl md:text-4xl text-[#4A3428] font-light tracking-tighter">
@@ -1489,8 +1656,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* Kotak Nama Tamu Undangan */}
-            <div className="mt-2 sm:mt-3 w-full max-w-[300px] sm:max-w-[340px] bg-[#FAF9F7]/95 backdrop-blur-sm border border-[#D8C9E8] px-4 sm:px-6 py-3.5 sm:py-4 text-center shadow-sm">
+            <div className="card mt-2 sm:mt-3 w-full max-w-[300px] sm:max-w-[340px] bg-[#FAF9F7]/95 backdrop-blur-sm border border-[#D8C9E8] px-4 sm:px-6 py-3.5 sm:py-4 text-center shadow-sm rounded-none">
               <p className="font-sans-refined text-[8px] sm:text-[9px] uppercase tracking-[0.26em] text-[#4A3428]/75">
                 Kepada Yth. Bapak / Ibu / Saudara / i
               </p>
@@ -1504,7 +1670,7 @@ export default function App() {
 
             <button
               onClick={handleOpenInvitation}
-              className="btn-luxury-shimmer mt-5 sm:mt-6 min-h-[46px] group relative inline-flex items-center justify-center gap-3 px-7 sm:px-9 py-3.5 bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[11px] sm:text-xs uppercase tracking-[0.26em] shadow-xl border border-[#35241B] hover:bg-[#35241B] transition-all duration-300 active:scale-95"
+              className="btn btn-luxury-shimmer mt-5 sm:mt-6 min-h-[46px] group relative inline-flex items-center justify-center gap-3 px-7 sm:px-9 py-3.5 bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[11px] sm:text-xs uppercase tracking-[0.26em] shadow-xl border border-[#35241B] hover:bg-[#35241B] transition-all duration-300 active:scale-95 rounded-none"
             >
               <BookOpen className="w-3.5 h-3.5 text-[#D8C9E8] transition-transform group-hover:scale-110" />
               <span>Open Invitation</span>
@@ -1524,13 +1690,13 @@ export default function App() {
           </div>
           <div className="relative z-10 text-center pb-4 sm:pb-0">
             <p className="font-serif-luxury italic text-xs text-[#4A3428]/65">
-              {config.couple.brideShort} &amp; {config.couple.groomShort} —{' '}
+              {config.couple.brideShort} &amp; {config.couple.groomShort} -{' '}
               {config.weddingDate.dotDate}
             </p>
           </div>
         </header>
 
-        {/* SECTION 2 — CINEMATIC WELCOME */}
+        {/* SECTION 2 - CINEMATIC WELCOME */}
         <section
           id="section-welcome"
           ref={mainContentRef}
@@ -1540,6 +1706,8 @@ export default function App() {
               'radial-gradient(circle at 50% 50%, rgba(74, 52, 40, 0.85) 0%, rgba(38, 25, 19, 0.98) 75%)',
           }}
         >
+          <SectionSideFlorals opacity="opacity-70" topOffset="top-16" />
+
           <div
             className="pointer-events-none absolute top-0 bottom-0 left-0 w-10 sm:w-24 md:w-36 opacity-90"
             style={{
@@ -1558,11 +1726,9 @@ export default function App() {
               boxShadow: 'inset 20px 0 40px rgba(0,0,0,0.75)',
             }}
           />
-          <div className="pointer-events-none absolute left-1 sm:left-6 md:left-8 top-[54%] w-7 sm:w-14 md:w-16 h-2 sm:h-2.5 rounded-full bg-gradient-to-r from-[#A77B4D] via-[#FAF9F7] to-[#D8C9E8] shadow-md" />
-          <div className="pointer-events-none absolute right-1 sm:right-6 md:right-8 top-[54%] w-7 sm:w-14 md:w-16 h-2 sm:h-2.5 rounded-full bg-gradient-to-l from-[#A77B4D] via-[#FAF9F7] to-[#D8C9E8] shadow-md" />
 
           <RevealOnScroll className="relative z-10 w-full max-w-[340px] sm:max-w-[440px] md:max-w-[520px]">
-            <div className="bg-fine-paper deckle-card px-5 py-10 sm:px-10 sm:py-14 md:px-14 md:py-16 text-center relative border-4 border-double border-[#D8C9E8]">
+            <div className="card bg-fine-paper deckle-card px-5 py-10 sm:px-10 sm:py-14 md:px-14 md:py-16 text-center relative border-4 border-double border-[#D8C9E8] rounded-none">
               <div className="w-12 h-12 mx-auto mb-3 sm:mb-4 text-[#4A3428] flex items-center justify-center">
                 <span className="font-script text-2xl sm:text-3xl">{config.couple.monogram}</span>
               </div>
@@ -1584,7 +1750,7 @@ export default function App() {
                 {config.welcome.quote}
               </blockquote>
               <p className="font-sans-refined text-[8px] sm:text-[9px] uppercase tracking-[0.25em] text-[#A77B4D] mt-2 mb-5 sm:mb-6">
-                — {config.welcome.quoteSource} —
+                - {config.welcome.quoteSource} -
               </p>
               <p className="font-serif-luxury text-xs sm:text-sm leading-[1.8] text-[#4A3428]/75">
                 {config.welcome.gratitude}
@@ -1593,12 +1759,15 @@ export default function App() {
           </RevealOnScroll>
         </section>
 
-        {/* SECTION 3 — COUPLE & COUNTDOWN */}
+        {/* SECTION 3 - COUPLE & COUNTDOWN */}
         <section
           id="section-couple"
           className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-8 md:px-14 bg-lilac-drape overflow-hidden"
         >
-          <div className="max-w-[780px] mx-auto text-center">
+          <SectionSideFlorals opacity="opacity-80" topOffset="top-24" />
+          <SectionSideFlorals opacity="opacity-70" topOffset="bottom-16" />
+
+          <div className="relative z-10 max-w-[780px] mx-auto text-center">
             <RevealOnScroll>
               <p className="font-script text-3xl sm:text-4xl md:text-5xl text-[#4A3428]">
                 Menghitung Hari Bahagia
@@ -1620,75 +1789,41 @@ export default function App() {
                 isForcedMobile ? '' : 'md:grid-cols-2'
               } gap-8 sm:gap-10 items-stretch justify-items-center`}
             >
-              {/* Mempelai Wanita */}
               <RevealOnScroll className="w-full max-w-[340px] sm:max-w-[360px]">
-                <div className="h-full bg-[#4A3428] text-[#FAF9F7] rounded-t-[175px] p-4 sm:p-5 shadow-2xl border border-[#35241B]">
-                  <div className="h-full rounded-t-[160px] border border-[#D8C9E8]/50 pt-8 pb-9 px-4 sm:px-6 flex flex-col items-center justify-center">
-                    <span className="font-sans-refined text-[8px] uppercase tracking-[0.3em] text-[#D8C9E8] mb-4">
-                      The Bride
-                    </span>
-                    <div className="w-32 h-40 sm:w-36 sm:h-44 rounded-t-full overflow-hidden border-2 border-[#D8C9E8] shadow-lg mb-5 bg-[#35241B]">
-                      <img
-                        src={config.couple.bridePhoto}
-                        alt={config.couple.brideFull}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <h3 className="font-script text-3xl sm:text-4xl text-[#D8C9E8]">
-                      {config.couple.brideShort}
-                    </h3>
-                    <p className="font-serif-luxury text-lg sm:text-xl font-medium tracking-wide text-[#FAF9F7] mt-1">
-                      {config.couple.brideFull}
-                    </p>
-                    <div className="w-10 h-[1px] bg-[#A77B4D] my-4" />
-                    <p className="font-serif-luxury text-xs sm:text-sm text-[#FAF9F7]/90 leading-relaxed">
-                      {config.couple.brideParents}
-                    </p>
-                  </div>
-                </div>
+                <CoupleProfileCard
+                  roleLabel="The Bride"
+                  shortName={config.couple.brideShort}
+                  fullName={config.couple.brideFull}
+                  parents={config.couple.brideParents}
+                  photo={config.couple.bridePhoto}
+                  onSelectPhoto={setSelectedPhoto}
+                />
               </RevealOnScroll>
 
-              {/* Mempelai Pria */}
               <RevealOnScroll className="w-full max-w-[340px] sm:max-w-[360px]" delay={120}>
-                <div className="h-full bg-[#4A3428] text-[#FAF9F7] rounded-b-[175px] md:rounded-b-none md:rounded-t-[175px] p-4 sm:p-5 shadow-2xl border border-[#35241B]">
-                  <div className="h-full rounded-b-[160px] md:rounded-b-none md:rounded-t-[160px] border border-[#D8C9E8]/50 pt-8 pb-9 px-4 sm:px-6 flex flex-col items-center justify-center">
-                    <span className="font-sans-refined text-[8px] uppercase tracking-[0.3em] text-[#D8C9E8] mb-4">
-                      The Groom
-                    </span>
-                    <div className="w-32 h-40 sm:w-36 sm:h-44 rounded-t-full overflow-hidden border-2 border-[#D8C9E8] shadow-lg mb-5 bg-[#35241B]">
-                      <img
-                        src={config.couple.groomPhoto}
-                        alt={config.couple.groomFull}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <h3 className="font-script text-3xl sm:text-4xl text-[#D8C9E8]">
-                      {config.couple.groomShort}
-                    </h3>
-                    <p className="font-serif-luxury text-lg sm:text-xl font-medium tracking-wide text-[#FAF9F7] mt-1">
-                      {config.couple.groomFull}
-                    </p>
-                    <div className="w-10 h-[1px] bg-[#A77B4D] my-4" />
-                    <p className="font-serif-luxury text-xs sm:text-sm text-[#FAF9F7]/90 leading-relaxed">
-                      {config.couple.groomParents}
-                    </p>
-                  </div>
-                </div>
+                <CoupleProfileCard
+                  roleLabel="The Groom"
+                  shortName={config.couple.groomShort}
+                  fullName={config.couple.groomFull}
+                  parents={config.couple.groomParents}
+                  photo={config.couple.groomPhoto}
+                  isGroom
+                  onSelectPhoto={setSelectedPhoto}
+                />
               </RevealOnScroll>
             </div>
           </div>
         </section>
 
-        {/* SECTION 4 — LOVE STORY (DENGAN FOTO DARI public/lovestory/ & TEKS "perkenalan seorang teman") */}
+        {/* SECTION 4 - LOVE STORY (DENGAN PERBAIKAN GAMBAR POLAROID & TIMELINE TIDAK TERPOTONG) */}
         <section
           id="section-story"
           className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-10 md:px-14 bg-chocolate-lilac-satin text-[#FAF9F7] overflow-hidden"
         >
-          <div className="max-w-[680px] mx-auto">
+          <SectionSideFlorals opacity="opacity-75" topOffset="top-20" />
+          <SectionSideFlorals opacity="opacity-75" topOffset="bottom-24" />
+
+          <div className="relative z-10 max-w-[680px] mx-auto">
             <RevealOnScroll className="text-center mb-12 sm:mb-16">
               <div className="flex items-center justify-center gap-3 mb-2">
                 <span className="w-10 h-[1px] bg-[#D8C9E8]/50" />
@@ -1705,54 +1840,21 @@ export default function App() {
 
             <div className="relative space-y-10 sm:space-y-14">
               <div className="pointer-events-none absolute left-1/2 top-6 bottom-6 -translate-x-1/2 w-[1px] bg-gradient-to-b from-transparent via-[#D8C9E8]/45 to-transparent" />
-              {config.loveStory.map((item, index) => {
-                const isEven = index % 2 === 0;
-                return (
-                  <RevealOnScroll key={index} delay={index * 70}>
-                    <div
-                      className={`relative flex flex-col ${
-                        isForcedMobile
-                          ? 'items-center'
-                          : isEven
-                          ? 'sm:flex-row items-center'
-                          : 'sm:flex-row-reverse items-center'
-                      } gap-4 sm:gap-6`}
-                    >
-                      <div className="relative z-10 w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1.5 bg-[#35241B] border border-[#D8C9E8] shadow-xl shrink-0">
-                        <img
-                          src={item.photo}
-                          alt={item.stage}
-                          className="w-full h-full object-cover rounded-full"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                        <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-[#4A3428] border border-[#D8C9E8]/70 px-2.5 py-0.5 text-[8px] font-sans-refined tracking-widest uppercase text-[#D8C9E8] whitespace-nowrap">
-                          0{index + 1}
-                        </span>
-                      </div>
-                      <div
-                        className={`w-full flex-1 bg-[#2D1F18]/80 backdrop-blur-sm border border-[#D8C9E8]/35 p-4 sm:p-6 text-center ${
-                          isForcedMobile ? '' : isEven ? 'sm:text-left' : 'sm:text-right'
-                        }`}
-                      >
-                        <span className="font-sans-refined text-[8px] sm:text-[9px] uppercase tracking-[0.28em] text-[#D8C9E8]">
-                          {item.date}
-                        </span>
-                        <h3 className="font-serif-luxury text-xl sm:text-2xl text-[#FAF9F7] mt-0.5">
-                          {item.stage}
-                        </h3>
-                        <p className="font-serif-luxury text-xs sm:text-sm text-[#FAF9F7]/85 leading-relaxed mt-2">
-                          {item.description}
-                        </p>
-                      </div>
-                    </div>
-                  </RevealOnScroll>
-                );
-              })}
+              {config.loveStory.map((item, index) => (
+                <RevealOnScroll key={item.stage} delay={index * 70}>
+                  <StoryTimelineItem
+                    item={item}
+                    index={index}
+                    isForcedMobile={isForcedMobile}
+                    onSelectPhoto={setSelectedPhoto}
+                  />
+                </RevealOnScroll>
+              ))}
             </div>
 
+            {/* Kartu Kutipan & Foto Polaroid Utuh Tanpa Terpotong (Revisi 1) */}
             <RevealOnScroll className="mt-16 sm:mt-20 flex flex-col items-center">
-              <div className="w-full max-w-[300px] sm:max-w-[330px] bg-fine-paper text-[#4A3428] rounded-t-[160px] p-4 shadow-2xl border border-[#D8C9E8]">
+              <div className="card w-full max-w-[310px] sm:max-w-[350px] bg-fine-paper text-[#4A3428] rounded-t-[160px] p-4 shadow-2xl border border-[#D8C9E8] rounded-b-none">
                 <div className="rounded-t-[146px] border border-[#A77B4D]/55 pt-8 pb-7 px-5 sm:px-6 text-center">
                   <span className="font-serif-luxury text-4xl leading-none text-[#4A3428]">“</span>
                   <p className="font-serif-luxury italic text-xs sm:text-sm leading-[1.85] text-[#4A3428]/85 -mt-2">
@@ -1764,16 +1866,28 @@ export default function App() {
                   </p>
                 </div>
               </div>
+
               <div className="w-[1.5px] h-8 bg-[#D8C9E8]" />
-              <div className="relative w-full max-w-[290px] sm:max-w-[310px] bg-[#FAF9F7] p-3.5 pb-8 shadow-2xl border border-[#D8C9E8]">
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#4A3428] border border-[#D8C9E8] shadow-md flex items-center justify-center">
+
+              {/* Bingkai Polaroid Natural Aspect Ratio: Wajah & Tulisan Bawah Tidak Terpotong */}
+              <div
+                onClick={() =>
+                  setSelectedPhoto({
+                    url: config.loveStory[4]?.photo,
+                    caption: 'Forever Begins - Tiara & Rifqi',
+                  })
+                }
+                className="group relative w-full max-w-[310px] sm:max-w-[360px] bg-[#FAF9F7] p-3.5 sm:p-4 pb-7 shadow-2xl border border-[#D8C9E8] cursor-pointer"
+                title="Ketuk untuk melihat ukuran penuh"
+              >
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#4A3428] border border-[#D8C9E8] shadow-md flex items-center justify-center z-10">
                   <Heart className="w-3 h-3 text-[#FAF9F7] fill-current" />
                 </div>
-                <div className="aspect-[4/5] overflow-hidden bg-[#35241B]">
+                <div className="w-full overflow-hidden bg-[#241812] rounded-sm">
                   <img
                     src={config.loveStory[4]?.photo}
                     alt="Forever Begins"
-                    className="w-full h-full object-cover"
+                    className="w-full h-auto object-contain block transition-transform duration-700 group-hover:scale-[1.02]"
                     loading="lazy"
                     decoding="async"
                   />
@@ -1786,12 +1900,15 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION 5 — GALLERY (MEMUAT KE-7 FOTO DARI public/galeryfoto/1.png s/d 7.png) */}
+        {/* SECTION 5 - GALLERY */}
         <section
           id="section-gallery"
-          className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-10 md:px-14 bg-fine-paper text-[#4A3428] border-t border-[#D8C9E8]"
+          className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-10 md:px-14 bg-fine-paper text-[#4A3428] border-t border-[#D8C9E8] overflow-hidden"
         >
-          <div className="max-w-[820px] mx-auto">
+          <SectionSideFlorals opacity="opacity-75" topOffset="top-24" />
+          <SectionSideFlorals opacity="opacity-75" topOffset="bottom-24" />
+
+          <div className="relative z-10 max-w-[820px] mx-auto">
             <RevealOnScroll className="text-center mb-12 sm:mb-14">
               <ChocolateLilacFloralCrest className="w-36 h-20 mx-auto -mb-2" />
               <p className="font-sans-refined text-[9px] sm:text-[10px] uppercase tracking-[0.35em] text-[#A77B4D]">
@@ -1814,13 +1931,13 @@ export default function App() {
               <RevealOnScroll className={isForcedMobile ? '' : 'sm:col-span-6'}>
                 <div
                   onClick={() => setSelectedPhoto(config.gallery[0])}
-                  className="group cursor-pointer bg-[#F3EDF9] p-3 sm:p-4 border border-[#D8C9E8] shadow-md"
+                  className="card group cursor-pointer bg-[#F3EDF9] p-3 sm:p-4 border border-[#D8C9E8] shadow-md rounded-none"
                 >
-                  <div className="aspect-[3/4] overflow-hidden">
+                  <div className="overflow-hidden bg-[#241812]">
                     <img
                       src={config.gallery[0].url}
                       alt={config.gallery[0].caption}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105 block"
                       loading="lazy"
                       decoding="async"
                     />
@@ -1835,21 +1952,21 @@ export default function App() {
               </RevealOnScroll>
 
               <RevealOnScroll
-                className={isForcedMobile ? '' : 'sm:col-span-6 sm:mt-12'}
+                className={isForcedMobile ? '' : 'sm:col-span-6 sm:mt-10'}
                 delay={120}
               >
                 <div
                   onClick={() => setSelectedPhoto(config.gallery[1])}
-                  className="group cursor-pointer bg-[#FFFFFF] p-4 sm:p-7 border border-[#D8C9E8] shadow-lg"
+                  className="card group cursor-pointer bg-[#FFFFFF] p-4 sm:p-6 border border-[#D8C9E8] shadow-lg rounded-none"
                 >
                   <p className="font-sans-refined text-[8px] uppercase tracking-[0.3em] text-[#A77B4D] mb-3">
                     Editorial Note No. 02
                   </p>
-                  <div className="aspect-[4/5] overflow-hidden">
+                  <div className="overflow-hidden bg-[#241812]">
                     <img
                       src={config.gallery[1].url}
                       alt={config.gallery[1].caption}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105 block"
                       loading="lazy"
                       decoding="async"
                     />
@@ -1861,17 +1978,17 @@ export default function App() {
               </RevealOnScroll>
             </div>
 
-            {/* Baris 2: Foto 3 (Full Landscape) */}
+            {/* Baris 2: Foto 3 */}
             <RevealOnScroll className="mb-10 sm:mb-14">
               <div
                 onClick={() => setSelectedPhoto(config.gallery[2])}
-                className="group cursor-pointer relative overflow-hidden border border-[#D8C9E8] shadow-xl"
+                className="card group cursor-pointer relative overflow-hidden border border-[#D8C9E8] shadow-xl rounded-none"
               >
-                <div className="aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-[#4A3428]">
+                <div className="w-full overflow-hidden bg-[#241812]">
                   <img
                     src={config.gallery[2].url}
                     alt={config.gallery[2].caption}
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                    className="w-full h-auto max-h-[540px] object-contain mx-auto transition-transform duration-1000 group-hover:scale-105 block"
                     loading="lazy"
                     decoding="async"
                   />
@@ -1896,13 +2013,13 @@ export default function App() {
               <RevealOnScroll className={isForcedMobile ? '' : 'sm:col-span-5'}>
                 <div
                   onClick={() => setSelectedPhoto(config.gallery[3])}
-                  className="group cursor-pointer bg-[#FFFFFF] p-4 pb-8 sm:pb-10 border border-[#D8C9E8] shadow-lg"
+                  className="card group cursor-pointer bg-[#FFFFFF] p-4 pb-8 sm:pb-10 border border-[#D8C9E8] shadow-lg rounded-none"
                 >
-                  <div className="aspect-square overflow-hidden">
+                  <div className="overflow-hidden bg-[#241812]">
                     <img
                       src={config.gallery[3].url}
                       alt={config.gallery[3].caption}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105 block"
                       loading="lazy"
                       decoding="async"
                     />
@@ -1916,13 +2033,13 @@ export default function App() {
               <RevealOnScroll className={isForcedMobile ? '' : 'sm:col-span-7'} delay={140}>
                 <div
                   onClick={() => setSelectedPhoto(config.gallery[4])}
-                  className="group cursor-pointer bg-[#F3EDF9] px-5 py-7 sm:px-10 sm:py-10 border border-[#D8C9E8] shadow-md"
+                  className="card group cursor-pointer bg-[#F3EDF9] px-5 py-7 sm:px-8 sm:py-8 border border-[#D8C9E8] shadow-md rounded-none"
                 >
-                  <div className="aspect-[4/3] overflow-hidden mb-4 sm:mb-5">
+                  <div className="overflow-hidden mb-4 sm:mb-5 bg-[#241812]">
                     <img
                       src={config.gallery[4].url}
                       alt={config.gallery[4].caption}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105 block"
                       loading="lazy"
                       decoding="async"
                     />
@@ -1944,60 +2061,47 @@ export default function App() {
                 isForcedMobile ? '' : 'sm:grid-cols-12'
               } gap-6 sm:gap-8 items-center`}
             >
-              <RevealOnScroll className={isForcedMobile ? '' : 'sm:col-span-6'}>
-                <div
-                  onClick={() => setSelectedPhoto(config.gallery[5])}
-                  className="group cursor-pointer bg-[#FFFFFF] p-3.5 sm:p-5 border border-[#D8C9E8] shadow-md"
+              {[config.gallery[5], config.gallery[6]].map((item, idx) => (
+                <RevealOnScroll
+                  key={item.id}
+                  className={isForcedMobile ? '' : 'sm:col-span-6'}
+                  delay={idx * 120}
                 >
-                  <div className="aspect-[4/5] overflow-hidden">
-                    <img
-                      src={config.gallery[5].url}
-                      alt={config.gallery[5].caption}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      loading="lazy"
-                      decoding="async"
-                    />
+                  <div
+                    onClick={() => setSelectedPhoto(item)}
+                    className={`card group cursor-pointer ${
+                      idx === 0 ? 'bg-[#FFFFFF]' : 'bg-[#F3EDF9]'
+                    } p-3.5 sm:p-5 border border-[#D8C9E8] shadow-md rounded-none`}
+                  >
+                    <div className="overflow-hidden bg-[#241812]">
+                      <img
+                        src={item.url}
+                        alt={item.caption}
+                        className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105 block"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="flex items-center justify-between mt-3">
+                      <span className="font-serif-luxury italic text-xs sm:text-sm text-[#4A3428]">
+                        {item.caption}
+                      </span>
+                      <Maximize2 className="w-3.5 h-3.5 text-[#4A3428]/60" />
+                    </div>
                   </div>
-                  <div className="flex items-center justify-between mt-3">
-                    <span className="font-serif-luxury italic text-xs sm:text-sm text-[#4A3428]">
-                      {config.gallery[5].caption}
-                    </span>
-                    <Maximize2 className="w-3.5 h-3.5 text-[#4A3428]/60" />
-                  </div>
-                </div>
-              </RevealOnScroll>
-
-              <RevealOnScroll className={isForcedMobile ? '' : 'sm:col-span-6'} delay={120}>
-                <div
-                  onClick={() => setSelectedPhoto(config.gallery[6])}
-                  className="group cursor-pointer bg-[#F3EDF9] p-3.5 sm:p-5 border border-[#D8C9E8] shadow-md"
-                >
-                  <div className="aspect-[4/5] overflow-hidden">
-                    <img
-                      src={config.gallery[6].url}
-                      alt={config.gallery[6].caption}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-                  <div className="flex items-center justify-between mt-3">
-                    <span className="font-serif-luxury italic text-xs sm:text-sm text-[#4A3428]">
-                      {config.gallery[6].caption}
-                    </span>
-                    <Maximize2 className="w-3.5 h-3.5 text-[#4A3428]/60" />
-                  </div>
-                </div>
-              </RevealOnScroll>
+                </RevealOnScroll>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* SECTION 6 — EVENTS */}
+        {/* SECTION 6 - EVENTS */}
         <section
           id="section-events"
           className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-10 md:px-14 bg-[#F3EDF9] text-[#4A3428] overflow-hidden border-t border-[#D8C9E8]"
         >
+          <SectionSideFlorals opacity="opacity-80" topOffset="top-16" />
+
           <div className="relative z-10 max-w-[700px] mx-auto">
             <RevealOnScroll className="text-center mb-10 sm:mb-14">
               <p className="font-sans-refined text-[9px] sm:text-[10px] uppercase tracking-[0.35em] text-[#A77B4D]">
@@ -2014,68 +2118,25 @@ export default function App() {
                 isForcedMobile ? '' : 'md:grid-cols-2'
               } gap-6 sm:gap-8`}
             >
-              {[
-                { badge: 'Sacred Ceremony', data: config.events.akad, delay: 0 },
-                { badge: 'Wedding Reception', data: config.events.resepsi, delay: 140 },
-              ].map((ev, i) => (
-                <RevealOnScroll key={i} delay={ev.delay}>
-                  <div className="h-full bg-[#FAF9F7] border border-[#D8C9E8] p-6 sm:p-8 shadow-lg text-center flex flex-col justify-between relative">
-                    <div className="absolute top-3 left-3 right-3 bottom-3 border border-[#D8C9E8]/60 pointer-events-none" />
-                    <div>
-                      <span className="inline-block font-sans-refined text-[8px] uppercase tracking-[0.3em] text-[#4A3428] bg-[#F3EDF9] px-3 py-1 border border-[#D8C9E8]">
-                        {ev.badge}
-                      </span>
-                      <h3 className="font-serif-luxury text-2xl sm:text-3xl text-[#4A3428] mt-4">
-                        {ev.data.title}
-                      </h3>
-                      <div className="w-10 h-[1px] bg-[#A77B4D] mx-auto my-4" />
-                      <div className="space-y-2 text-xs sm:text-sm font-serif-luxury">
-                        <p className="flex items-center justify-center gap-2 text-[#4A3428] font-semibold">
-                          <Calendar className="w-3.5 h-3.5 text-[#A77B4D]" />
-                          <span>{ev.data.dayDate}</span>
-                        </p>
-                        <p className="flex items-center justify-center gap-2 text-[#4A3428]/80">
-                          <Clock className="w-3.5 h-3.5 text-[#A77B4D]" />
-                          <span>{ev.data.time}</span>
-                        </p>
-                      </div>
-                      <div className="mt-5 pt-4 border-t border-[#D8C9E8]">
-                        <p className="font-serif-luxury text-base font-semibold text-[#4A3428]">
-                          {ev.data.venueName}
-                        </p>
-                        <p className="font-serif-luxury text-xs sm:text-sm text-[#4A3428]/75 mt-1 leading-relaxed">
-                          {ev.data.address}
-                        </p>
-                      </div>
-                    </div>
-
-                    {ev.data.mapsUrl && (
-                      <div className="mt-7">
-                        <a
-                          href={ev.data.mapsUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="min-h-[44px] inline-flex items-center justify-center gap-2 w-full py-2.5 px-5 bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[10px] uppercase tracking-[0.25em] hover:bg-[#35241B] transition-colors"
-                        >
-                          <MapPin className="w-3.5 h-3.5 text-[#D8C9E8]" />
-                          <span>View Location</span>
-                        </a>
-                      </div>
-                    )}
-                  </div>
-                </RevealOnScroll>
-              ))}
+              <RevealOnScroll>
+                <EventScheduleCard eventData={config.events.akad} />
+              </RevealOnScroll>
+              <RevealOnScroll delay={140}>
+                <EventScheduleCard eventData={config.events.resepsi} />
+              </RevealOnScroll>
             </div>
           </div>
         </section>
 
-        {/* SECTION 7 — OFFICIAL CARD */}
+        {/* SECTION 7 - OFFICIAL CARD */}
         <section
           id="section-card"
           className="relative py-16 sm:py-24 md:py-28 px-4 sm:px-10 md:px-14 bg-[#EDE4F5] text-[#4A3428] overflow-hidden"
         >
-          <RevealOnScroll className="max-w-[520px] mx-auto">
-            <div className="relative bg-fine-paper border border-[#D8C9E8] p-5 sm:p-10 md:p-12 shadow-2xl text-center">
+          <SectionSideFlorals opacity="opacity-75" topOffset="top-12" />
+
+          <RevealOnScroll className="relative z-10 max-w-[520px] mx-auto">
+            <div className="card relative bg-fine-paper border border-[#D8C9E8] p-5 sm:p-10 md:p-12 shadow-2xl text-center rounded-none">
               <div className="border border-[#A77B4D]/35 p-5 sm:p-8">
                 <p className="font-sans-refined text-[8px] uppercase tracking-[0.35em] text-[#A77B4D]">
                   Official Printed Invitation
@@ -2101,7 +2162,7 @@ export default function App() {
                   {config.weddingDate.displayDate}
                 </p>
                 <p className="font-serif-luxury text-xs sm:text-sm text-[#4A3428]/75 mt-1">
-                  {config.events.resepsi.venueName} — {config.events.resepsi.address}
+                  {config.events.resepsi.venueName} - {config.events.resepsi.address}
                 </p>
                 <div className="mt-6 sm:mt-7">
                   <a
@@ -2114,7 +2175,7 @@ export default function App() {
                     )}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="min-h-[42px] inline-flex items-center justify-center gap-2 px-5 py-2.5 border border-[#4A3428] text-[#4A3428] font-sans-refined text-[9px] uppercase tracking-[0.25em] hover:bg-[#4A3428] hover:text-[#FAF9F7] transition-colors"
+                    className="btn min-h-[42px] inline-flex items-center justify-center gap-2 px-5 py-2.5 border border-[#4A3428] bg-transparent text-[#4A3428] font-sans-refined text-[9px] uppercase tracking-[0.25em] hover:bg-[#4A3428] hover:text-[#FAF9F7] transition-colors rounded-none"
                   >
                     <Calendar className="w-3.5 h-3.5" />
                     <span>Save to Calendar</span>
@@ -2125,12 +2186,15 @@ export default function App() {
           </RevealOnScroll>
         </section>
 
-        {/* SECTION 8 — RSVP & TANDA KASIH PERNIKAHAN (REKENING BRI + MANDIRI + QRIS) */}
+        {/* SECTION 8 - RSVP & TANDA KASIH PERNIKAHAN */}
         <section
           id="section-rsvp"
-          className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-10 md:px-14 bg-fine-paper text-[#4A3428] border-t border-[#D8C9E8]"
+          className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-10 md:px-14 bg-fine-paper text-[#4A3428] border-t border-[#D8C9E8] overflow-hidden"
         >
-          <div className="max-w-[580px] mx-auto">
+          <SectionSideFlorals opacity="opacity-75" topOffset="top-20" />
+          <SectionSideFlorals opacity="opacity-75" topOffset="bottom-20" />
+
+          <div className="relative z-10 max-w-[580px] mx-auto">
             <RevealOnScroll className="text-center mb-10 sm:mb-12">
               <VintageCarriageIllustration className="w-56 sm:w-72 h-24 sm:h-28 mx-auto mb-3" />
               <p className="font-sans-refined text-[9px] sm:text-[10px] uppercase tracking-[0.35em] text-[#A77B4D]">
@@ -2144,12 +2208,12 @@ export default function App() {
             <RevealOnScroll>
               <form
                 onSubmit={handleRsvpSubmit}
-                className="bg-[#F3EDF9] border border-[#D8C9E8] p-5 sm:p-8 md:p-9 shadow-md space-y-5"
+                className="card bg-[#F3EDF9] border border-[#D8C9E8] p-5 sm:p-8 md:p-9 shadow-md space-y-5 rounded-none"
               >
-                <div>
+                <div className="form-control">
                   <label
                     htmlFor="rsvp-name"
-                    className="block font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#4A3428] mb-2"
+                    className="label block font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#4A3428] mb-2 p-0"
                   >
                     Nama Tamu Undangan *
                   </label>
@@ -2159,14 +2223,14 @@ export default function App() {
                     required
                     value={rsvpForm.name}
                     onChange={(e) => setRsvpForm({ ...rsvpForm, name: e.target.value })}
-                    className="w-full min-h-[44px] bg-[#FAF9F7] border border-[#D8C9E8] px-4 py-3 font-serif-luxury text-sm text-[#4A3428] focus:outline-none focus:border-[#4A3428]"
+                    className="input input-bordered w-full min-h-[44px] bg-[#FAF9F7] border border-[#D8C9E8] px-4 py-3 font-serif-luxury text-sm text-[#4A3428] focus:outline-none focus:border-[#4A3428] rounded-none"
                   />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
+                  <div className="form-control">
                     <label
                       htmlFor="rsvp-guests"
-                      className="block font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#4A3428] mb-2"
+                      className="label block font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#4A3428] mb-2 p-0"
                     >
                       Jumlah Tamu Hadir
                     </label>
@@ -2174,7 +2238,7 @@ export default function App() {
                       id="rsvp-guests"
                       value={rsvpForm.guests}
                       onChange={(e) => setRsvpForm({ ...rsvpForm, guests: e.target.value })}
-                      className="w-full min-h-[44px] bg-[#FAF9F7] border border-[#D8C9E8] px-4 py-3 font-serif-luxury text-sm text-[#4A3428] focus:outline-none focus:border-[#4A3428]"
+                      className="select select-bordered w-full min-h-[44px] bg-[#FAF9F7] border border-[#D8C9E8] px-4 py-3 font-serif-luxury text-sm text-[#4A3428] focus:outline-none focus:border-[#4A3428] rounded-none"
                     >
                       <option value="1">1 Orang</option>
                       <option value="2">2 Orang</option>
@@ -2182,8 +2246,8 @@ export default function App() {
                       <option value="4">4 Orang</option>
                     </select>
                   </div>
-                  <div>
-                    <span className="block font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#4A3428] mb-2">
+                  <div className="form-control">
+                    <span className="label block font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#4A3428] mb-2 p-0">
                       Konfirmasi Kehadiran
                     </span>
                     <div className="grid grid-cols-2 gap-2">
@@ -2192,7 +2256,7 @@ export default function App() {
                           key={status}
                           type="button"
                           onClick={() => setRsvpForm({ ...rsvpForm, attendance: status })}
-                          className={`min-h-[44px] py-2.5 px-3 font-sans-refined text-[10px] uppercase tracking-widest border transition-colors ${
+                          className={`btn min-h-[44px] py-2.5 px-3 font-sans-refined text-[10px] uppercase tracking-widest border transition-colors rounded-none ${
                             rsvpForm.attendance === status
                               ? 'bg-[#4A3428] text-[#FAF9F7] border-[#4A3428]'
                               : 'bg-[#FAF9F7] text-[#4A3428] border-[#D8C9E8] hover:border-[#4A3428]'
@@ -2204,10 +2268,10 @@ export default function App() {
                     </div>
                   </div>
                 </div>
-                <div>
+                <div className="form-control">
                   <label
                     htmlFor="rsvp-message"
-                    className="block font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#4A3428] mb-2"
+                    className="label block font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#4A3428] mb-2 p-0"
                   >
                     Pesan &amp; Doa untuk Kedua Mempelai
                   </label>
@@ -2217,12 +2281,12 @@ export default function App() {
                     value={rsvpForm.message}
                     onChange={(e) => setRsvpForm({ ...rsvpForm, message: e.target.value })}
                     placeholder="Tuliskan doa dan harapan terbaik Anda untuk Tiara & Rifqi..."
-                    className="w-full bg-[#FAF9F7] border border-[#D8C9E8] px-4 py-3 font-serif-luxury text-sm text-[#4A3428] focus:outline-none focus:border-[#4A3428]"
+                    className="textarea textarea-bordered w-full bg-[#FAF9F7] border border-[#D8C9E8] px-4 py-3 font-serif-luxury text-sm text-[#4A3428] focus:outline-none focus:border-[#4A3428] rounded-none"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="btn-luxury-shimmer w-full min-h-[46px] py-3.5 bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[10px] uppercase tracking-[0.3em] hover:bg-[#35241B] transition-colors flex items-center justify-center gap-2 shadow-md"
+                  className="btn btn-luxury-shimmer w-full min-h-[46px] py-3.5 bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[10px] uppercase tracking-[0.3em] hover:bg-[#35241B] transition-colors flex items-center justify-center gap-2 shadow-md rounded-none border-none"
                 >
                   <Send className="w-3.5 h-3.5 text-[#D8C9E8]" />
                   <span>Kirim Konfirmasi &amp; Ucapan</span>
@@ -2238,7 +2302,7 @@ export default function App() {
             </RevealOnScroll>
 
             <RevealOnScroll className="mt-8 sm:mt-10">
-              <div className="border border-[#D8C9E8] bg-[#FFFFFF] p-5 sm:p-6 max-h-80 overflow-y-auto space-y-4">
+              <div className="card border border-[#D8C9E8] bg-[#FFFFFF] p-5 sm:p-6 max-h-80 overflow-y-auto space-y-4 rounded-none">
                 <p className="font-sans-refined text-[9px] uppercase tracking-[0.28em] text-[#4A3428] border-b border-[#D8C9E8] pb-2">
                   Untaian Doa Restu ({wishes.length})
                 </p>
@@ -2249,7 +2313,7 @@ export default function App() {
                         {w.name}
                       </span>
                       <span
-                        className={`font-sans-refined text-[8px] uppercase tracking-widest px-2 py-0.5 border ${
+                        className={`badge font-sans-refined text-[8px] uppercase tracking-widest px-2 py-0.5 border rounded-none ${
                           w.attendance === 'Hadir'
                             ? 'bg-[#D8C9E8]/40 text-[#4A3428] border-[#D8C9E8]'
                             : 'bg-[#FAF9F7] text-[#A77B4D] border-[#D8C9E8]'
@@ -2269,7 +2333,7 @@ export default function App() {
               </div>
             </RevealOnScroll>
 
-            {/* TANDA KASIH PERNIKAHAN — REKENING BRI & MANDIRI + FOTO QRIS (SESUAI REVISI 3) */}
+            {/* TANDA KASIH PERNIKAHAN - REKENING BRI & MANDIRI + FOTO QRIS */}
             <RevealOnScroll className="mt-14 sm:mt-16 text-center">
               <p className="font-sans-refined text-[9px] uppercase tracking-[0.3em] text-[#A77B4D]">
                 Wedding Gift
@@ -2282,47 +2346,19 @@ export default function App() {
                 ingin memberikan tanda kasih secara digital, dapat melalui rekening atau pindai QRIS berikut:
               </p>
 
-              {/* Daftar Nomor Rekening BRI & Mandiri */}
               <div className="space-y-4 max-w-[400px] mx-auto mt-6">
                 {config.gifts.map((gift, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-[#FFFFFF] border border-[#D8C9E8] p-4 sm:p-5 shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-left relative"
-                  >
-                    <div>
-                      <span className="inline-block font-sans-refined text-[9px] uppercase tracking-[0.22em] text-[#A77B4D] font-semibold">
-                        {gift.bankName}
-                      </span>
-                      <p className="font-serif-luxury text-lg sm:text-xl font-semibold text-[#4A3428] tracking-wider mt-1">
-                        {gift.accountNumber}
-                      </p>
-                      <p className="font-serif-luxury italic text-xs text-[#4A3428]/75">
-                        {gift.accountHolder}
-                      </p>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => handleCopyAccount(gift.accountNumber, idx)}
-                      className="min-h-[40px] shrink-0 inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[9px] uppercase tracking-widest hover:bg-[#35241B] transition-colors"
-                    >
-                      {copiedAccount === idx ? (
-                        <>
-                          <Check className="w-3 h-3 text-[#D8C9E8]" />
-                          <span>Tersalin</span>
-                        </>
-                      ) : (
-                        <>
-                          <Copy className="w-3 h-3 text-[#D8C9E8]" />
-                          <span>Salin Rekening</span>
-                        </>
-                      )}
-                    </button>
-                  </div>
+                  <BankAccountCard
+                    key={gift.accountNumber}
+                    gift={gift}
+                    index={idx}
+                    copiedAccount={copiedAccount}
+                    onCopy={handleCopyAccount}
+                  />
                 ))}
               </div>
 
-              {/* Kartu QRIS */}
-              <div className="mt-6 max-w-[360px] mx-auto bg-[#FFFFFF] border border-[#D8C9E8] p-5 sm:p-7 shadow-xl relative">
+              <div className="card mt-6 max-w-[360px] mx-auto bg-[#FFFFFF] border border-[#D8C9E8] p-5 sm:p-7 shadow-xl relative rounded-none">
                 <div className="border border-[#A77B4D]/30 p-4 sm:p-5 bg-[#FAF9F7]">
                   <div className="flex items-center justify-between border-b border-[#D8C9E8] pb-2.5 mb-4">
                     <span className="font-sans-refined text-[9px] font-semibold uppercase tracking-[0.24em] text-[#4A3428]">
@@ -2367,7 +2403,7 @@ export default function App() {
                     <button
                       type="button"
                       onClick={() => setIsQrisZoomOpen(true)}
-                      className="min-h-[40px] inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-[#4A3428] text-[#4A3428] font-sans-refined text-[9px] uppercase tracking-widest hover:bg-[#4A3428] hover:text-[#FAF9F7] transition-colors"
+                      className="btn min-h-[40px] inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-[#4A3428] bg-transparent text-[#4A3428] font-sans-refined text-[9px] uppercase tracking-widest hover:bg-[#4A3428] hover:text-[#FAF9F7] transition-colors rounded-none"
                     >
                       <Maximize2 className="w-3 h-3" />
                       <span>Perbesar</span>
@@ -2376,7 +2412,7 @@ export default function App() {
                     <a
                       href={config.qrisGift.imageUrl}
                       download="QRIS-Tiara-Rifqi.png"
-                      className="min-h-[40px] inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[9px] uppercase tracking-widest hover:bg-[#35241B] transition-colors"
+                      className="btn min-h-[40px] inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[9px] uppercase tracking-widest hover:bg-[#35241B] transition-colors rounded-none border-none"
                     >
                       <Download className="w-3 h-3 text-[#D8C9E8]" />
                       <span>Unduh QRIS</span>
@@ -2388,11 +2424,13 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION 9 — CLOSING & SUPPORT BY PT. MUSTDHIYA TEKNOLOGI INDONESIA */}
+        {/* SECTION 9 - CLOSING & SUPPORT BY PT. MUSTDHIYA TEKNOLOGI INDONESIA */}
         <footer
           id="section-closing"
           className="relative min-h-[540px] sm:min-h-[640px] flex flex-col items-center justify-between text-center text-[#FAF9F7] overflow-hidden bg-[#2D1F18] pt-20 pb-28 sm:pb-12 px-5"
         >
+          <SectionSideFlorals opacity="opacity-65" topOffset="top-16" />
+
           <img
             src={config.closingPhoto}
             alt="The Beginning of Forever"
@@ -2429,7 +2467,6 @@ export default function App() {
             </div>
           </RevealOnScroll>
 
-          {/* Credit & Support: PT. MUSTDHIYA TEKNOLOGI INDONESIA */}
           <div className="relative z-10 mt-12 pt-6 border-t border-[#D8C9E8]/25 w-full max-w-md flex flex-col items-center">
             <p className="font-sans-refined text-[8px] uppercase tracking-[0.28em] text-[#D8C9E8]/75 mb-2">
               Digital Invitation Supported By
@@ -2549,23 +2586,23 @@ export default function App() {
         </nav>
       )}
 
-      {/* LIGHTBOX MODAL GALERI */}
+      {/* LIGHTBOX MODAL GALERI & LOVE STORY */}
       {selectedPhoto && (
         <div
           onClick={() => setSelectedPhoto(null)}
-          className="fixed inset-0 z-50 bg-[#241812]/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8"
+          className="modal modal-open fixed inset-0 z-50 bg-[#241812]/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative max-w-3xl w-full bg-fine-paper p-3 sm:p-5 border border-[#D8C9E8] shadow-2xl"
+            className="modal-box relative max-w-3xl w-full bg-fine-paper p-3 sm:p-5 border border-[#D8C9E8] shadow-2xl rounded-none"
           >
             <button
               onClick={() => setSelectedPhoto(null)}
-              className="absolute -top-4 -right-4 w-9 h-9 rounded-full bg-[#4A3428] text-[#FAF9F7] border border-[#D8C9E8] flex items-center justify-center shadow-lg"
+              className="btn btn-circle btn-sm absolute -top-4 -right-4 w-9 h-9 rounded-full bg-[#4A3428] text-[#FAF9F7] border border-[#D8C9E8] flex items-center justify-center shadow-lg"
             >
               <X className="w-4 h-4" />
             </button>
-            <div className="max-h-[75vh] overflow-hidden bg-[#35241B]">
+            <div className="max-h-[75vh] overflow-hidden bg-[#241812] flex items-center justify-center">
               <img
                 src={selectedPhoto.url}
                 alt={selectedPhoto.caption}
@@ -2583,15 +2620,15 @@ export default function App() {
       {isQrisZoomOpen && (
         <div
           onClick={() => setIsQrisZoomOpen(false)}
-          className="fixed inset-0 z-50 bg-[#241812]/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8"
+          className="modal modal-open fixed inset-0 z-50 bg-[#241812]/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative max-w-md w-full bg-[#FFFFFF] p-5 sm:p-7 border border-[#D8C9E8] shadow-2xl text-center"
+            className="modal-box relative max-w-md w-full bg-[#FFFFFF] p-5 sm:p-7 border border-[#D8C9E8] shadow-2xl text-center rounded-none"
           >
             <button
               onClick={() => setIsQrisZoomOpen(false)}
-              className="absolute -top-4 -right-4 w-9 h-9 rounded-full bg-[#4A3428] text-[#FAF9F7] border border-[#D8C9E8] flex items-center justify-center shadow-lg"
+              className="btn btn-circle btn-sm absolute -top-4 -right-4 w-9 h-9 rounded-full bg-[#4A3428] text-[#FAF9F7] border border-[#D8C9E8] flex items-center justify-center shadow-lg"
             >
               <X className="w-4 h-4" />
             </button>
@@ -2616,7 +2653,7 @@ export default function App() {
         </div>
       )}
 
-      {/* MODAL DAFTAR 39 LINK TAMU (KHUSUS MODE ADMIN ?admin=mdt) */}
+      {/* MODAL DAFTAR 39 LINK TAMU (MODE ADMIN ?admin=mdt) */}
       {isGuestListModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex justify-end">
           <div className="w-full max-w-md bg-[#FAF9F7] text-[#4A3428] h-full overflow-y-auto p-6 sm:p-8 shadow-2xl border-l border-[#D8C9E8]">
@@ -2656,7 +2693,7 @@ export default function App() {
                     <button
                       type="button"
                       onClick={() => handleCopyGuestUrl(guest)}
-                      className="shrink-0 px-3 py-1.5 bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[9px] uppercase tracking-wider"
+                      className="btn btn-xs shrink-0 px-3 py-1.5 bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[9px] uppercase tracking-wider rounded-none border-none"
                     >
                       {copiedGuestLink === guest ? 'Tersalin' : 'Salin'}
                     </button>
