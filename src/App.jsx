@@ -1112,11 +1112,7 @@ export default function App() {
             </p>
             <p className="font-serif-luxury text-xs text-[#4A3428]/90 mt-1 leading-relaxed">
               Silakan buka kembali pesan WhatsApp undangan Anda dan klik tautan lengkap yang
-              mencantumkan nama Anda (contoh:{' '}
-              <span className="text-[#A77B4D] font-semibold underline">
-                wedding.mustdhiya.com/ais-partner
-              </span>
-              ).
+              mencantumkan nama Anda yang tertera di sana. Jika Anda tidak menerima tautan resmi, harap hubungi pihak penyelenggara pernikahan untuk mendapatkan akses yang sah. Terima kasih atas pengertian dan kerjasamanya.
             </p>
           </div>
 
