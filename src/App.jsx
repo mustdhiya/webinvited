@@ -28,7 +28,7 @@ import {
 } from 'lucide-react';
 
 // ============================================================================
-// DAFTAR RESMI TAMU UNDANGAN (WHITELIST 38 TAMU)
+// DAFTAR RESMI TAMU UNDANGAN (WHITELIST 39 TAMU)
 // Selain nama yang ada di daftar ini, halaman undangan tidak dapat dibuka.
 // ============================================================================
 const INVITED_GUESTS = [
@@ -73,8 +73,6 @@ const INVITED_GUESTS = [
   '7icon',
 ];
 
-// Fungsi pembantu untuk mengubah nama tamu menjadi slug URL yang rapi
-// Contoh: "Ais & partner" -> "ais-partner", "Agni & Thorieq" -> "agni-thorieq"
 const createGuestSlug = (text = '') =>
   text
     .toString()
@@ -85,7 +83,6 @@ const createGuestSlug = (text = '') =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
 
-// Fungsi pencocokan tamu dari URL path (/ais-partner) atau query (?to=Ais+%26+partner)
 const findAuthorizedGuest = (rawCandidate) => {
   if (!rawCandidate) return null;
   const decoded = decodeURIComponent(rawCandidate).trim();
@@ -104,25 +101,29 @@ const findAuthorizedGuest = (rawCandidate) => {
 };
 
 // ============================================================================
-// KONFIGURASI DATA PERNIKAHAN — TIARA & RIFQI (TEMA "NAVY SERENITY")
+// KONFIGURASI DATA PERNIKAHAN — TIARA & RIFQI (TEMA "CHOCOLATE LILAC")
+// Palet Warna:
+// - Chocolate Brown : #4A3428
+// - Lilac           : #D8C9E8
+// - Soft White      : #FAF9F7
+// - Silver Sage     : #B9C4B7
+// - Bronze          : #A77B4D
 // ============================================================================
 const DEFAULT_WEDDING_CONFIG = {
   couple: {
     brideShort: 'Tiara',
     brideFull: 'Tiara Nazwa Andira Ali',
-    brideBio: '', // Tidak digunakan sesuai permintaan klien
+    brideBio: '',
     brideParents: 'Putri keempat dari Bapak H. Alimuddin & Ibu Hj. Siti Zubaidah',
-    brideInstagram: '', // Tidak digunakan sesuai permintaan klien
-    bridePhoto:
-      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=85',
+    brideInstagram: '',
+    bridePhoto: '/galeryfoto/2.JPG',
 
     groomShort: 'Rifqi',
     groomFull: 'Muhammad Rifqi Ihsan',
-    groomBio: '', // Tidak digunakan sesuai permintaan klien
+    groomBio: '',
     groomParents: 'Putra pertama dari Bapak Rusdi Anwar, S.P. & Ibu Maisyarah',
-    groomInstagram: '', // Tidak digunakan sesuai permintaan klien
-    groomPhoto:
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=85',
+    groomInstagram: '',
+    groomPhoto: '/galeryfoto/3.jpg',
 
     monogram: 'T & R',
   },
@@ -153,7 +154,7 @@ const DEFAULT_WEDDING_CONFIG = {
       time: '09:00 WITA',
       venueName: 'Kediaman Mempelai Wanita',
       address: 'Kelurahan Nenang RT 001',
-      mapsUrl: '', // Klien memilih tidak menggunakan link Google Maps pada Akad
+      mapsUrl: '',
     },
     resepsi: {
       title: 'Resepsi Pernikahan',
@@ -161,7 +162,7 @@ const DEFAULT_WEDDING_CONFIG = {
       time: '10:00 WITA s/d Selesai',
       venueName: 'Hotel GPN',
       address: 'Jl. Propinsi KM 3,5',
-      mapsUrl: 'https://share.google/wpTAIXb6UZofpht1J',
+      mapsUrl: 'https://maps.app.goo.gl/uipPmyRfb9uXiGwt7',
     },
   },
   loveStory: [
@@ -169,98 +170,121 @@ const DEFAULT_WEDDING_CONFIG = {
       stage: 'The First Meeting',
       date: 'Mei 2025',
       description:
-        'Pertama kali bertemu pada akhir Mei 2025 melalui perkenalan keluarga. Saat itu, kami tidak pernah menyangka bahwa pertemuan sederhana tersebut akan membawa kami sampai sejauh ini.',
-      photo:
-        'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=700&q=80',
+        'Pertama kali bertemu pada akhir Mei 2025 melalui perkenalan seorang teman. Saat itu, kami tidak pernah menyangka bahwa pertemuan sederhana tersebut akan membawa kami sampai sejauh ini.',
+      photo: '/lovestory/the first meeting.jpg',
     },
     {
       stage: 'The Beginning',
       date: 'Juni 2025',
       description:
         'Dari perkenalan itu, kami mulai saling mengenal dan memahami satu sama lain. Seiring berjalannya waktu, kami merasa nyaman dan mulai melihat kemungkinan untuk membangun masa depan bersama.',
-      photo:
-        'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=700&q=80',
+      photo: '/lovestory/the beginning.JPG',
     },
     {
       stage: 'The Special Moment',
       date: '2025',
       description:
         'Kami belajar bahwa sebuah hubungan bukan hanya tentang kebahagiaan, tetapi juga tentang saling memahami dan mendukung. Dari perjalanan yang kami lalui, tumbuh keyakinan untuk terus bersama dan melangkah ke tahap yang lebih serius.',
-      photo:
-        'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=700&q=80',
+      photo: '/lovestory/best moment.jpg',
     },
     {
       stage: 'The Proposal',
       date: '2026',
       description:
         'Tanpa harus menunggu cerita yang sempurna, kami sepakat untuk membawa hubungan ini ke jenjang pernikahan. Dengan restu keluarga dan niat yang tulus, kami memilih untuk memulai babak baru bersama.',
-      photo:
-        'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=700&q=80',
+      photo: '/lovestory/the proposal.jpg',
     },
     {
       stage: 'Forever Begins',
       date: '08 November 2026',
       description:
         'Pada tanggal 08 November 2026, kami akan mengikat janji suci untuk memulai kehidupan sebagai suami dan istri. Sebuah perjalanan baru akan dimulai, dengan harapan untuk selalu saling menjaga, mencintai, dan menemani dalam setiap keadaan.',
-      photo:
-        'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=700&q=80',
+      photo: '/lovestory/forever begins.jpg',
     },
   ],
   gallery: [
     {
       id: 1,
-      url: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=85',
+      url: '/galeryfoto/1.PNG',
       type: 'portrait-left',
       caption: 'I. Dalam Teduh Cahaya Senja',
     },
     {
       id: 2,
-      url: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=85',
+      url: '/galeryfoto/2.JPG',
       type: 'portrait-right',
       caption: 'II. Langkah yang Searah',
     },
     {
       id: 3,
-      url: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1400&q=85',
+      url: '/lovestory/the beginning.JPG',
       type: 'full-landscape',
-      caption: 'III. Serenade Biru Malam — Fine Art Editorial Series',
+      caption: 'III. Harmoni Kasih — Fine Art Editorial Series',
     },
     {
       id: 4,
-      url: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1000&q=85',
+      url: '/galeryfoto/4.jpg',
       type: 'paper-frame',
       caption: 'IV. Menggenggam Waktu',
     },
     {
       id: 5,
-      url: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=85',
+      url: '/galeryfoto/5.JPEG',
       type: 'magazine-margin',
       caption: 'V. Menuju Hari Bahagia',
     },
+    {
+      id: 6,
+      url: '/galeryfoto/6.jpg',
+      type: 'portrait-extra-left',
+      caption: 'VI. Senyum dalam Doa',
+    },
+    {
+      id: 7,
+      url: '/galeryfoto/7.JPEG',
+      type: 'portrait-extra-right',
+      caption: 'VII. Janji Selamanya',
+    },
   ],
-  closingPhoto:
-    'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1400&q=85',
-  // Tanda Kasih Pernikahan menggunakan Foto QRIS saja (Simpan gambar QRIS di public/qris.jpg)
+  closingPhoto: '/galeryfoto/7.JPEG',
+  gifts: [
+    {
+      bankName: 'Bank Rakyat Indonesia (BRI)',
+      accountNumber: '458201053989534',
+      accountHolder: 'a.n. Tiara Nazwa Andira Ali',
+    },
+    {
+      bankName: 'Bank Mandiri',
+      accountNumber: '1480022294162',
+      accountHolder: 'a.n. Muhammad Rifqi Ihsan',
+    },
+  ],
   qrisGift: {
     title: 'QRIS Tanda Kasih Pernikahan',
     merchantName: 'Tiara Nazwa Andira Ali & Muhammad Rifqi Ihsan',
-    imageUrl: '/qris.jpg',
+    imageUrl: '/qris.png',
     note: 'Silakan pindai (scan) atau unduh kode QRIS di atas melalui aplikasi Mobile Banking atau E-Wallet (GoPay, OVO, DANA, ShopeePay, LinkAja, BRI, Mandiri, BCA, dll).',
   },
   music: {
     title: 'The Script - Never Seen Anything Quite Like You',
     audioUrl: '/The Script - Never Seen Anything Quite Like You (Audio).mp3',
-    startTime: 0,
-    endTime: 66,
-    maxVolume: 0.65,
-    fadeDuration: 2.5,
+    startTime: 5,           // Mulai dari detik ke-5
+    endTime: null,          // null = Mainkan sampai akhir lagu
+    maxVolume: 0.65,        // Volume maksimal (0.0 - 1.0)
+    fadeDuration: 3.0,      // Durasi smooth fade-in & fade-out (3 detik)
+  },
+  support: {
+    companyName: 'PT. MUSTDHIYA TEKNOLOGI INDONESIA',
+    websiteUrl: 'https://mustdhiya.com',
+    websiteLabel: 'mustdhiya.com',
+    logoUrl: '/logo.png',
   },
 };
 
 const INITIAL_WISHES = [
   {
     id: 'w-1',
-    name: 'Ais & partner',
+    name: 'Fauzan & partner',
     attendance: 'Hadir',
     guests: 2,
     message:
@@ -269,7 +293,7 @@ const INITIAL_WISHES = [
   },
   {
     id: 'w-2',
-    name: 'Agni & Thorieq',
+    name: 'Nur & partner',
     attendance: 'Hadir',
     guests: 2,
     message:
@@ -288,57 +312,62 @@ const NAV_ITEMS = [
 ];
 
 // ============================================================================
-// KOMPONEN ORNAMEN SVG ARTISTIK (MEMOIZED AGAR TIDAK RE-RENDER)
+// KOMPONEN ORNAMEN SVG ARTISTIK — TEMA "CHOCOLATE LILAC"
+// (Mawar Chocolate Brown #4A3428, Bunga Lilac #D8C9E8, Daun Silver Sage #B9C4B7, Aksen Bronze #A77B4D)
 // ============================================================================
-const NavySerenityFloralCrest = memo(({ className = 'w-44 h-28' }) => (
+const ChocolateLilacFloralCrest = memo(({ className = 'w-44 h-28' }) => (
   <svg viewBox="0 0 240 130" fill="none" className={className} aria-hidden="true">
     <path
       d="M120 75 C85 70, 50 45, 22 25 M120 75 C155 70, 190 45, 218 25"
-      stroke="#A8ADB5"
+      stroke="#A77B4D"
       strokeWidth="1.2"
       strokeLinecap="round"
     />
     <path
       d="M120 75 C75 88, 45 95, 15 90 M120 75 C165 88, 195 95, 225 90"
-      stroke="#AEBFD6"
+      stroke="#B9C4B7"
       strokeWidth="1.1"
       strokeLinecap="round"
     />
-    <ellipse cx="62" cy="48" rx="14" ry="6" transform="rotate(-25 62 48)" fill="#A8ADB5" opacity="0.85" />
-    <ellipse cx="178" cy="48" rx="14" ry="6" transform="rotate(25 178 48)" fill="#A8ADB5" opacity="0.85" />
-    <ellipse cx="48" cy="76" rx="12" ry="5" transform="rotate(15 48 76)" fill="#AEBFD6" opacity="0.8" />
-    <ellipse cx="192" cy="76" rx="12" ry="5" transform="rotate(-15 192 76)" fill="#AEBFD6" opacity="0.8" />
-    <circle cx="120" cy="64" r="28" fill="#101A30" />
-    <circle cx="116" cy="61" r="22" fill="#1B2A49" />
+    {/* Daun Eucalyptus Silver Sage */}
+    <ellipse cx="62" cy="48" rx="14" ry="6" transform="rotate(-25 62 48)" fill="#B9C4B7" opacity="0.9" />
+    <ellipse cx="178" cy="48" rx="14" ry="6" transform="rotate(25 178 48)" fill="#B9C4B7" opacity="0.9" />
+    <ellipse cx="48" cy="76" rx="12" ry="5" transform="rotate(15 48 76)" fill="#D8C9E8" opacity="0.85" />
+    <ellipse cx="192" cy="76" rx="12" ry="5" transform="rotate(-15 192 76)" fill="#D8C9E8" opacity="0.85" />
+    {/* Mawar Utama Chocolate Brown */}
+    <circle cx="120" cy="64" r="28" fill="#35241B" />
+    <circle cx="116" cy="61" r="22" fill="#4A3428" />
     <path
       d="M104 58 C110 44, 130 44, 136 58 C140 72, 120 82, 108 72 C98 64, 108 50, 120 52 C128 54, 130 64, 120 67 C114 68, 113 61, 118 59"
-      stroke="#AEBFD6"
+      stroke="#D8C9E8"
       strokeWidth="1.2"
       fill="none"
-      opacity="0.85"
+      opacity="0.9"
     />
-    <circle cx="84" cy="70" r="16" fill="#AEBFD6" />
+    {/* Mawar Lilac & Soft White di Kiri & Kanan */}
+    <circle cx="84" cy="70" r="16" fill="#D8C9E8" />
     <path
       d="M76 68 C80 60, 90 60, 92 68 C94 75, 82 78, 78 72"
-      stroke="#1B2A49"
+      stroke="#4A3428"
       strokeWidth="0.9"
       fill="none"
       opacity="0.65"
     />
-    <circle cx="156" cy="70" r="16" fill="#F5F5F5" stroke="#C5CCD6" strokeWidth="1" />
+    <circle cx="156" cy="70" r="16" fill="#FAF9F7" stroke="#D8C9E8" strokeWidth="1" />
     <path
       d="M148 68 C152 60, 162 60, 164 68 C166 75, 154 78, 150 72"
-      stroke="#A8ADB5"
+      stroke="#A77B4D"
       strokeWidth="1"
       fill="none"
       opacity="0.8"
     />
-    <circle cx="38" cy="36" r="2.5" fill="#F5F5F5" stroke="#1B2A49" strokeWidth="0.8" />
-    <circle cx="52" cy="28" r="2" fill="#AEBFD6" />
-    <circle cx="202" cy="36" r="2.5" fill="#F5F5F5" stroke="#1B2A49" strokeWidth="0.8" />
-    <circle cx="188" cy="28" r="2" fill="#AEBFD6" />
-    <circle cx="96" cy="36" r="2.2" fill="#C5CCD6" />
-    <circle cx="144" cy="36" r="2.2" fill="#AEBFD6" />
+    {/* Putik Bronze & Lilac */}
+    <circle cx="38" cy="36" r="2.5" fill="#FAF9F7" stroke="#4A3428" strokeWidth="0.8" />
+    <circle cx="52" cy="28" r="2" fill="#D8C9E8" />
+    <circle cx="202" cy="36" r="2.5" fill="#FAF9F7" stroke="#4A3428" strokeWidth="0.8" />
+    <circle cx="188" cy="28" r="2" fill="#D8C9E8" />
+    <circle cx="96" cy="36" r="2.2" fill="#A77B4D" />
+    <circle cx="144" cy="36" r="2.2" fill="#D8C9E8" />
   </svg>
 ));
 
@@ -346,21 +375,21 @@ const WaxSealStamp = memo(({ monogram = 'T & R', size = 'w-20 h-20' }) => (
   <div className={`relative inline-flex items-center justify-center select-none ${size}`}>
     <svg viewBox="0 0 120 120" className="w-full h-full drop-shadow-xl" aria-hidden="true">
       <defs>
-        <radialGradient id="navyWaxGrad" cx="35%" cy="30%" r="70%">
-          <stop offset="0%" stopColor="#355085" />
-          <stop offset="55%" stopColor="#1B2A49" />
-          <stop offset="100%" stopColor="#0B1324" />
+        <radialGradient id="chocoBronzeWaxGrad" cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stopColor="#A77B4D" />
+          <stop offset="55%" stopColor="#4A3428" />
+          <stop offset="100%" stopColor="#2D1F18" />
         </radialGradient>
       </defs>
       <path
         d="M60 6 C74 5, 86 12, 97 21 C108 30, 115 44, 114 59 C113 74, 109 89, 98 99 C87 109, 73 115, 58 114 C43 113, 28 109, 19 97 C10 85, 5 72, 6 57 C7 42, 13 28, 24 18 C35 8, 46 7, 60 6 Z"
-        fill="url(#navyWaxGrad)"
+        fill="url(#chocoBronzeWaxGrad)"
       />
-      <circle cx="60" cy="60" r="39" fill="none" stroke="#AEBFD6" strokeWidth="1.2" strokeDasharray="2 2" opacity="0.75" />
-      <circle cx="60" cy="60" r="34" fill="none" stroke="#0F182B" strokeWidth="2.5" opacity="0.75" />
-      <circle cx="60" cy="60" r="33" fill="none" stroke="#C5CCD6" strokeWidth="0.7" opacity="0.55" />
+      <circle cx="60" cy="60" r="39" fill="none" stroke="#D8C9E8" strokeWidth="1.2" strokeDasharray="2 2" opacity="0.75" />
+      <circle cx="60" cy="60" r="34" fill="none" stroke="#2D1F18" strokeWidth="2.5" opacity="0.75" />
+      <circle cx="60" cy="60" r="33" fill="none" stroke="#FAF9F7" strokeWidth="0.7" opacity="0.55" />
     </svg>
-    <span className="absolute font-script text-lg sm:text-xl text-[#F5F5F5] tracking-wider drop-shadow">
+    <span className="absolute font-script text-lg sm:text-xl text-[#FAF9F7] tracking-wider drop-shadow">
       {monogram}
     </span>
   </div>
@@ -378,28 +407,28 @@ const DoveOrnament = memo(({ className = 'w-8 h-8' }) => (
 
 const VintageCarriageIllustration = memo(({ className = 'w-64 h-32' }) => (
   <svg viewBox="0 0 360 150" fill="none" className={className} aria-hidden="true">
-    <path d="M20 135 H340" stroke="#1B2A49" strokeWidth="0.8" strokeDasharray="4 4" opacity="0.5" />
-    <circle cx="85" cy="105" r="28" stroke="#1B2A49" strokeWidth="1.4" />
-    <circle cx="85" cy="105" r="24" stroke="#A8ADB5" strokeWidth="0.8" />
-    <circle cx="85" cy="105" r="4" fill="#1B2A49" />
-    <path d="M85 77 V133 M57 105 H113 M65 85 L105 125 M105 85 L65 125" stroke="#1B2A49" strokeWidth="0.8" opacity="0.65" />
-    <circle cx="175" cy="111" r="22" stroke="#1B2A49" strokeWidth="1.4" />
-    <circle cx="175" cy="111" r="18" stroke="#A8ADB5" strokeWidth="0.8" />
-    <circle cx="175" cy="111" r="3.5" fill="#1B2A49" />
-    <path d="M175 89 V133 M153 111 H197 M160 96 L190 126 M190 96 L160 126" stroke="#1B2A49" strokeWidth="0.8" opacity="0.65" />
-    <path d="M65 78 C62 46, 85 28, 125 28 C165 28, 182 46, 175 78 C165 96, 85 96, 65 78 Z" fill="#F5F5F5" stroke="#1B2A49" strokeWidth="1.5" />
-    <path d="M112 28 L120 18 L125 24 L130 18 L138 28" stroke="#1B2A49" strokeWidth="1.3" fill="none" />
-    <path d="M92 42 H152 V68 C152 72, 92 72, 92 68 Z" fill="#FFFFFF" stroke="#1B2A49" strokeWidth="1.1" />
-    <path d="M92 42 C105 52, 112 58, 92 68 M152 42 C139 52, 132 58, 152 68" stroke="#AEBFD6" strokeWidth="1.1" />
-    <path d="M175 95 C205 95, 225 82, 250 75" stroke="#1B2A49" strokeWidth="1" />
+    <path d="M20 135 H340" stroke="#4A3428" strokeWidth="0.8" strokeDasharray="4 4" opacity="0.5" />
+    <circle cx="85" cy="105" r="28" stroke="#4A3428" strokeWidth="1.4" />
+    <circle cx="85" cy="105" r="24" stroke="#A77B4D" strokeWidth="0.8" />
+    <circle cx="85" cy="105" r="4" fill="#4A3428" />
+    <path d="M85 77 V133 M57 105 H113 M65 85 L105 125 M105 85 L65 125" stroke="#4A3428" strokeWidth="0.8" opacity="0.65" />
+    <circle cx="175" cy="111" r="22" stroke="#4A3428" strokeWidth="1.4" />
+    <circle cx="175" cy="111" r="18" stroke="#A77B4D" strokeWidth="0.8" />
+    <circle cx="175" cy="111" r="3.5" fill="#4A3428" />
+    <path d="M175 89 V133 M153 111 H197 M160 96 L190 126 M190 96 L160 126" stroke="#4A3428" strokeWidth="0.8" opacity="0.65" />
+    <path d="M65 78 C62 46, 85 28, 125 28 C165 28, 182 46, 175 78 C165 96, 85 96, 65 78 Z" fill="#FAF9F7" stroke="#4A3428" strokeWidth="1.5" />
+    <path d="M112 28 L120 18 L125 24 L130 18 L138 28" stroke="#A77B4D" strokeWidth="1.3" fill="none" />
+    <path d="M92 42 H152 V68 C152 72, 92 72, 92 68 Z" fill="#FFFFFF" stroke="#4A3428" strokeWidth="1.1" />
+    <path d="M92 42 C105 52, 112 58, 92 68 M152 42 C139 52, 132 58, 152 68" stroke="#D8C9E8" strokeWidth="1.2" />
+    <path d="M175 95 C205 95, 225 82, 250 75" stroke="#4A3428" strokeWidth="1" />
     <path
       d="M245 92 C245 72, 260 62, 278 62 C288 62, 294 46, 302 36 C307 32, 314 38, 312 45 C308 54, 303 65, 300 76 C300 88, 295 95, 288 95 L294 133 M278 95 L273 133 M255 94 L248 133 M262 94 L264 133"
-      stroke="#1B2A49"
+      stroke="#4A3428"
       strokeWidth="1.4"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-    <path d="M42 92 C52 108, 72 112, 125 112 C178 112, 195 100, 208 86" stroke="#AEBFD6" strokeWidth="1.5" fill="none" />
+    <path d="M42 92 C52 108, 72 112, 125 112 C178 112, 195 100, 208 86" stroke="#A77B4D" strokeWidth="1.5" fill="none" />
   </svg>
 ));
 
@@ -440,13 +469,13 @@ const CountdownTimer = memo(({ isoDate }) => {
       {items.map((item, idx) => (
         <div
           key={idx}
-          className="bg-[#FFFFFF]/90 backdrop-blur-sm border border-[#C5CCD6] py-3 sm:py-4 px-2 shadow-[0_10px_25px_-5px_rgba(27,42,73,0.08)] relative overflow-hidden group"
+          className="bg-[#FAF9F7]/95 backdrop-blur-sm border border-[#D8C9E8] py-3 sm:py-4 px-2 shadow-[0_10px_25px_-5px_rgba(74,52,40,0.08)] relative overflow-hidden group"
         >
-          <div className="absolute inset-x-1 top-1 h-[1px] bg-gradient-to-r from-transparent via-[#AEBFD6]/60 to-transparent" />
-          <span className="block font-serif-luxury text-2xl sm:text-3xl md:text-4xl font-semibold text-[#1B2A49] tracking-tight">
+          <div className="absolute inset-x-1 top-1 h-[1px] bg-gradient-to-r from-transparent via-[#A77B4D]/50 to-transparent" />
+          <span className="block font-serif-luxury text-2xl sm:text-3xl md:text-4xl font-semibold text-[#4A3428] tracking-tight">
             {String(item.value).padStart(2, '0')}
           </span>
-          <span className="font-sans-refined text-[7px] sm:text-[8px] uppercase tracking-[0.22em] text-[#1B2A49]/70 mt-1 block">
+          <span className="font-sans-refined text-[7px] sm:text-[8px] uppercase tracking-[0.22em] text-[#4A3428]/70 mt-1 block">
             {item.label}
           </span>
         </div>
@@ -583,12 +612,12 @@ export default function App() {
   const [isInvitationOpened, setIsInvitationOpened] = useState(false);
   const [isOpeningTransition, setIsOpeningTransition] = useState(false);
 
-  // State Validasi Nama Tamu Berdasarkan Daftar Resmi (Whitelist)
   const [guestName, setGuestName] = useState('');
   const [isAuthorizedGuest, setIsAuthorizedGuest] = useState(false);
   const [isAdminMode, setIsAdminMode] = useState(false);
   const [isGuestListModalOpen, setIsGuestListModalOpen] = useState(false);
   const [copiedGuestLink, setCopiedGuestLink] = useState(null);
+  const [copiedAccount, setCopiedAccount] = useState(null);
 
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
@@ -599,7 +628,6 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('section-cover');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Simpan RSVP di localStorage
   const [wishes, setWishes] = useState(() => {
     try {
       const saved = localStorage.getItem('tiara_rifqi_wishes_v1');
@@ -621,7 +649,20 @@ export default function App() {
   const htmlAudioRef = useRef(null);
   const mainContentRef = useRef(null);
 
-  // Validasi URL terhadap daftar 38 tamu yang diundang
+  // Pasang Favicon Tab otomatis menggunakan /logo.png (PT. MUSTDHIYA TEKNOLOGI INDONESIA)
+  useEffect(() => {
+    document.title = `The Wedding of ${config.couple.brideShort} & ${config.couple.groomShort} — Supported by ${config.support.companyName}`;
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.head.appendChild(link);
+    }
+    link.type = 'image/png';
+    link.href = config.support.logoUrl;
+  }, [config]);
+
+  // Validasi URL terhadap daftar tamu yang diundang
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const adminParam = params.get('admin');
@@ -629,7 +670,6 @@ export default function App() {
       setIsAdminMode(true);
     }
 
-    // Ambil kandidat nama dari query (?to=... / ?guest=... / ?u=...) atau dari path URL (/ais-partner)
     const queryCandidate = params.get('to') || params.get('guest') || params.get('u');
     const pathCandidate = window.location.pathname.replace(/^\/+|\/+$/g, '');
 
@@ -790,6 +830,13 @@ export default function App() {
     setTimeout(() => setCopiedGuestLink(null), 2200);
   };
 
+  const handleCopyAccount = (number, index) => {
+    const cleanNumber = number.replace(/\s+/g, '');
+    navigator.clipboard?.writeText(cleanNumber);
+    setCopiedAccount(index);
+    setTimeout(() => setCopiedAccount(null), 2500);
+  };
+
   const handleRsvpSubmit = (e) => {
     e.preventDefault();
     if (!rsvpForm.name.trim()) return;
@@ -830,7 +877,7 @@ export default function App() {
   // ==========================================================================
   if (!isAuthorizedGuest) {
     return (
-      <div className="min-h-screen bg-[#0B1220] text-[#F5F5F5] flex flex-col items-center justify-center px-5 py-12 relative overflow-hidden">
+      <div className="min-h-screen bg-[#FAF9F7] text-[#4A3428] flex flex-col items-center justify-center px-5 py-12 relative overflow-hidden">
         <style>{`
           @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap');
           .font-serif-luxury { font-family: 'Cormorant Garamond', Georgia, serif; }
@@ -839,60 +886,60 @@ export default function App() {
         `}</style>
 
         <div
-          className="pointer-events-none absolute inset-0 opacity-40"
+          className="pointer-events-none absolute inset-0 opacity-75"
           style={{
             backgroundImage:
-              'radial-gradient(circle at 50% 35%, rgba(36, 56, 97, 0.85) 0%, rgba(9, 15, 28, 0.99) 75%)',
+              'radial-gradient(circle at 50% 35%, rgba(216, 201, 232, 0.65) 0%, rgba(250, 249, 247, 0.98) 75%)',
           }}
         />
 
-        <div className="relative z-10 max-w-md w-full bg-[#101A30]/90 backdrop-blur-xl border border-[#AEBFD6]/35 p-7 sm:p-10 text-center shadow-[0_25px_70px_rgba(0,0,0,0.85)]">
+        <div className="relative z-10 max-w-md w-full bg-[#FAF9F7]/95 backdrop-blur-xl border border-[#D8C9E8] p-7 sm:p-10 text-center shadow-[0_25px_70px_rgba(74,52,40,0.16)]">
           <div className="flex justify-center mb-3">
-            <NavySerenityFloralCrest className="w-36 h-20" />
+            <ChocolateLilacFloralCrest className="w-36 h-20" />
           </div>
 
-          <div className="w-12 h-12 rounded-full bg-[#1B2A49] border border-[#AEBFD6]/50 flex items-center justify-center mx-auto mb-4">
-            <Lock className="w-5 h-5 text-[#AEBFD6]" />
+          <div className="w-12 h-12 rounded-full bg-[#4A3428] border border-[#A77B4D] flex items-center justify-center mx-auto mb-4">
+            <Lock className="w-5 h-5 text-[#D8C9E8]" />
           </div>
 
-          <p className="font-sans-refined text-[9px] uppercase tracking-[0.35em] text-[#AEBFD6]">
+          <p className="font-sans-refined text-[9px] uppercase tracking-[0.35em] text-[#A77B4D]">
             Private Wedding Invitation
           </p>
-          <h1 className="font-script text-4xl sm:text-5xl text-[#F5F5F5] mt-2">
+          <h1 className="font-script text-4xl sm:text-5xl text-[#4A3428] mt-2">
             {config.couple.brideShort} &amp; {config.couple.groomShort}
           </h1>
-          <p className="font-sans-refined text-[10px] uppercase tracking-[0.25em] text-[#C5CCD6] mt-1">
+          <p className="font-sans-refined text-[10px] uppercase tracking-[0.25em] text-[#4A3428]/75 mt-1">
             {config.weddingDate.displayDate}
           </p>
 
-          <div className="w-16 h-[1px] bg-[#AEBFD6]/40 mx-auto my-5" />
+          <div className="w-16 h-[1px] bg-[#D8C9E8] mx-auto my-5" />
 
-          <h2 className="font-serif-luxury text-xl sm:text-2xl text-[#F5F5F5] font-semibold">
+          <h2 className="font-serif-luxury text-xl sm:text-2xl text-[#4A3428] font-semibold">
             Tautan Undangan Khusus Tamu Terdaftar
           </h2>
-          <p className="font-serif-luxury text-sm text-[#C5CCD6] leading-relaxed mt-2.5">
+          <p className="font-serif-luxury text-sm text-[#4A3428]/80 leading-relaxed mt-2.5">
             Mohon maaf, halaman undangan pernikahan ini bersifat privat dan hanya dapat diakses
             melalui tautan personal resmi yang dikirimkan kepada masing-masing tamu undangan.
           </p>
 
-          <div className="mt-6 p-3.5 bg-[#0B1220]/70 border border-[#AEBFD6]/25 text-left">
-            <p className="font-sans-refined text-[8px] uppercase tracking-[0.22em] text-[#AEBFD6]">
+          <div className="mt-6 p-3.5 bg-[#D8C9E8]/25 border border-[#D8C9E8] text-left">
+            <p className="font-sans-refined text-[8px] uppercase tracking-[0.22em] text-[#4A3428] font-semibold">
               Petunjuk Bagi Tamu Undangan:
             </p>
-            <p className="font-serif-luxury text-xs text-[#F5F5F5]/85 mt-1 leading-relaxed">
+            <p className="font-serif-luxury text-xs text-[#4A3428]/90 mt-1 leading-relaxed">
               Silakan buka kembali pesan WhatsApp undangan Anda dan klik tautan lengkap yang
               mencantumkan nama Anda (contoh:{' '}
-              <span className="text-[#AEBFD6] underline">
+              <span className="text-[#A77B4D] font-semibold underline">
                 wedding.mustdhiya.com/ais-partner
               </span>
               ).
             </p>
           </div>
 
-          {/* Jika admin membuka dengan ?admin=mdt, tampilkan daftar link seluruh 38 tamu */}
+          {/* Jika admin membuka dengan ?admin=mdt, tampilkan daftar link seluruh tamu */}
           {isAdminMode && (
-            <div className="mt-6 pt-5 border-t border-[#AEBFD6]/30 text-left">
-              <p className="font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#AEBFD6] mb-3">
+            <div className="mt-6 pt-5 border-t border-[#D8C9E8] text-left">
+              <p className="font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#4A3428] font-semibold mb-3">
                 Panel Admin — Daftar 39 Link Undangan Tamu:
               </p>
               <div className="max-h-60 overflow-y-auto space-y-2 pr-1">
@@ -901,13 +948,13 @@ export default function App() {
                   return (
                     <div
                       key={g}
-                      className="flex items-center justify-between gap-2 bg-[#1B2A49]/70 border border-[#AEBFD6]/25 px-3 py-2 text-xs"
+                      className="flex items-center justify-between gap-2 bg-[#FFFFFF] border border-[#D8C9E8] px-3 py-2 text-xs"
                     >
                       <div className="truncate">
-                        <p className="font-serif-luxury font-semibold text-[#F5F5F5] truncate">
+                        <p className="font-serif-luxury font-semibold text-[#4A3428] truncate">
                           {g}
                         </p>
-                        <p className="font-sans-refined text-[9px] text-[#AEBFD6] truncate">
+                        <p className="font-sans-refined text-[9px] text-[#A77B4D] truncate">
                           /{slug}
                         </p>
                       </div>
@@ -915,13 +962,13 @@ export default function App() {
                         <button
                           type="button"
                           onClick={() => handleCopyGuestUrl(g)}
-                          className="px-2.5 py-1 bg-[#AEBFD6] text-[#101A30] font-sans-refined text-[8px] uppercase tracking-wider font-semibold"
+                          className="px-2.5 py-1 bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[8px] uppercase tracking-wider font-semibold"
                         >
                           {copiedGuestLink === g ? 'Tersalin' : 'Salin Link'}
                         </button>
                         <a
                           href={`/${slug}`}
-                          className="p-1 bg-[#0B1220] text-[#AEBFD6] border border-[#AEBFD6]/40"
+                          className="p-1 bg-[#D8C9E8]/35 text-[#4A3428] border border-[#D8C9E8]"
                           title="Buka Undangan Tamu Ini"
                         >
                           <ExternalLink className="w-3.5 h-3.5" />
@@ -933,13 +980,35 @@ export default function App() {
               </div>
             </div>
           )}
+
+          {/* Footer Support PT. Mustdhiya Teknologi Indonesia */}
+          <div className="mt-8 pt-4 border-t border-[#D8C9E8]/70 flex flex-col items-center">
+            <a
+              href={config.support.websiteUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 opacity-85 hover:opacity-100 transition-opacity"
+            >
+              <img
+                src={config.support.logoUrl}
+                alt={config.support.companyName}
+                className="w-5 h-5 object-contain"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
+              <span className="font-sans-refined text-[8px] uppercase tracking-[0.22em] text-[#4A3428]">
+                {config.support.companyName}
+              </span>
+            </a>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#0B1220] text-[#1B2A49] selection:bg-[#1B2A49] selection:text-[#F5F5F5] antialiased overflow-x-hidden pb-20 sm:pb-0">
+    <div className="min-h-screen bg-[#FAF9F7] text-[#4A3428] selection:bg-[#4A3428] selection:text-[#FAF9F7] antialiased overflow-x-hidden pb-20 sm:pb-0">
       {config.music.audioUrl && (
         <audio ref={htmlAudioRef} src={config.music.audioUrl} loop preload="auto" />
       )}
@@ -951,43 +1020,47 @@ export default function App() {
         .font-sans-refined { font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif; }
         .font-script { font-family: 'Great Vibes', cursive; }
 
-        .bg-whitesmoke-satin {
-          background-color: #F5F5F5;
+        /* Base Soft White & Lilac Satin (Sesuai Revisi 1: Base Lilac & Soft White) */
+        .bg-lilac-softwhite-satin {
+          background-color: #FAF9F7;
           background-image:
             radial-gradient(ellipse 90% 60% at 20% 15%, rgba(255, 255, 255, 0.98) 0%, transparent 60%),
-            radial-gradient(ellipse 75% 50% at 85% 35%, rgba(174, 191, 214, 0.42) 0%, transparent 65%),
-            linear-gradient(128deg, #FFFFFF 0%, #E9EDF2 24%, #F9FAFB 47%, #D8E0EB 72%, #F5F5F5 100%);
+            radial-gradient(ellipse 75% 50% at 85% 35%, rgba(216, 201, 232, 0.55) 0%, transparent 65%),
+            linear-gradient(128deg, #FAF9F7 0%, #F2ECF9 26%, #FAF9F7 50%, #E8DDF4 76%, #FAF9F7 100%);
         }
 
-        .bg-silver-drape {
-          background-color: #EEF1F5;
+        /* Drape Satin Lilac & Silver Sage Lembut */
+        .bg-lilac-drape {
+          background-color: #F4EFFA;
           background-image:
-            radial-gradient(circle at 75% 22%, rgba(255, 255, 255, 0.96) 0%, rgba(174, 191, 214, 0.35) 42%, transparent 70%),
-            linear-gradient(112deg, #E2E7EE 0%, #F9FAFC 28%, #CFD8E3 52%, #F5F7FA 78%, #DFE5ED 100%);
+            radial-gradient(circle at 75% 22%, rgba(250, 249, 247, 0.96) 0%, rgba(216, 201, 232, 0.45) 45%, transparent 70%),
+            linear-gradient(112deg, #F3EDF9 0%, #FAF9F7 30%, #E7DCF2 55%, #FAF9F7 80%, #EFE8F6 100%);
         }
 
-        .bg-navy-satin {
-          background-color: #1B2A49;
+        /* Chocolate Brown & Lilac Satin untuk Section Kontras Romantis */
+        .bg-chocolate-lilac-satin {
+          background-color: #4A3428;
           background-image:
-            radial-gradient(ellipse 80% 55% at 70% 20%, rgba(56, 84, 138, 0.55) 0%, transparent 65%),
-            radial-gradient(ellipse 70% 65% at 20% 75%, rgba(27, 42, 73, 0.85) 0%, transparent 65%),
-            linear-gradient(135deg, #0B1221 0%, #243861 28%, #131F38 53%, #1B2A49 78%, #090F1C 100%);
+            radial-gradient(ellipse 80% 55% at 70% 20%, rgba(216, 201, 232, 0.22) 0%, transparent 65%),
+            radial-gradient(ellipse 70% 65% at 20% 75%, rgba(167, 123, 77, 0.25) 0%, transparent 65%),
+            linear-gradient(135deg, #35241B 0%, #4A3428 32%, #3D2B21 60%, #4A3428 82%, #2B1D16 100%);
         }
 
+        /* Kertas Halus Soft White & Lilac */
         .bg-fine-paper {
-          background-color: #F8F9FA;
+          background-color: #FAF9F7;
           background-image:
-            radial-gradient(rgba(27, 42, 73, 0.03) 1px, transparent 0),
-            radial-gradient(rgba(174, 191, 214, 0.14) 1px, #F8F9FA 0);
+            radial-gradient(rgba(74, 52, 40, 0.03) 1px, transparent 0),
+            radial-gradient(rgba(216, 201, 232, 0.22) 1px, #FAF9F7 0);
           background-size: 24px 24px;
           background-position: 0 0, 12px 12px;
         }
 
         .deckle-card {
           box-shadow:
-            0 28px 65px -15px rgba(6, 12, 24, 0.78),
-            0 0 0 1px rgba(174, 191, 214, 0.5),
-            inset 0 0 36px rgba(197, 204, 214, 0.28);
+            0 28px 65px -15px rgba(45, 31, 24, 0.65),
+            0 0 0 1px rgba(216, 201, 232, 0.6),
+            inset 0 0 36px rgba(216, 201, 232, 0.28);
         }
 
         @keyframes floatSlow {
@@ -1039,7 +1112,7 @@ export default function App() {
         }
         .letter-slide-out {
           transform: translate3d(0, -45%, 0) scale(1.04);
-          box-shadow: 0 32px 75px -12px rgba(5, 10, 22, 0.82);
+          box-shadow: 0 32px 75px -12px rgba(45, 31, 24, 0.55);
         }
 
         @keyframes pulseRing {
@@ -1056,23 +1129,23 @@ export default function App() {
       `}</style>
 
       {/* =====================================================================
-          STAGE PEMBUKA SURAT 3D INTERAKTIF (SEBELUM MASUK KE UNDANGAN)
+          STAGE PEMBUKA SURAT 3D INTERAKTIF (BASE LILAC & SOFT WHITE)
       ===================================================================== */}
       {envelopeStage !== 'opened' && (
         <div
           className={`fixed inset-0 z-50 flex flex-col items-center justify-between py-6 sm:py-10 px-4 overflow-hidden transition-all duration-700 ${
-            envelopeStage === 'opening' ? 'bg-[#0B1220]/95' : 'bg-[#0B1220]'
+            envelopeStage === 'opening' ? 'bg-[#F3EDF9]/95' : 'bg-[#F3EDF9]'
           }`}
           style={{
             backgroundImage:
-              'radial-gradient(circle at 50% 35%, rgba(36, 56, 97, 0.8) 0%, rgba(9, 15, 28, 0.99) 78%)',
+              'radial-gradient(circle at 50% 35%, rgba(250, 249, 247, 0.96) 0%, rgba(216, 201, 232, 0.68) 78%)',
           }}
         >
           <div
-            className="pointer-events-none absolute inset-0 opacity-40"
+            className="pointer-events-none absolute inset-0 opacity-60"
             style={{
               backgroundImage:
-                'radial-gradient(ellipse 65% 40% at 20% 15%, rgba(174, 191, 214, 0.35) 0%, transparent 65%), radial-gradient(ellipse 70% 45% at 85% 85%, rgba(174, 191, 214, 0.25) 0%, transparent 65%)',
+                'radial-gradient(ellipse 65% 40% at 20% 15%, rgba(255, 255, 255, 0.9) 0%, transparent 65%), radial-gradient(ellipse 70% 45% at 85% 85%, rgba(185, 196, 183, 0.35) 0%, transparent 65%)',
             }}
           />
 
@@ -1081,10 +1154,10 @@ export default function App() {
               envelopeStage === 'opening' ? 'opacity-0 -translate-y-4' : 'opacity-100 translate-y-0'
             }`}
           >
-            <p className="font-sans-refined text-[9px] sm:text-[10px] uppercase tracking-[0.4em] text-[#AEBFD6]">
+            <p className="font-sans-refined text-[9px] sm:text-[10px] uppercase tracking-[0.4em] text-[#A77B4D]">
               Personal Wedding Invitation
             </p>
-            <h1 className="font-serif-luxury italic text-lg sm:text-2xl text-[#F5F5F5] mt-1">
+            <h1 className="font-serif-luxury italic text-lg sm:text-2xl text-[#4A3428] mt-1">
               The Wedding of {config.couple.brideShort} &amp; {config.couple.groomShort}
             </h1>
           </div>
@@ -1100,10 +1173,10 @@ export default function App() {
               className={`pointer-events-none absolute -top-2 sm:-top-4 z-0 transition-all duration-700 ${
                 envelopeStage === 'opening'
                   ? 'opacity-90 -translate-y-6 scale-110'
-                  : 'opacity-80 animate-float-slow'
+                  : 'opacity-85 animate-float-slow'
               }`}
             >
-              <NavySerenityFloralCrest className="w-48 h-28 sm:w-56 sm:h-32" />
+              <ChocolateLilacFloralCrest className="w-48 h-28 sm:w-56 sm:h-32" />
             </div>
 
             {/* Amplop 3D */}
@@ -1121,81 +1194,81 @@ export default function App() {
               className="relative w-full aspect-[4/3] cursor-pointer select-none group"
             >
               <div
-                className="absolute inset-0 rounded-sm bg-[#101A30] border border-[#AEBFD6]/45 shadow-[0_32px_85px_rgba(0,0,0,0.88)] overflow-hidden"
+                className="absolute inset-0 rounded-sm bg-[#4A3428] border border-[#A77B4D]/55 shadow-[0_32px_85px_rgba(74,52,40,0.35)] overflow-hidden"
                 style={{
                   backgroundImage:
-                    'radial-gradient(circle at 50% 25%, #243861 0%, #131F38 62%, #0B1221 100%)',
+                    'radial-gradient(circle at 50% 25%, #614536 0%, #4A3428 62%, #33231A 100%)',
                 }}
               >
-                <div className="absolute inset-2 border border-[#AEBFD6]/25 pointer-events-none" />
-                <div className="absolute top-3 left-1/2 -translate-x-1/2 opacity-30">
-                  <NavySerenityFloralCrest className="w-40 h-24" />
+                <div className="absolute inset-2 border border-[#D8C9E8]/35 pointer-events-none" />
+                <div className="absolute top-3 left-1/2 -translate-x-1/2 opacity-35">
+                  <ChocolateLilacFloralCrest className="w-40 h-24" />
                 </div>
               </div>
 
               {/* Kartu Surat yang Meluncur Naik */}
               <div
-                className={`letter-slide-3d absolute left-[6%] right-[6%] top-[7%] bottom-[6%] z-20 bg-fine-paper border border-[#C5CCD6] p-3.5 sm:p-5 flex flex-col items-center justify-between text-center shadow-xl ${
+                className={`letter-slide-3d absolute left-[6%] right-[6%] top-[7%] bottom-[6%] z-20 bg-fine-paper border border-[#D8C9E8] p-3.5 sm:p-5 flex flex-col items-center justify-between text-center shadow-xl ${
                   envelopeStage === 'opening' ? 'letter-slide-out' : ''
                 }`}
               >
-                <div className="w-full h-full border border-[#1B2A49]/20 px-3 py-2.5 sm:px-5 sm:py-4 flex flex-col items-center justify-between relative bg-[#F8F9FA]/95">
-                  <span className="font-sans-refined text-[7px] sm:text-[8px] uppercase tracking-[0.34em] text-[#1B2A49]/70">
+                <div className="w-full h-full border border-[#A77B4D]/35 px-3 py-2.5 sm:px-5 sm:py-4 flex flex-col items-center justify-between relative bg-[#FAF9F7]/95">
+                  <span className="font-sans-refined text-[7px] sm:text-[8px] uppercase tracking-[0.34em] text-[#4A3428]/70">
                     The Wedding Of
                   </span>
                   <div className="my-auto py-1">
-                    <h2 className="font-script text-3xl sm:text-4xl md:text-5xl text-[#1B2A49] leading-none">
+                    <h2 className="font-script text-3xl sm:text-4xl md:text-5xl text-[#4A3428] leading-none">
                       {config.couple.brideShort} &amp; {config.couple.groomShort}
                     </h2>
-                    <div className="w-14 h-[1px] bg-[#AEBFD6] mx-auto my-2 sm:my-2.5" />
-                    <p className="font-serif-luxury italic text-[11px] sm:text-xs text-[#1B2A49]/85 max-w-[230px] mx-auto leading-relaxed">
+                    <div className="w-14 h-[1px] bg-[#D8C9E8] mx-auto my-2 sm:my-2.5" />
+                    <p className="font-serif-luxury italic text-[11px] sm:text-xs text-[#4A3428]/85 max-w-[230px] mx-auto leading-relaxed">
                       “Kami mengundang Anda untuk menjadi bagian dari hari bahagia penyatuan janji suci kami.”
                     </p>
                   </div>
-                  <div className="w-full pt-1.5 border-t border-[#C5CCD6]/70 flex items-center justify-between text-[8px] sm:text-[9px] font-sans-refined uppercase tracking-[0.2em] text-[#1B2A49]">
+                  <div className="w-full pt-1.5 border-t border-[#D8C9E8] flex items-center justify-between text-[8px] sm:text-[9px] font-sans-refined uppercase tracking-[0.2em] text-[#4A3428]">
                     <span>{config.weddingDate.dotDate}</span>
-                    <span className="text-[#889BB5]">Tiara &amp; Rifqi</span>
+                    <span className="text-[#A77B4D]">Tiara &amp; Rifqi</span>
                   </div>
                 </div>
               </div>
 
-              {/* Lipatan Samping & Bawah Amplop */}
+              {/* Lipatan Samping & Bawah Amplop (Soft White & Lilac) */}
               <div
                 className="pointer-events-none absolute inset-0 z-30"
                 style={{
-                  background: 'linear-gradient(135deg, #E5E9F0 0%, #F5F5F5 55%, #D5DCE6 100%)',
+                  background: 'linear-gradient(135deg, #EFE8F7 0%, #FAF9F7 55%, #E3D6F0 100%)',
                   clipPath: 'polygon(0 0, 52% 52%, 0 100%)',
-                  filter: 'drop-shadow(2px 0px 4px rgba(13,21,38,0.18))',
+                  filter: 'drop-shadow(2px 0px 4px rgba(74,52,40,0.12))',
                 }}
               />
               <div
                 className="pointer-events-none absolute inset-0 z-30"
                 style={{
-                  background: 'linear-gradient(-135deg, #E5E9F0 0%, #F5F5F5 55%, #D5DCE6 100%)',
+                  background: 'linear-gradient(-135deg, #EFE8F7 0%, #FAF9F7 55%, #E3D6F0 100%)',
                   clipPath: 'polygon(100% 0, 48% 52%, 100% 100%)',
-                  filter: 'drop-shadow(-2px 0px 4px rgba(13,21,38,0.18))',
+                  filter: 'drop-shadow(-2px 0px 4px rgba(74,52,40,0.12))',
                 }}
               />
               <div
                 className="pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-end pb-3 sm:pb-4 px-4"
                 style={{
-                  background: 'linear-gradient(to top, #EDEFF3 0%, #F9FAFB 68%, #DFE5EE 100%)',
+                  background: 'linear-gradient(to top, #F2EBF8 0%, #FAF9F7 68%, #E6D9F3 100%)',
                   clipPath: 'polygon(0 100%, 50% 44%, 100% 100%)',
-                  boxShadow: 'inset 0 -8px 25px rgba(27,42,73,0.08)',
+                  boxShadow: 'inset 0 -8px 25px rgba(74,52,40,0.06)',
                 }}
               >
-                <div className="bg-[#FFFFFF]/95 border border-[#C5CCD6] px-4 sm:px-6 py-2 sm:py-2.5 shadow-sm text-center max-w-[85%]">
-                  <p className="font-sans-refined text-[7px] sm:text-[8px] uppercase tracking-[0.26em] text-[#1B2A49]/70">
+                <div className="bg-[#FAF9F7]/95 border border-[#D8C9E8] px-4 sm:px-6 py-2 sm:py-2.5 shadow-sm text-center max-w-[85%]">
+                  <p className="font-sans-refined text-[7px] sm:text-[8px] uppercase tracking-[0.26em] text-[#4A3428]/70">
                     Kepada Yth.
                   </p>
-                  <p className="font-serif-luxury text-xs sm:text-sm md:text-base font-semibold text-[#1B2A49] truncate">
+                  <p className="font-serif-luxury text-xs sm:text-sm md:text-base font-semibold text-[#4A3428] truncate">
                     {guestName}
                   </p>
                 </div>
               </div>
               <svg viewBox="0 0 400 300" className="pointer-events-none absolute inset-0 w-full h-full z-30" preserveAspectRatio="none">
-                <path d="M0 300 L200 132 L400 300" stroke="#AEBFD6" strokeWidth="1.2" fill="none" opacity="0.75" />
-                <path d="M0 0 L200 156 L0 300 M400 0 L200 156 L400 300" stroke="#C5CCD6" strokeWidth="0.9" fill="none" opacity="0.6" />
+                <path d="M0 300 L200 132 L400 300" stroke="#A77B4D" strokeWidth="1.1" fill="none" opacity="0.6" />
+                <path d="M0 0 L200 156 L0 300 M400 0 L200 156 L400 300" stroke="#D8C9E8" strokeWidth="1" fill="none" opacity="0.8" />
               </svg>
 
               {/* Flap Atas 3D */}
@@ -1209,20 +1282,20 @@ export default function App() {
                   style={{
                     background:
                       envelopeStage === 'opening'
-                        ? 'linear-gradient(to bottom, #1B2A49 0%, #101A30 100%)'
-                        : 'linear-gradient(180deg, #FFFFFF 0%, #EEF1F6 70%, #DCE3ED 100%)',
+                        ? 'linear-gradient(to bottom, #4A3428 0%, #35241B 100%)'
+                        : 'linear-gradient(180deg, #FAF9F7 0%, #F3ECF9 70%, #E5D7F2 100%)',
                     clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
-                    boxShadow: '0 12px 25px rgba(10, 16, 30, 0.28)',
+                    boxShadow: '0 12px 25px rgba(74, 52, 40, 0.18)',
                   }}
                 >
                   <svg viewBox="0 0 400 180" className="w-full h-full" preserveAspectRatio="none">
                     <path
                       d="M14 6 L200 168 L386 6"
-                      stroke={envelopeStage === 'opening' ? '#AEBFD6' : '#1B2A49'}
+                      stroke={envelopeStage === 'opening' ? '#D8C9E8' : '#A77B4D'}
                       strokeWidth="1"
                       strokeDasharray="3 3"
                       fill="none"
-                      opacity="0.45"
+                      opacity="0.55"
                     />
                   </svg>
                 </div>
@@ -1236,7 +1309,7 @@ export default function App() {
                     : 'scale-100 opacity-100 group-hover:scale-105'
                 }`}
               >
-                <span className="pointer-events-none absolute inset-0 rounded-full border-2 border-[#AEBFD6] animate-pulse-ring" />
+                <span className="pointer-events-none absolute inset-0 rounded-full border-2 border-[#A77B4D] animate-pulse-ring" />
                 <WaxSealStamp monogram={config.couple.monogram} size="w-20 h-20 sm:w-24 sm:h-24" />
               </div>
             </div>
@@ -1251,12 +1324,12 @@ export default function App() {
               <button
                 type="button"
                 onClick={handleTriggerEnvelopeOpen}
-                className="btn-luxury-shimmer min-h-[46px] inline-flex items-center justify-center gap-2.5 px-7 sm:px-9 py-3.5 rounded-full bg-[#F5F5F5] text-[#1B2A49] font-sans-refined text-[10px] sm:text-xs uppercase tracking-[0.26em] font-medium shadow-[0_12px_32px_rgba(0,0,0,0.55)] border border-[#AEBFD6] hover:bg-[#AEBFD6] hover:text-[#101A30] transition-all active:scale-95"
+                className="btn-luxury-shimmer min-h-[46px] inline-flex items-center justify-center gap-2.5 px-7 sm:px-9 py-3.5 rounded-full bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[10px] sm:text-xs uppercase tracking-[0.26em] font-medium shadow-[0_12px_32px_rgba(74,52,40,0.3)] border border-[#A77B4D] hover:bg-[#35241B] transition-all active:scale-95"
               >
-                <MailOpen className="w-4 h-4 text-[#1B2A49]" />
+                <MailOpen className="w-4 h-4 text-[#D8C9E8]" />
                 <span>Buka Surat Undangan</span>
               </button>
-              <p className="font-serif-luxury italic text-xs sm:text-sm text-[#AEBFD6]/85 mt-3">
+              <p className="font-serif-luxury italic text-xs sm:text-sm text-[#4A3428]/80 mt-3">
                 Sentuh segel lilin atau tombol di atas untuk membuka amplop
               </p>
             </div>
@@ -1267,7 +1340,7 @@ export default function App() {
               envelopeStage === 'opening' ? 'opacity-0' : 'opacity-80'
             }`}
           >
-            <p className="font-sans-refined text-[8px] sm:text-[9px] uppercase tracking-[0.3em] text-[#C5CCD6]/70">
+            <p className="font-sans-refined text-[8px] sm:text-[9px] uppercase tracking-[0.3em] text-[#4A3428]/70">
               {config.weddingDate.displayDate}
             </p>
           </div>
@@ -1281,9 +1354,9 @@ export default function App() {
         {envelopeStage === 'opened' && (
           <button
             onClick={handleReplayEnvelope}
-            className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#1B2A49]/90 backdrop-blur-md border border-[#AEBFD6]/45 text-[#F5F5F5] font-sans-refined text-[9px] sm:text-[10px] tracking-wider uppercase hover:bg-[#101A30] transition-colors shadow-lg"
+            className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#4A3428]/90 backdrop-blur-md border border-[#D8C9E8]/55 text-[#FAF9F7] font-sans-refined text-[9px] sm:text-[10px] tracking-wider uppercase hover:bg-[#35241B] transition-colors shadow-lg"
           >
-            <RotateCcw className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#AEBFD6]" />
+            <RotateCcw className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#D8C9E8]" />
             <span>Ulangi Surat</span>
           </button>
         )}
@@ -1291,16 +1364,16 @@ export default function App() {
           onClick={() =>
             setViewportMode((prev) => (prev === 'responsive' ? 'mobile-preview' : 'responsive'))
           }
-          className="hidden lg:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#1B2A49]/90 backdrop-blur-md border border-[#AEBFD6]/40 text-[#F5F5F5] font-sans-refined text-[10px] tracking-wider uppercase hover:bg-[#101A30] transition-colors shadow-lg"
+          className="hidden lg:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#4A3428]/90 backdrop-blur-md border border-[#D8C9E8]/50 text-[#FAF9F7] font-sans-refined text-[10px] tracking-wider uppercase hover:bg-[#35241B] transition-colors shadow-lg"
         >
           {viewportMode === 'responsive' ? (
             <>
-              <Smartphone className="w-3.5 h-3.5 text-[#AEBFD6]" />
+              <Smartphone className="w-3.5 h-3.5 text-[#D8C9E8]" />
               <span>Simulasi HP (430px)</span>
             </>
           ) : (
             <>
-              <Monitor className="w-3.5 h-3.5 text-[#AEBFD6]" />
+              <Monitor className="w-3.5 h-3.5 text-[#D8C9E8]" />
               <span>Mode Responsif</span>
             </>
           )}
@@ -1309,9 +1382,9 @@ export default function App() {
         {isAdminMode && (
           <button
             onClick={() => setIsGuestListModalOpen(true)}
-            className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#1B2A49]/95 backdrop-blur-md border border-[#AEBFD6]/50 text-[#F5F5F5] font-sans-refined text-[10px] tracking-wider uppercase hover:bg-[#101A30] transition-colors shadow-lg"
+            className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#4A3428]/95 backdrop-blur-md border border-[#D8C9E8]/60 text-[#FAF9F7] font-sans-refined text-[10px] tracking-wider uppercase hover:bg-[#35241B] transition-colors shadow-lg"
           >
-            <Copy className="w-3 h-3 text-[#AEBFD6]" />
+            <Copy className="w-3 h-3 text-[#D8C9E8]" />
             <span>Link Tamu</span>
           </button>
         )}
@@ -1323,98 +1396,83 @@ export default function App() {
       <div
         className={`mx-auto transition-all duration-500 ${
           isForcedMobile
-            ? 'max-w-[430px] shadow-[0_0_100px_rgba(0,0,0,0.85)] border-x border-[#AEBFD6]/25 my-0'
-            : 'w-full max-w-[1140px] shadow-[0_0_90px_rgba(0,0,0,0.75)]'
+            ? 'max-w-[430px] shadow-[0_0_100px_rgba(74,52,40,0.4)] border-x border-[#D8C9E8] my-0'
+            : 'w-full max-w-[1140px] shadow-[0_0_90px_rgba(74,52,40,0.22)]'
         }`}
       >
-        {/* SECTION 1 — HERO STATIONERY COLLAGE */}
+        {/* SECTION 1 — HERO STATIONERY COLLAGE (REVISI 2: TANPA KARTU KANAN "WE INVITE YOU") */}
         <header
           id="section-cover"
-          className={`relative min-h-screen bg-whitesmoke-satin flex flex-col items-center justify-between py-10 sm:py-14 px-4 sm:px-8 md:px-14 overflow-hidden transition-all duration-700 ${
+          className={`relative min-h-screen bg-lilac-softwhite-satin flex flex-col items-center justify-between py-10 sm:py-14 px-4 sm:px-8 md:px-14 overflow-hidden transition-all duration-700 ${
             isOpeningTransition ? 'scale-[1.02] opacity-90' : 'scale-100 opacity-100'
           }`}
         >
           <div
-            className="pointer-events-none absolute inset-0 opacity-60"
+            className="pointer-events-none absolute inset-0 opacity-70"
             style={{
               background:
-                'radial-gradient(circle at 15% 20%, rgba(255,255,255,0.95), transparent 45%), radial-gradient(circle at 85% 80%, rgba(174,191,214,0.45), transparent 55%)',
+                'radial-gradient(circle at 15% 20%, rgba(255,255,255,0.95), transparent 45%), radial-gradient(circle at 85% 80%, rgba(216,201,232,0.55), transparent 55%)',
             }}
           />
           <div className="relative z-10 text-center pt-4 sm:pt-0">
-            <p className="font-sans-refined text-[9px] sm:text-[11px] uppercase tracking-[0.34em] text-[#1B2A49]/80">
+            <p className="font-sans-refined text-[9px] sm:text-[11px] uppercase tracking-[0.34em] text-[#4A3428]/80">
               The Wedding Of {config.couple.brideShort} &amp; {config.couple.groomShort}
             </p>
           </div>
 
           <div
             className={`relative z-10 w-full ${
-              isForcedMobile ? 'max-w-[340px]' : 'max-w-[330px] sm:max-w-[400px] md:max-w-[460px]'
+              isForcedMobile ? 'max-w-[340px]' : 'max-w-[330px] sm:max-w-[400px] md:max-w-[440px]'
             } my-4 sm:my-6 flex flex-col items-center`}
           >
+            {/* Ornamen Crest Bunga Chocolate Lilac */}
             <div className="relative z-30 -mb-5 sm:-mb-6 animate-float-slow">
-              <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-[#F5F5F5] border border-[#C5CCD6] shadow-md flex items-center justify-center rotate-45 overflow-hidden">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-[#FAF9F7] border border-[#D8C9E8] shadow-md flex items-center justify-center rotate-45 overflow-hidden">
                 <div className="-rotate-45">
-                  <NavySerenityFloralCrest className="w-28 h-20 sm:w-32 sm:h-24" />
+                  <ChocolateLilacFloralCrest className="w-28 h-20 sm:w-32 sm:h-24" />
                 </div>
               </div>
             </div>
 
-            <div className="relative w-full pt-6 sm:pt-8 pb-4 sm:pb-6 px-1 sm:px-2">
-              <div className="relative z-10 ml-2 sm:ml-4 w-36 sm:w-44 bg-[#F5F5F5] border border-[#C5CCD6] p-2.5 sm:p-3 shadow-md -rotate-3">
-                <p className="font-sans-refined text-[7px] sm:text-[8px] tracking-[0.25em] uppercase text-[#1B2A49]">
+            {/* Komposisi Kartu Utama (Kartu kanan "WE INVITE YOU" sudah dihapus sesuai Revisi 2) */}
+            <div className="relative w-full pt-6 sm:pt-8 pb-4 sm:pb-6 px-2 flex flex-col items-center">
+              {/* Label Save Our Date di Atas */}
+              <div className="relative z-10 -mb-3 mr-24 sm:mr-32 w-36 sm:w-44 bg-[#FAF9F7] border border-[#D8C9E8] p-2.5 sm:p-3 shadow-md -rotate-3 text-left">
+                <p className="font-sans-refined text-[7px] sm:text-[8px] tracking-[0.25em] uppercase text-[#A77B4D]">
                   Save Our Date
                 </p>
-                <p className="font-serif-luxury italic text-[11px] sm:text-xs text-[#1B2A49]/80 mt-0.5">
+                <p className="font-serif-luxury italic text-[11px] sm:text-xs text-[#4A3428]/85 mt-0.5">
                   {config.weddingDate.dotDate}
                 </p>
               </div>
 
-              <div className="relative z-20 grid grid-cols-12 gap-0 items-center -mt-2">
-                <div className="col-span-6 bg-[#1B2A49] text-[#F5F5F5] p-3.5 sm:p-5 md:p-6 shadow-xl border border-[#101A30] -rotate-2 relative overflow-hidden">
-                  <div className="border border-[#AEBFD6]/35 p-2.5 sm:p-3.5 text-center">
-                    <p className="font-sans-refined text-[7px] sm:text-[8px] uppercase tracking-[0.24em] text-[#AEBFD6]">
-                      The Wedding Of
-                    </p>
-                    <h1 className="font-serif-luxury text-xl sm:text-2xl md:text-3xl font-normal tracking-wide mt-1.5 sm:mt-2 leading-tight text-[#F5F5F5]">
-                      {config.couple.brideShort}
-                    </h1>
-                    <p className="font-script text-lg sm:text-xl text-[#AEBFD6] my-0.5">&amp;</p>
-                    <h1 className="font-serif-luxury text-xl sm:text-2xl md:text-3xl font-normal tracking-wide leading-tight text-[#F5F5F5]">
-                      {config.couple.groomShort}
-                    </h1>
-                    <div className="w-6 sm:w-8 h-[1px] bg-[#AEBFD6]/50 mx-auto my-2 sm:my-3" />
-                    <p className="font-sans-refined text-[7px] sm:text-[8px] tracking-[0.2em] text-[#C5CCD6]">
-                      {config.weddingDate.dotDate}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="col-span-6 -ml-2 sm:-ml-3 mt-5 sm:mt-6 bg-fine-paper text-[#1B2A49] p-3.5 sm:p-5 md:p-6 shadow-xl border border-[#C5CCD6] rotate-2">
-                  <div className="flex justify-end -mt-1 -mr-1 mb-1">
-                    <span className="inline-block w-2 h-2 rounded-full bg-[#1B2A49]" />
-                  </div>
-                  <p className="font-sans-refined text-[7px] sm:text-[8px] uppercase tracking-[0.22em] text-[#1B2A49]/75">
-                    We Invite You
+              {/* Kartu Tunggal Utama "THE WEDDING OF Tiara & Rifqi" di Tengah */}
+              <div className="relative z-20 w-full max-w-[250px] sm:max-w-[280px] bg-[#4A3428] text-[#FAF9F7] p-5 sm:p-7 shadow-2xl border border-[#35241B] relative overflow-hidden">
+                <div className="border border-[#D8C9E8]/45 p-4 sm:p-5 text-center">
+                  <p className="font-sans-refined text-[7px] sm:text-[8px] uppercase tracking-[0.28em] text-[#D8C9E8]">
+                    The Wedding Of
                   </p>
-                  <p className="font-script text-xl sm:text-2xl md:text-3xl text-[#1B2A49] mt-1">
-                    {config.couple.brideShort} &amp; {config.couple.groomShort}
-                  </p>
-                  <p className="font-serif-luxury text-[10px] sm:text-xs leading-relaxed text-[#1B2A49]/80 mt-1.5 sm:mt-2">
-                    Untuk hadir merayakan ikatan janji suci pernikahan kami.
-                  </p>
-                  <p className="font-sans-refined text-[8px] sm:text-[9px] font-medium tracking-[0.15em] text-[#1B2A49] mt-2.5 sm:mt-3 uppercase">
-                    {config.weddingDate.displayDate}
+                  <h1 className="font-serif-luxury text-2xl sm:text-3xl md:text-4xl font-normal tracking-wide mt-2 leading-tight text-[#FAF9F7]">
+                    {config.couple.brideShort}
+                  </h1>
+                  <p className="font-script text-xl sm:text-2xl text-[#D8C9E8] my-1">&amp;</p>
+                  <h1 className="font-serif-luxury text-2xl sm:text-3xl md:text-4xl font-normal tracking-wide leading-tight text-[#FAF9F7]">
+                    {config.couple.groomShort}
+                  </h1>
+                  <div className="w-10 h-[1px] bg-[#A77B4D] mx-auto my-3" />
+                  <p className="font-sans-refined text-[8px] sm:text-[9px] tracking-[0.24em] text-[#D8C9E8]">
+                    {config.weddingDate.dotDate}
                   </p>
                 </div>
               </div>
 
-              <div className="relative z-30 flex items-center justify-center gap-2 sm:gap-3 -mt-2 sm:-mt-3">
-                <div className="bg-[#F5F5F5] border border-[#C5CCD6] px-3 sm:px-4 py-2 sm:py-3 shadow-md -rotate-2 text-center">
-                  <span className="font-serif-luxury text-2xl sm:text-3xl md:text-4xl text-[#1B2A49] font-light tracking-tighter">
+              {/* Tanggal, Segel Lilin & Lencana RSVP */}
+              <div className="relative z-30 flex items-center justify-center gap-2 sm:gap-3 -mt-3">
+                <div className="bg-[#FAF9F7] border border-[#D8C9E8] px-3.5 sm:px-4 py-2 sm:py-3 shadow-md -rotate-2 text-center">
+                  <span className="font-serif-luxury text-2xl sm:text-3xl md:text-4xl text-[#4A3428] font-light tracking-tighter">
                     {config.weddingDate.dayNumber}
                   </span>
-                  <span className="block font-sans-refined text-[7px] sm:text-[8px] uppercase tracking-[0.22em] text-[#1B2A49]/80">
+                  <span className="block font-sans-refined text-[7px] sm:text-[8px] uppercase tracking-[0.22em] text-[#A77B4D]">
                     {config.weddingDate.monthYear}
                   </span>
                 </div>
@@ -1422,8 +1480,8 @@ export default function App() {
                   monogram={config.couple.monogram}
                   size="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20"
                 />
-                <div className="bg-[#1B2A49] text-[#F5F5F5] px-3 sm:px-3.5 py-2.5 sm:py-3 shadow-md rotate-3 rounded-t-full border border-[#AEBFD6]/45 text-center">
-                  <span className="block font-sans-refined text-[6px] sm:text-[7px] uppercase tracking-[0.2em] text-[#AEBFD6]">
+                <div className="bg-[#4A3428] text-[#FAF9F7] px-3 sm:px-3.5 py-2.5 sm:py-3 shadow-md rotate-3 rounded-t-full border border-[#D8C9E8]/55 text-center">
+                  <span className="block font-sans-refined text-[6px] sm:text-[7px] uppercase tracking-[0.2em] text-[#D8C9E8]">
                     RSVP
                   </span>
                   <span className="font-serif-luxury italic text-[11px] sm:text-xs">Cordially</span>
@@ -1431,30 +1489,31 @@ export default function App() {
               </div>
             </div>
 
-            <div className="mt-2 sm:mt-3 w-full max-w-[300px] sm:max-w-[340px] bg-[#FFFFFF]/95 backdrop-blur-sm border border-[#C5CCD6] px-4 sm:px-6 py-3.5 sm:py-4 text-center shadow-sm">
-              <p className="font-sans-refined text-[8px] sm:text-[9px] uppercase tracking-[0.26em] text-[#1B2A49]/75">
+            {/* Kotak Nama Tamu Undangan */}
+            <div className="mt-2 sm:mt-3 w-full max-w-[300px] sm:max-w-[340px] bg-[#FAF9F7]/95 backdrop-blur-sm border border-[#D8C9E8] px-4 sm:px-6 py-3.5 sm:py-4 text-center shadow-sm">
+              <p className="font-sans-refined text-[8px] sm:text-[9px] uppercase tracking-[0.26em] text-[#4A3428]/75">
                 Kepada Yth. Bapak / Ibu / Saudara / i
               </p>
-              <p className="font-serif-luxury text-base sm:text-lg md:text-xl font-semibold text-[#1B2A49] mt-1 break-words">
+              <p className="font-serif-luxury text-base sm:text-lg md:text-xl font-semibold text-[#4A3428] mt-1 break-words">
                 {guestName}
               </p>
-              <p className="font-serif-luxury italic text-[11px] sm:text-xs text-[#A8ADB5] mt-0.5">
+              <p className="font-serif-luxury italic text-[11px] sm:text-xs text-[#A77B4D] mt-0.5">
                 Di Tempat
               </p>
             </div>
 
             <button
               onClick={handleOpenInvitation}
-              className="btn-luxury-shimmer mt-5 sm:mt-6 min-h-[46px] group relative inline-flex items-center justify-center gap-3 px-7 sm:px-9 py-3.5 bg-[#1B2A49] text-[#F5F5F5] font-sans-refined text-[11px] sm:text-xs uppercase tracking-[0.26em] shadow-xl border border-[#101A30] hover:bg-[#101A30] transition-all duration-300 active:scale-95"
+              className="btn-luxury-shimmer mt-5 sm:mt-6 min-h-[46px] group relative inline-flex items-center justify-center gap-3 px-7 sm:px-9 py-3.5 bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[11px] sm:text-xs uppercase tracking-[0.26em] shadow-xl border border-[#35241B] hover:bg-[#35241B] transition-all duration-300 active:scale-95"
             >
-              <BookOpen className="w-3.5 h-3.5 text-[#AEBFD6] transition-transform group-hover:scale-110" />
+              <BookOpen className="w-3.5 h-3.5 text-[#D8C9E8] transition-transform group-hover:scale-110" />
               <span>Open Invitation</span>
             </button>
 
             {isInvitationOpened && (
               <button
                 onClick={() => scrollToSection('section-welcome')}
-                className="mt-4 inline-flex flex-col items-center text-[#1B2A49]/75 hover:text-[#1B2A49] transition-colors"
+                className="mt-4 inline-flex flex-col items-center text-[#4A3428]/75 hover:text-[#4A3428] transition-colors"
               >
                 <span className="font-sans-refined text-[8px] sm:text-[9px] uppercase tracking-[0.25em]">
                   Scroll Story
@@ -1464,7 +1523,7 @@ export default function App() {
             )}
           </div>
           <div className="relative z-10 text-center pb-4 sm:pb-0">
-            <p className="font-serif-luxury italic text-xs text-[#1B2A49]/65">
+            <p className="font-serif-luxury italic text-xs text-[#4A3428]/65">
               {config.couple.brideShort} &amp; {config.couple.groomShort} —{' '}
               {config.weddingDate.dotDate}
             </p>
@@ -1475,83 +1534,83 @@ export default function App() {
         <section
           id="section-welcome"
           ref={mainContentRef}
-          className="relative py-20 sm:py-28 md:py-36 px-4 sm:px-10 md:px-16 bg-[#0B1221] overflow-hidden flex items-center justify-center"
+          className="relative py-20 sm:py-28 md:py-36 px-4 sm:px-10 md:px-16 bg-[#35241B] overflow-hidden flex items-center justify-center"
           style={{
             backgroundImage:
-              'radial-gradient(circle at 50% 50%, rgba(27, 42, 73, 0.72) 0%, rgba(9, 15, 28, 0.98) 75%)',
+              'radial-gradient(circle at 50% 50%, rgba(74, 52, 40, 0.85) 0%, rgba(38, 25, 19, 0.98) 75%)',
           }}
         >
           <div
             className="pointer-events-none absolute top-0 bottom-0 left-0 w-10 sm:w-24 md:w-36 opacity-90"
             style={{
               background:
-                'repeating-linear-gradient(90deg, #0F182B 0px, #1B2A49 18px, #0A101E 36px, #243861 54px)',
+                'repeating-linear-gradient(90deg, #2D1F18 0px, #4A3428 18px, #241812 36px, #5C4133 54px)',
               clipPath: 'polygon(0 0, 100% 0, 62% 55%, 88% 100%, 0 100%)',
-              boxShadow: 'inset -20px 0 40px rgba(0,0,0,0.8)',
+              boxShadow: 'inset -20px 0 40px rgba(0,0,0,0.75)',
             }}
           />
           <div
             className="pointer-events-none absolute top-0 bottom-0 right-0 w-10 sm:w-24 md:w-36 opacity-90"
             style={{
               background:
-                'repeating-linear-gradient(-90deg, #0F182B 0px, #1B2A49 18px, #0A101E 36px, #243861 54px)',
+                'repeating-linear-gradient(-90deg, #2D1F18 0px, #4A3428 18px, #241812 36px, #5C4133 54px)',
               clipPath: 'polygon(0 0, 100% 0, 100% 100%, 12% 100%, 38% 55%)',
-              boxShadow: 'inset 20px 0 40px rgba(0,0,0,0.8)',
+              boxShadow: 'inset 20px 0 40px rgba(0,0,0,0.75)',
             }}
           />
-          <div className="pointer-events-none absolute left-1 sm:left-6 md:left-8 top-[54%] w-7 sm:w-14 md:w-16 h-2 sm:h-2.5 rounded-full bg-gradient-to-r from-[#A8ADB5] via-[#F5F5F5] to-[#AEBFD6] shadow-md" />
-          <div className="pointer-events-none absolute right-1 sm:right-6 md:right-8 top-[54%] w-7 sm:w-14 md:w-16 h-2 sm:h-2.5 rounded-full bg-gradient-to-l from-[#A8ADB5] via-[#F5F5F5] to-[#AEBFD6] shadow-md" />
+          <div className="pointer-events-none absolute left-1 sm:left-6 md:left-8 top-[54%] w-7 sm:w-14 md:w-16 h-2 sm:h-2.5 rounded-full bg-gradient-to-r from-[#A77B4D] via-[#FAF9F7] to-[#D8C9E8] shadow-md" />
+          <div className="pointer-events-none absolute right-1 sm:right-6 md:right-8 top-[54%] w-7 sm:w-14 md:w-16 h-2 sm:h-2.5 rounded-full bg-gradient-to-l from-[#A77B4D] via-[#FAF9F7] to-[#D8C9E8] shadow-md" />
 
           <RevealOnScroll className="relative z-10 w-full max-w-[340px] sm:max-w-[440px] md:max-w-[520px]">
-            <div className="bg-fine-paper deckle-card px-5 py-10 sm:px-10 sm:py-14 md:px-14 md:py-16 text-center relative border-4 border-double border-[#C5CCD6]">
-              <div className="w-12 h-12 mx-auto mb-3 sm:mb-4 text-[#1B2A49] flex items-center justify-center">
+            <div className="bg-fine-paper deckle-card px-5 py-10 sm:px-10 sm:py-14 md:px-14 md:py-16 text-center relative border-4 border-double border-[#D8C9E8]">
+              <div className="w-12 h-12 mx-auto mb-3 sm:mb-4 text-[#4A3428] flex items-center justify-center">
                 <span className="font-script text-2xl sm:text-3xl">{config.couple.monogram}</span>
               </div>
-              <p className="font-sans-refined text-[8px] sm:text-[9px] uppercase tracking-[0.25em] text-[#1B2A49] mb-3 sm:mb-4">
+              <p className="font-sans-refined text-[8px] sm:text-[9px] uppercase tracking-[0.25em] text-[#A77B4D] mb-3 sm:mb-4">
                 {config.welcome.salutation}
               </p>
-              <p className="font-serif-luxury text-xs sm:text-sm md:text-[15px] leading-[1.85] sm:leading-[1.9] text-[#1B2A49]/90 mb-5 sm:mb-6">
+              <p className="font-serif-luxury text-xs sm:text-sm md:text-[15px] leading-[1.85] sm:leading-[1.9] text-[#4A3428]/90 mb-5 sm:mb-6">
                 {config.welcome.openingText}
               </p>
-              <div className="my-5 sm:my-7 py-4 sm:py-5 border-y border-[#C5CCD6]">
-                <h2 className="font-script text-3xl sm:text-4xl md:text-5xl text-[#1B2A49]">
+              <div className="my-5 sm:my-7 py-4 sm:py-5 border-y border-[#D8C9E8]">
+                <h2 className="font-script text-3xl sm:text-4xl md:text-5xl text-[#4A3428]">
                   {config.couple.brideShort} &amp; {config.couple.groomShort}
                 </h2>
-                <p className="font-sans-refined text-[8px] sm:text-[9px] tracking-[0.28em] uppercase text-[#A8ADB5] mt-2">
+                <p className="font-sans-refined text-[8px] sm:text-[9px] tracking-[0.28em] uppercase text-[#A77B4D] mt-2">
                   {config.weddingDate.displayDate}
                 </p>
               </div>
-              <blockquote className="font-serif-luxury italic text-xs sm:text-sm leading-[1.8] text-[#1B2A49]/85 px-1 sm:px-3">
+              <blockquote className="font-serif-luxury italic text-xs sm:text-sm leading-[1.8] text-[#4A3428]/85 px-1 sm:px-3">
                 {config.welcome.quote}
               </blockquote>
-              <p className="font-sans-refined text-[8px] sm:text-[9px] uppercase tracking-[0.25em] text-[#1B2A49] mt-2 mb-5 sm:mb-6">
+              <p className="font-sans-refined text-[8px] sm:text-[9px] uppercase tracking-[0.25em] text-[#A77B4D] mt-2 mb-5 sm:mb-6">
                 — {config.welcome.quoteSource} —
               </p>
-              <p className="font-serif-luxury text-xs sm:text-sm leading-[1.8] text-[#1B2A49]/75">
+              <p className="font-serif-luxury text-xs sm:text-sm leading-[1.8] text-[#4A3428]/75">
                 {config.welcome.gratitude}
               </p>
             </div>
           </RevealOnScroll>
         </section>
 
-        {/* SECTION 3 — COUPLE & COUNTDOWN (TANPA DRESS CODE, BIO, DAN INSTAGRAM SESUAI PERMINTAAN KLIEN) */}
+        {/* SECTION 3 — COUPLE & COUNTDOWN */}
         <section
           id="section-couple"
-          className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-8 md:px-14 bg-silver-drape overflow-hidden"
+          className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-8 md:px-14 bg-lilac-drape overflow-hidden"
         >
           <div className="max-w-[780px] mx-auto text-center">
             <RevealOnScroll>
-              <p className="font-script text-3xl sm:text-4xl md:text-5xl text-[#1B2A49]">
+              <p className="font-script text-3xl sm:text-4xl md:text-5xl text-[#4A3428]">
                 Menghitung Hari Bahagia
               </p>
               <CountdownTimer isoDate={config.weddingDate.isoDate} />
             </RevealOnScroll>
 
             <RevealOnScroll>
-              <p className="font-sans-refined text-[9px] sm:text-[10px] uppercase tracking-[0.3em] text-[#1B2A49]/75">
+              <p className="font-sans-refined text-[9px] sm:text-[10px] uppercase tracking-[0.3em] text-[#A77B4D]">
                 The Bride &amp; The Groom
               </p>
-              <h2 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl text-[#1B2A49] mt-1 mb-10 sm:mb-12">
+              <h2 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl text-[#4A3428] mt-1 mb-10 sm:mb-12">
                 Kedua Mempelai
               </h2>
             </RevealOnScroll>
@@ -1563,12 +1622,12 @@ export default function App() {
             >
               {/* Mempelai Wanita */}
               <RevealOnScroll className="w-full max-w-[340px] sm:max-w-[360px]">
-                <div className="h-full bg-[#1B2A49] text-[#F5F5F5] rounded-t-[175px] p-4 sm:p-5 shadow-2xl border border-[#101A30]">
-                  <div className="h-full rounded-t-[160px] border border-[#AEBFD6]/45 pt-8 pb-9 px-4 sm:px-6 flex flex-col items-center justify-center">
-                    <span className="font-sans-refined text-[8px] uppercase tracking-[0.3em] text-[#AEBFD6] mb-4">
+                <div className="h-full bg-[#4A3428] text-[#FAF9F7] rounded-t-[175px] p-4 sm:p-5 shadow-2xl border border-[#35241B]">
+                  <div className="h-full rounded-t-[160px] border border-[#D8C9E8]/50 pt-8 pb-9 px-4 sm:px-6 flex flex-col items-center justify-center">
+                    <span className="font-sans-refined text-[8px] uppercase tracking-[0.3em] text-[#D8C9E8] mb-4">
                       The Bride
                     </span>
-                    <div className="w-32 h-40 sm:w-36 sm:h-44 rounded-t-full overflow-hidden border-2 border-[#AEBFD6]/80 shadow-lg mb-5 bg-[#101A30]">
+                    <div className="w-32 h-40 sm:w-36 sm:h-44 rounded-t-full overflow-hidden border-2 border-[#D8C9E8] shadow-lg mb-5 bg-[#35241B]">
                       <img
                         src={config.couple.bridePhoto}
                         alt={config.couple.brideFull}
@@ -1577,14 +1636,14 @@ export default function App() {
                         decoding="async"
                       />
                     </div>
-                    <h3 className="font-script text-3xl sm:text-4xl text-[#AEBFD6]">
+                    <h3 className="font-script text-3xl sm:text-4xl text-[#D8C9E8]">
                       {config.couple.brideShort}
                     </h3>
-                    <p className="font-serif-luxury text-lg sm:text-xl font-medium tracking-wide text-[#F5F5F5] mt-1">
+                    <p className="font-serif-luxury text-lg sm:text-xl font-medium tracking-wide text-[#FAF9F7] mt-1">
                       {config.couple.brideFull}
                     </p>
-                    <div className="w-10 h-[1px] bg-[#AEBFD6]/40 my-4" />
-                    <p className="font-serif-luxury text-xs sm:text-sm text-[#F5F5F5]/90 leading-relaxed">
+                    <div className="w-10 h-[1px] bg-[#A77B4D] my-4" />
+                    <p className="font-serif-luxury text-xs sm:text-sm text-[#FAF9F7]/90 leading-relaxed">
                       {config.couple.brideParents}
                     </p>
                   </div>
@@ -1593,12 +1652,12 @@ export default function App() {
 
               {/* Mempelai Pria */}
               <RevealOnScroll className="w-full max-w-[340px] sm:max-w-[360px]" delay={120}>
-                <div className="h-full bg-[#1B2A49] text-[#F5F5F5] rounded-b-[175px] md:rounded-b-none md:rounded-t-[175px] p-4 sm:p-5 shadow-2xl border border-[#101A30]">
-                  <div className="h-full rounded-b-[160px] md:rounded-b-none md:rounded-t-[160px] border border-[#AEBFD6]/45 pt-8 pb-9 px-4 sm:px-6 flex flex-col items-center justify-center">
-                    <span className="font-sans-refined text-[8px] uppercase tracking-[0.3em] text-[#AEBFD6] mb-4">
+                <div className="h-full bg-[#4A3428] text-[#FAF9F7] rounded-b-[175px] md:rounded-b-none md:rounded-t-[175px] p-4 sm:p-5 shadow-2xl border border-[#35241B]">
+                  <div className="h-full rounded-b-[160px] md:rounded-b-none md:rounded-t-[160px] border border-[#D8C9E8]/50 pt-8 pb-9 px-4 sm:px-6 flex flex-col items-center justify-center">
+                    <span className="font-sans-refined text-[8px] uppercase tracking-[0.3em] text-[#D8C9E8] mb-4">
                       The Groom
                     </span>
-                    <div className="w-32 h-40 sm:w-36 sm:h-44 rounded-t-full overflow-hidden border-2 border-[#AEBFD6]/80 shadow-lg mb-5 bg-[#101A30]">
+                    <div className="w-32 h-40 sm:w-36 sm:h-44 rounded-t-full overflow-hidden border-2 border-[#D8C9E8] shadow-lg mb-5 bg-[#35241B]">
                       <img
                         src={config.couple.groomPhoto}
                         alt={config.couple.groomFull}
@@ -1607,14 +1666,14 @@ export default function App() {
                         decoding="async"
                       />
                     </div>
-                    <h3 className="font-script text-3xl sm:text-4xl text-[#AEBFD6]">
+                    <h3 className="font-script text-3xl sm:text-4xl text-[#D8C9E8]">
                       {config.couple.groomShort}
                     </h3>
-                    <p className="font-serif-luxury text-lg sm:text-xl font-medium tracking-wide text-[#F5F5F5] mt-1">
+                    <p className="font-serif-luxury text-lg sm:text-xl font-medium tracking-wide text-[#FAF9F7] mt-1">
                       {config.couple.groomFull}
                     </p>
-                    <div className="w-10 h-[1px] bg-[#AEBFD6]/40 my-4" />
-                    <p className="font-serif-luxury text-xs sm:text-sm text-[#F5F5F5]/90 leading-relaxed">
+                    <div className="w-10 h-[1px] bg-[#A77B4D] my-4" />
+                    <p className="font-serif-luxury text-xs sm:text-sm text-[#FAF9F7]/90 leading-relaxed">
                       {config.couple.groomParents}
                     </p>
                   </div>
@@ -1624,28 +1683,28 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION 4 — LOVE STORY */}
+        {/* SECTION 4 — LOVE STORY (DENGAN FOTO DARI public/lovestory/ & TEKS "perkenalan seorang teman") */}
         <section
           id="section-story"
-          className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-10 md:px-14 bg-navy-satin text-[#F5F5F5] overflow-hidden"
+          className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-10 md:px-14 bg-chocolate-lilac-satin text-[#FAF9F7] overflow-hidden"
         >
           <div className="max-w-[680px] mx-auto">
             <RevealOnScroll className="text-center mb-12 sm:mb-16">
               <div className="flex items-center justify-center gap-3 mb-2">
-                <span className="w-10 h-[1px] bg-[#AEBFD6]/50" />
-                <DoveOrnament className="w-6 h-6 text-[#F5F5F5]" />
-                <span className="w-10 h-[1px] bg-[#AEBFD6]/50" />
+                <span className="w-10 h-[1px] bg-[#D8C9E8]/50" />
+                <DoveOrnament className="w-6 h-6 text-[#D8C9E8]" />
+                <span className="w-10 h-[1px] bg-[#D8C9E8]/50" />
               </div>
-              <p className="font-sans-refined text-[9px] sm:text-[10px] uppercase tracking-[0.35em] text-[#AEBFD6]">
+              <p className="font-sans-refined text-[9px] sm:text-[10px] uppercase tracking-[0.35em] text-[#D8C9E8]">
                 A Journey Written in Time
               </p>
-              <h2 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl text-[#F5F5F5] mt-1">
+              <h2 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl text-[#FAF9F7] mt-1">
                 Our Love Story
               </h2>
             </RevealOnScroll>
 
             <div className="relative space-y-10 sm:space-y-14">
-              <div className="pointer-events-none absolute left-1/2 top-6 bottom-6 -translate-x-1/2 w-[1px] bg-gradient-to-b from-transparent via-[#AEBFD6]/45 to-transparent" />
+              <div className="pointer-events-none absolute left-1/2 top-6 bottom-6 -translate-x-1/2 w-[1px] bg-gradient-to-b from-transparent via-[#D8C9E8]/45 to-transparent" />
               {config.loveStory.map((item, index) => {
                 const isEven = index % 2 === 0;
                 return (
@@ -1659,7 +1718,7 @@ export default function App() {
                           : 'sm:flex-row-reverse items-center'
                       } gap-4 sm:gap-6`}
                     >
-                      <div className="relative z-10 w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1.5 bg-[#101A30] border border-[#AEBFD6] shadow-xl shrink-0">
+                      <div className="relative z-10 w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1.5 bg-[#35241B] border border-[#D8C9E8] shadow-xl shrink-0">
                         <img
                           src={item.photo}
                           alt={item.stage}
@@ -1667,22 +1726,22 @@ export default function App() {
                           loading="lazy"
                           decoding="async"
                         />
-                        <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-[#1B2A49] border border-[#AEBFD6]/60 px-2.5 py-0.5 text-[8px] font-sans-refined tracking-widest uppercase text-[#AEBFD6] whitespace-nowrap">
+                        <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-[#4A3428] border border-[#D8C9E8]/70 px-2.5 py-0.5 text-[8px] font-sans-refined tracking-widest uppercase text-[#D8C9E8] whitespace-nowrap">
                           0{index + 1}
                         </span>
                       </div>
                       <div
-                        className={`w-full flex-1 bg-[#0F182B]/80 backdrop-blur-sm border border-[#AEBFD6]/30 p-4 sm:p-6 text-center ${
+                        className={`w-full flex-1 bg-[#2D1F18]/80 backdrop-blur-sm border border-[#D8C9E8]/35 p-4 sm:p-6 text-center ${
                           isForcedMobile ? '' : isEven ? 'sm:text-left' : 'sm:text-right'
                         }`}
                       >
-                        <span className="font-sans-refined text-[8px] sm:text-[9px] uppercase tracking-[0.28em] text-[#AEBFD6]">
+                        <span className="font-sans-refined text-[8px] sm:text-[9px] uppercase tracking-[0.28em] text-[#D8C9E8]">
                           {item.date}
                         </span>
-                        <h3 className="font-serif-luxury text-xl sm:text-2xl text-[#F5F5F5] mt-0.5">
+                        <h3 className="font-serif-luxury text-xl sm:text-2xl text-[#FAF9F7] mt-0.5">
                           {item.stage}
                         </h3>
-                        <p className="font-serif-luxury text-xs sm:text-sm text-[#C5CCD6] leading-relaxed mt-2">
+                        <p className="font-serif-luxury text-xs sm:text-sm text-[#FAF9F7]/85 leading-relaxed mt-2">
                           {item.description}
                         </p>
                       </div>
@@ -1693,24 +1752,24 @@ export default function App() {
             </div>
 
             <RevealOnScroll className="mt-16 sm:mt-20 flex flex-col items-center">
-              <div className="w-full max-w-[300px] sm:max-w-[330px] bg-fine-paper text-[#1B2A49] rounded-t-[160px] p-4 shadow-2xl border border-[#C5CCD6]">
-                <div className="rounded-t-[146px] border border-[#AEBFD6] pt-8 pb-7 px-5 sm:px-6 text-center">
-                  <span className="font-serif-luxury text-4xl leading-none text-[#1B2A49]">“</span>
-                  <p className="font-serif-luxury italic text-xs sm:text-sm leading-[1.85] text-[#1B2A49]/85 -mt-2">
+              <div className="w-full max-w-[300px] sm:max-w-[330px] bg-fine-paper text-[#4A3428] rounded-t-[160px] p-4 shadow-2xl border border-[#D8C9E8]">
+                <div className="rounded-t-[146px] border border-[#A77B4D]/55 pt-8 pb-7 px-5 sm:px-6 text-center">
+                  <span className="font-serif-luxury text-4xl leading-none text-[#4A3428]">“</span>
+                  <p className="font-serif-luxury italic text-xs sm:text-sm leading-[1.85] text-[#4A3428]/85 -mt-2">
                     Cinta sejati bukanlah tentang menemukan seseorang yang sempurna, melainkan
                     belajar melihat ketidaksempurnaan dengan cara yang paling indah.
                   </p>
-                  <p className="font-script text-2xl text-[#1B2A49] mt-4">
+                  <p className="font-script text-2xl text-[#4A3428] mt-4">
                     {config.couple.brideShort} &amp; {config.couple.groomShort}
                   </p>
                 </div>
               </div>
-              <div className="w-[1.5px] h-8 bg-[#AEBFD6]" />
-              <div className="relative w-full max-w-[290px] sm:max-w-[310px] bg-[#F5F5F5] p-3.5 pb-8 shadow-2xl border border-[#C5CCD6]">
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#1B2A49] border border-[#AEBFD6] shadow-md flex items-center justify-center">
-                  <Heart className="w-3 h-3 text-[#F5F5F5] fill-current" />
+              <div className="w-[1.5px] h-8 bg-[#D8C9E8]" />
+              <div className="relative w-full max-w-[290px] sm:max-w-[310px] bg-[#FAF9F7] p-3.5 pb-8 shadow-2xl border border-[#D8C9E8]">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#4A3428] border border-[#D8C9E8] shadow-md flex items-center justify-center">
+                  <Heart className="w-3 h-3 text-[#FAF9F7] fill-current" />
                 </div>
-                <div className="aspect-[4/5] overflow-hidden bg-[#101A30]">
+                <div className="aspect-[4/5] overflow-hidden bg-[#35241B]">
                   <img
                     src={config.loveStory[4]?.photo}
                     alt="Forever Begins"
@@ -1719,7 +1778,7 @@ export default function App() {
                     decoding="async"
                   />
                 </div>
-                <p className="font-script text-2xl text-center text-[#1B2A49] mt-4">
+                <p className="font-script text-2xl text-center text-[#4A3428] mt-4">
                   Forever Begins Here
                 </p>
               </div>
@@ -1727,25 +1786,26 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION 5 — GALLERY */}
+        {/* SECTION 5 — GALLERY (MEMUAT KE-7 FOTO DARI public/galeryfoto/1.png s/d 7.png) */}
         <section
           id="section-gallery"
-          className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-10 md:px-14 bg-fine-paper text-[#1B2A49] border-t border-[#C5CCD6]"
+          className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-10 md:px-14 bg-fine-paper text-[#4A3428] border-t border-[#D8C9E8]"
         >
           <div className="max-w-[820px] mx-auto">
             <RevealOnScroll className="text-center mb-12 sm:mb-14">
-              <NavySerenityFloralCrest className="w-36 h-20 mx-auto -mb-2" />
-              <p className="font-sans-refined text-[9px] sm:text-[10px] uppercase tracking-[0.35em] text-[#1B2A49]/75">
+              <ChocolateLilacFloralCrest className="w-36 h-20 mx-auto -mb-2" />
+              <p className="font-sans-refined text-[9px] sm:text-[10px] uppercase tracking-[0.35em] text-[#A77B4D]">
                 Fine-Art Prewedding Editorial
               </p>
-              <h2 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl text-[#1B2A49] mt-1">
+              <h2 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl text-[#4A3428] mt-1">
                 Potret Kebersamaan
               </h2>
-              <p className="font-serif-luxury italic text-xs sm:text-sm text-[#A8ADB5] mt-2">
+              <p className="font-serif-luxury italic text-xs sm:text-sm text-[#4A3428]/70 mt-2">
                 Ketuk foto untuk melihat dalam tampilan penuh
               </p>
             </RevealOnScroll>
 
+            {/* Baris 1: Foto 1 & Foto 2 */}
             <div
               className={`grid grid-cols-1 ${
                 isForcedMobile ? '' : 'sm:grid-cols-12'
@@ -1754,7 +1814,7 @@ export default function App() {
               <RevealOnScroll className={isForcedMobile ? '' : 'sm:col-span-6'}>
                 <div
                   onClick={() => setSelectedPhoto(config.gallery[0])}
-                  className="group cursor-pointer bg-[#EEF1F5] p-3 sm:p-4 border border-[#C5CCD6] shadow-md"
+                  className="group cursor-pointer bg-[#F3EDF9] p-3 sm:p-4 border border-[#D8C9E8] shadow-md"
                 >
                   <div className="aspect-[3/4] overflow-hidden">
                     <img
@@ -1766,10 +1826,10 @@ export default function App() {
                     />
                   </div>
                   <div className="flex items-center justify-between mt-3">
-                    <span className="font-serif-luxury italic text-xs sm:text-sm text-[#1B2A49]">
+                    <span className="font-serif-luxury italic text-xs sm:text-sm text-[#4A3428]">
                       {config.gallery[0].caption}
                     </span>
-                    <Maximize2 className="w-3.5 h-3.5 text-[#1B2A49]/60" />
+                    <Maximize2 className="w-3.5 h-3.5 text-[#4A3428]/60" />
                   </div>
                 </div>
               </RevealOnScroll>
@@ -1780,9 +1840,9 @@ export default function App() {
               >
                 <div
                   onClick={() => setSelectedPhoto(config.gallery[1])}
-                  className="group cursor-pointer bg-[#FFFFFF] p-4 sm:p-7 border border-[#C5CCD6] shadow-lg"
+                  className="group cursor-pointer bg-[#FFFFFF] p-4 sm:p-7 border border-[#D8C9E8] shadow-lg"
                 >
-                  <p className="font-sans-refined text-[8px] uppercase tracking-[0.3em] text-[#1B2A49]/70 mb-3">
+                  <p className="font-sans-refined text-[8px] uppercase tracking-[0.3em] text-[#A77B4D] mb-3">
                     Editorial Note No. 02
                   </p>
                   <div className="aspect-[4/5] overflow-hidden">
@@ -1794,19 +1854,20 @@ export default function App() {
                       decoding="async"
                     />
                   </div>
-                  <p className="font-serif-luxury italic text-xs sm:text-sm text-[#1B2A49] mt-3 text-right">
+                  <p className="font-serif-luxury italic text-xs sm:text-sm text-[#4A3428] mt-3 text-right">
                     {config.gallery[1].caption}
                   </p>
                 </div>
               </RevealOnScroll>
             </div>
 
+            {/* Baris 2: Foto 3 (Full Landscape) */}
             <RevealOnScroll className="mb-10 sm:mb-14">
               <div
                 onClick={() => setSelectedPhoto(config.gallery[2])}
-                className="group cursor-pointer relative overflow-hidden border border-[#C5CCD6] shadow-xl"
+                className="group cursor-pointer relative overflow-hidden border border-[#D8C9E8] shadow-xl"
               >
-                <div className="aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-[#1B2A49]">
+                <div className="aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-[#4A3428]">
                   <img
                     src={config.gallery[2].url}
                     alt={config.gallery[2].caption}
@@ -1815,26 +1876,27 @@ export default function App() {
                     decoding="async"
                   />
                 </div>
-                <div className="bg-[#FFFFFF] px-4 sm:px-5 py-3 sm:py-3.5 flex items-center justify-between border-t border-[#C5CCD6]">
-                  <span className="font-serif-luxury italic text-xs sm:text-sm text-[#1B2A49]">
+                <div className="bg-[#FFFFFF] px-4 sm:px-5 py-3 sm:py-3.5 flex items-center justify-between border-t border-[#D8C9E8]">
+                  <span className="font-serif-luxury italic text-xs sm:text-sm text-[#4A3428]">
                     {config.gallery[2].caption}
                   </span>
-                  <span className="font-sans-refined text-[8px] sm:text-[9px] uppercase tracking-[0.25em] text-[#1B2A49]/70">
+                  <span className="font-sans-refined text-[8px] sm:text-[9px] uppercase tracking-[0.25em] text-[#A77B4D]">
                     Full Frame
                   </span>
                 </div>
               </div>
             </RevealOnScroll>
 
+            {/* Baris 3: Foto 4 & Foto 5 */}
             <div
               className={`grid grid-cols-1 ${
                 isForcedMobile ? '' : 'sm:grid-cols-12'
-              } gap-6 sm:gap-8 items-start`}
+              } gap-6 sm:gap-8 items-start mb-10 sm:mb-14`}
             >
               <RevealOnScroll className={isForcedMobile ? '' : 'sm:col-span-5'}>
                 <div
                   onClick={() => setSelectedPhoto(config.gallery[3])}
-                  className="group cursor-pointer bg-[#FFFFFF] p-4 pb-8 sm:pb-10 border border-[#C5CCD6] shadow-lg"
+                  className="group cursor-pointer bg-[#FFFFFF] p-4 pb-8 sm:pb-10 border border-[#D8C9E8] shadow-lg"
                 >
                   <div className="aspect-square overflow-hidden">
                     <img
@@ -1845,7 +1907,7 @@ export default function App() {
                       decoding="async"
                     />
                   </div>
-                  <p className="font-script text-2xl text-[#1B2A49] text-center mt-4">
+                  <p className="font-script text-2xl text-[#4A3428] text-center mt-4">
                     {config.gallery[3].caption}
                   </p>
                 </div>
@@ -1854,7 +1916,7 @@ export default function App() {
               <RevealOnScroll className={isForcedMobile ? '' : 'sm:col-span-7'} delay={140}>
                 <div
                   onClick={() => setSelectedPhoto(config.gallery[4])}
-                  className="group cursor-pointer bg-[#EEF1F5] px-5 py-7 sm:px-10 sm:py-10 border border-[#C5CCD6] shadow-md"
+                  className="group cursor-pointer bg-[#F3EDF9] px-5 py-7 sm:px-10 sm:py-10 border border-[#D8C9E8] shadow-md"
                 >
                   <div className="aspect-[4/3] overflow-hidden mb-4 sm:mb-5">
                     <img
@@ -1865,13 +1927,66 @@ export default function App() {
                       decoding="async"
                     />
                   </div>
-                  <p className="font-sans-refined text-[8px] sm:text-[9px] uppercase tracking-[0.3em] text-[#1B2A49]">
+                  <p className="font-sans-refined text-[8px] sm:text-[9px] uppercase tracking-[0.3em] text-[#A77B4D]">
                     {config.gallery[4].caption}
                   </p>
-                  <p className="font-serif-luxury italic text-xs sm:text-sm text-[#1B2A49]/80 mt-1 leading-relaxed">
+                  <p className="font-serif-luxury italic text-xs sm:text-sm text-[#4A3428]/80 mt-1 leading-relaxed">
                     “Setiap bingkai menyimpan doa dan ketulusan langkah kami menuju hari penyatuan
                     janji suci.”
                   </p>
+                </div>
+              </RevealOnScroll>
+            </div>
+
+            {/* Baris 4: Foto 6 & Foto 7 */}
+            <div
+              className={`grid grid-cols-1 ${
+                isForcedMobile ? '' : 'sm:grid-cols-12'
+              } gap-6 sm:gap-8 items-center`}
+            >
+              <RevealOnScroll className={isForcedMobile ? '' : 'sm:col-span-6'}>
+                <div
+                  onClick={() => setSelectedPhoto(config.gallery[5])}
+                  className="group cursor-pointer bg-[#FFFFFF] p-3.5 sm:p-5 border border-[#D8C9E8] shadow-md"
+                >
+                  <div className="aspect-[4/5] overflow-hidden">
+                    <img
+                      src={config.gallery[5].url}
+                      alt={config.gallery[5].caption}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <div className="flex items-center justify-between mt-3">
+                    <span className="font-serif-luxury italic text-xs sm:text-sm text-[#4A3428]">
+                      {config.gallery[5].caption}
+                    </span>
+                    <Maximize2 className="w-3.5 h-3.5 text-[#4A3428]/60" />
+                  </div>
+                </div>
+              </RevealOnScroll>
+
+              <RevealOnScroll className={isForcedMobile ? '' : 'sm:col-span-6'} delay={120}>
+                <div
+                  onClick={() => setSelectedPhoto(config.gallery[6])}
+                  className="group cursor-pointer bg-[#F3EDF9] p-3.5 sm:p-5 border border-[#D8C9E8] shadow-md"
+                >
+                  <div className="aspect-[4/5] overflow-hidden">
+                    <img
+                      src={config.gallery[6].url}
+                      alt={config.gallery[6].caption}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <div className="flex items-center justify-between mt-3">
+                    <span className="font-serif-luxury italic text-xs sm:text-sm text-[#4A3428]">
+                      {config.gallery[6].caption}
+                    </span>
+                    <Maximize2 className="w-3.5 h-3.5 text-[#4A3428]/60" />
+                  </div>
                 </div>
               </RevealOnScroll>
             </div>
@@ -1881,17 +1996,17 @@ export default function App() {
         {/* SECTION 6 — EVENTS */}
         <section
           id="section-events"
-          className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-10 md:px-14 bg-[#EEF1F5] text-[#1B2A49] overflow-hidden border-t border-[#C5CCD6]"
+          className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-10 md:px-14 bg-[#F3EDF9] text-[#4A3428] overflow-hidden border-t border-[#D8C9E8]"
         >
           <div className="relative z-10 max-w-[700px] mx-auto">
             <RevealOnScroll className="text-center mb-10 sm:mb-14">
-              <p className="font-sans-refined text-[9px] sm:text-[10px] uppercase tracking-[0.35em] text-[#1B2A49]/75">
+              <p className="font-sans-refined text-[9px] sm:text-[10px] uppercase tracking-[0.35em] text-[#A77B4D]">
                 Wedding Schedule &amp; Venue
               </p>
-              <h2 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl tracking-wide text-[#1B2A49] mt-1">
+              <h2 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl tracking-wide text-[#4A3428] mt-1">
                 SAVE THE DATE
               </h2>
-              <div className="w-16 h-[1px] bg-[#1B2A49]/35 mx-auto mt-3" />
+              <div className="w-16 h-[1px] bg-[#A77B4D]/50 mx-auto mt-3" />
             </RevealOnScroll>
 
             <div
@@ -1904,31 +2019,31 @@ export default function App() {
                 { badge: 'Wedding Reception', data: config.events.resepsi, delay: 140 },
               ].map((ev, i) => (
                 <RevealOnScroll key={i} delay={ev.delay}>
-                  <div className="h-full bg-[#F8F9FA] border border-[#C5CCD6] p-6 sm:p-8 shadow-lg text-center flex flex-col justify-between relative">
-                    <div className="absolute top-3 left-3 right-3 bottom-3 border border-[#AEBFD6]/45 pointer-events-none" />
+                  <div className="h-full bg-[#FAF9F7] border border-[#D8C9E8] p-6 sm:p-8 shadow-lg text-center flex flex-col justify-between relative">
+                    <div className="absolute top-3 left-3 right-3 bottom-3 border border-[#D8C9E8]/60 pointer-events-none" />
                     <div>
-                      <span className="inline-block font-sans-refined text-[8px] uppercase tracking-[0.3em] text-[#1B2A49] bg-[#EEF1F5] px-3 py-1 border border-[#C5CCD6]">
+                      <span className="inline-block font-sans-refined text-[8px] uppercase tracking-[0.3em] text-[#4A3428] bg-[#F3EDF9] px-3 py-1 border border-[#D8C9E8]">
                         {ev.badge}
                       </span>
-                      <h3 className="font-serif-luxury text-2xl sm:text-3xl text-[#1B2A49] mt-4">
+                      <h3 className="font-serif-luxury text-2xl sm:text-3xl text-[#4A3428] mt-4">
                         {ev.data.title}
                       </h3>
-                      <div className="w-10 h-[1px] bg-[#AEBFD6] mx-auto my-4" />
+                      <div className="w-10 h-[1px] bg-[#A77B4D] mx-auto my-4" />
                       <div className="space-y-2 text-xs sm:text-sm font-serif-luxury">
-                        <p className="flex items-center justify-center gap-2 text-[#1B2A49] font-semibold">
-                          <Calendar className="w-3.5 h-3.5 text-[#1B2A49]" />
+                        <p className="flex items-center justify-center gap-2 text-[#4A3428] font-semibold">
+                          <Calendar className="w-3.5 h-3.5 text-[#A77B4D]" />
                           <span>{ev.data.dayDate}</span>
                         </p>
-                        <p className="flex items-center justify-center gap-2 text-[#1B2A49]/80">
-                          <Clock className="w-3.5 h-3.5 text-[#1B2A49]" />
+                        <p className="flex items-center justify-center gap-2 text-[#4A3428]/80">
+                          <Clock className="w-3.5 h-3.5 text-[#A77B4D]" />
                           <span>{ev.data.time}</span>
                         </p>
                       </div>
-                      <div className="mt-5 pt-4 border-t border-[#C5CCD6]">
-                        <p className="font-serif-luxury text-base font-semibold text-[#1B2A49]">
+                      <div className="mt-5 pt-4 border-t border-[#D8C9E8]">
+                        <p className="font-serif-luxury text-base font-semibold text-[#4A3428]">
                           {ev.data.venueName}
                         </p>
-                        <p className="font-serif-luxury text-xs sm:text-sm text-[#1B2A49]/75 mt-1 leading-relaxed">
+                        <p className="font-serif-luxury text-xs sm:text-sm text-[#4A3428]/75 mt-1 leading-relaxed">
                           {ev.data.address}
                         </p>
                       </div>
@@ -1940,9 +2055,9 @@ export default function App() {
                           href={ev.data.mapsUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="min-h-[44px] inline-flex items-center justify-center gap-2 w-full py-2.5 px-5 bg-[#1B2A49] text-[#F5F5F5] font-sans-refined text-[10px] uppercase tracking-[0.25em] hover:bg-[#101A30] transition-colors"
+                          className="min-h-[44px] inline-flex items-center justify-center gap-2 w-full py-2.5 px-5 bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[10px] uppercase tracking-[0.25em] hover:bg-[#35241B] transition-colors"
                         >
-                          <MapPin className="w-3.5 h-3.5 text-[#AEBFD6]" />
+                          <MapPin className="w-3.5 h-3.5 text-[#D8C9E8]" />
                           <span>View Location</span>
                         </a>
                       </div>
@@ -1957,35 +2072,35 @@ export default function App() {
         {/* SECTION 7 — OFFICIAL CARD */}
         <section
           id="section-card"
-          className="relative py-16 sm:py-24 md:py-28 px-4 sm:px-10 md:px-14 bg-[#E4E9F0] text-[#1B2A49] overflow-hidden"
+          className="relative py-16 sm:py-24 md:py-28 px-4 sm:px-10 md:px-14 bg-[#EDE4F5] text-[#4A3428] overflow-hidden"
         >
           <RevealOnScroll className="max-w-[520px] mx-auto">
-            <div className="relative bg-fine-paper border border-[#C5CCD6] p-5 sm:p-10 md:p-12 shadow-2xl text-center">
-              <div className="border border-[#1B2A49]/25 p-5 sm:p-8">
-                <p className="font-sans-refined text-[8px] uppercase tracking-[0.35em] text-[#1B2A49]/75">
+            <div className="relative bg-fine-paper border border-[#D8C9E8] p-5 sm:p-10 md:p-12 shadow-2xl text-center">
+              <div className="border border-[#A77B4D]/35 p-5 sm:p-8">
+                <p className="font-sans-refined text-[8px] uppercase tracking-[0.35em] text-[#A77B4D]">
                   Official Printed Invitation
                 </p>
                 <div className="my-5 flex justify-center">
                   <WaxSealStamp monogram={config.couple.monogram} size="w-20 h-20 sm:w-24 sm:h-24" />
                 </div>
-                <p className="font-serif-luxury italic text-xs sm:text-sm text-[#1B2A49]/80 leading-relaxed">
+                <p className="font-serif-luxury italic text-xs sm:text-sm text-[#4A3428]/80 leading-relaxed">
                   Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i
                   berkenan hadir untuk memberikan doa restu kepada kedua mempelai:
                 </p>
                 <div className="my-5 sm:my-6">
-                  <h3 className="font-serif-luxury text-lg sm:text-2xl font-semibold text-[#1B2A49]">
+                  <h3 className="font-serif-luxury text-lg sm:text-2xl font-semibold text-[#4A3428]">
                     {config.couple.brideFull}
                   </h3>
-                  <p className="font-script text-2xl text-[#A8ADB5] my-1">&amp;</p>
-                  <h3 className="font-serif-luxury text-lg sm:text-2xl font-semibold text-[#1B2A49]">
+                  <p className="font-script text-2xl text-[#A77B4D] my-1">&amp;</p>
+                  <h3 className="font-serif-luxury text-lg sm:text-2xl font-semibold text-[#4A3428]">
                     {config.couple.groomFull}
                   </h3>
                 </div>
-                <div className="w-16 h-[1px] bg-[#AEBFD6] mx-auto my-4" />
-                <p className="font-sans-refined text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-[#1B2A49] font-medium">
+                <div className="w-16 h-[1px] bg-[#D8C9E8] mx-auto my-4" />
+                <p className="font-sans-refined text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-[#4A3428] font-medium">
                   {config.weddingDate.displayDate}
                 </p>
-                <p className="font-serif-luxury text-xs sm:text-sm text-[#1B2A49]/75 mt-1">
+                <p className="font-serif-luxury text-xs sm:text-sm text-[#4A3428]/75 mt-1">
                   {config.events.resepsi.venueName} — {config.events.resepsi.address}
                 </p>
                 <div className="mt-6 sm:mt-7">
@@ -1999,7 +2114,7 @@ export default function App() {
                     )}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="min-h-[42px] inline-flex items-center justify-center gap-2 px-5 py-2.5 border border-[#1B2A49] text-[#1B2A49] font-sans-refined text-[9px] uppercase tracking-[0.25em] hover:bg-[#1B2A49] hover:text-[#F5F5F5] transition-colors"
+                    className="min-h-[42px] inline-flex items-center justify-center gap-2 px-5 py-2.5 border border-[#4A3428] text-[#4A3428] font-sans-refined text-[9px] uppercase tracking-[0.25em] hover:bg-[#4A3428] hover:text-[#FAF9F7] transition-colors"
                   >
                     <Calendar className="w-3.5 h-3.5" />
                     <span>Save to Calendar</span>
@@ -2010,18 +2125,18 @@ export default function App() {
           </RevealOnScroll>
         </section>
 
-        {/* SECTION 8 — RSVP & TANDA KASIH PERNIKAHAN (QRIS ONLY) */}
+        {/* SECTION 8 — RSVP & TANDA KASIH PERNIKAHAN (REKENING BRI + MANDIRI + QRIS) */}
         <section
           id="section-rsvp"
-          className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-10 md:px-14 bg-fine-paper text-[#1B2A49] border-t border-[#C5CCD6]"
+          className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-10 md:px-14 bg-fine-paper text-[#4A3428] border-t border-[#D8C9E8]"
         >
           <div className="max-w-[580px] mx-auto">
             <RevealOnScroll className="text-center mb-10 sm:mb-12">
               <VintageCarriageIllustration className="w-56 sm:w-72 h-24 sm:h-28 mx-auto mb-3" />
-              <p className="font-sans-refined text-[9px] sm:text-[10px] uppercase tracking-[0.35em] text-[#1B2A49]/75">
+              <p className="font-sans-refined text-[9px] sm:text-[10px] uppercase tracking-[0.35em] text-[#A77B4D]">
                 RSVP &amp; Warmest Wishes
               </p>
-              <h2 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl text-[#1B2A49] mt-1">
+              <h2 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl text-[#4A3428] mt-1">
                 Konfirmasi Kehadiran &amp; Doa
               </h2>
             </RevealOnScroll>
@@ -2029,12 +2144,12 @@ export default function App() {
             <RevealOnScroll>
               <form
                 onSubmit={handleRsvpSubmit}
-                className="bg-[#EEF1F5] border border-[#C5CCD6] p-5 sm:p-8 md:p-9 shadow-md space-y-5"
+                className="bg-[#F3EDF9] border border-[#D8C9E8] p-5 sm:p-8 md:p-9 shadow-md space-y-5"
               >
                 <div>
                   <label
                     htmlFor="rsvp-name"
-                    className="block font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#1B2A49] mb-2"
+                    className="block font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#4A3428] mb-2"
                   >
                     Nama Tamu Undangan *
                   </label>
@@ -2044,14 +2159,14 @@ export default function App() {
                     required
                     value={rsvpForm.name}
                     onChange={(e) => setRsvpForm({ ...rsvpForm, name: e.target.value })}
-                    className="w-full min-h-[44px] bg-[#FFFFFF] border border-[#C5CCD6] px-4 py-3 font-serif-luxury text-sm text-[#1B2A49] focus:outline-none focus:border-[#1B2A49]"
+                    className="w-full min-h-[44px] bg-[#FAF9F7] border border-[#D8C9E8] px-4 py-3 font-serif-luxury text-sm text-[#4A3428] focus:outline-none focus:border-[#4A3428]"
                   />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label
                       htmlFor="rsvp-guests"
-                      className="block font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#1B2A49] mb-2"
+                      className="block font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#4A3428] mb-2"
                     >
                       Jumlah Tamu Hadir
                     </label>
@@ -2059,7 +2174,7 @@ export default function App() {
                       id="rsvp-guests"
                       value={rsvpForm.guests}
                       onChange={(e) => setRsvpForm({ ...rsvpForm, guests: e.target.value })}
-                      className="w-full min-h-[44px] bg-[#FFFFFF] border border-[#C5CCD6] px-4 py-3 font-serif-luxury text-sm text-[#1B2A49] focus:outline-none focus:border-[#1B2A49]"
+                      className="w-full min-h-[44px] bg-[#FAF9F7] border border-[#D8C9E8] px-4 py-3 font-serif-luxury text-sm text-[#4A3428] focus:outline-none focus:border-[#4A3428]"
                     >
                       <option value="1">1 Orang</option>
                       <option value="2">2 Orang</option>
@@ -2068,7 +2183,7 @@ export default function App() {
                     </select>
                   </div>
                   <div>
-                    <span className="block font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#1B2A49] mb-2">
+                    <span className="block font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#4A3428] mb-2">
                       Konfirmasi Kehadiran
                     </span>
                     <div className="grid grid-cols-2 gap-2">
@@ -2079,8 +2194,8 @@ export default function App() {
                           onClick={() => setRsvpForm({ ...rsvpForm, attendance: status })}
                           className={`min-h-[44px] py-2.5 px-3 font-sans-refined text-[10px] uppercase tracking-widest border transition-colors ${
                             rsvpForm.attendance === status
-                              ? 'bg-[#1B2A49] text-[#F5F5F5] border-[#1B2A49]'
-                              : 'bg-[#FFFFFF] text-[#1B2A49] border-[#C5CCD6] hover:border-[#1B2A49]'
+                              ? 'bg-[#4A3428] text-[#FAF9F7] border-[#4A3428]'
+                              : 'bg-[#FAF9F7] text-[#4A3428] border-[#D8C9E8] hover:border-[#4A3428]'
                           }`}
                         >
                           {status}
@@ -2092,7 +2207,7 @@ export default function App() {
                 <div>
                   <label
                     htmlFor="rsvp-message"
-                    className="block font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#1B2A49] mb-2"
+                    className="block font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#4A3428] mb-2"
                   >
                     Pesan &amp; Doa untuk Kedua Mempelai
                   </label>
@@ -2102,19 +2217,19 @@ export default function App() {
                     value={rsvpForm.message}
                     onChange={(e) => setRsvpForm({ ...rsvpForm, message: e.target.value })}
                     placeholder="Tuliskan doa dan harapan terbaik Anda untuk Tiara & Rifqi..."
-                    className="w-full bg-[#FFFFFF] border border-[#C5CCD6] px-4 py-3 font-serif-luxury text-sm text-[#1B2A49] focus:outline-none focus:border-[#1B2A49]"
+                    className="w-full bg-[#FAF9F7] border border-[#D8C9E8] px-4 py-3 font-serif-luxury text-sm text-[#4A3428] focus:outline-none focus:border-[#4A3428]"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="btn-luxury-shimmer w-full min-h-[46px] py-3.5 bg-[#1B2A49] text-[#F5F5F5] font-sans-refined text-[10px] uppercase tracking-[0.3em] hover:bg-[#101A30] transition-colors flex items-center justify-center gap-2 shadow-md"
+                  className="btn-luxury-shimmer w-full min-h-[46px] py-3.5 bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[10px] uppercase tracking-[0.3em] hover:bg-[#35241B] transition-colors flex items-center justify-center gap-2 shadow-md"
                 >
-                  <Send className="w-3.5 h-3.5 text-[#AEBFD6]" />
+                  <Send className="w-3.5 h-3.5 text-[#D8C9E8]" />
                   <span>Kirim Konfirmasi &amp; Ucapan</span>
                 </button>
                 {rsvpSubmitted && (
-                  <div className="mt-4 p-4 bg-[#FFFFFF] border border-[#AEBFD6] text-center">
-                    <p className="font-serif-luxury text-base font-semibold text-[#1B2A49]">
+                  <div className="mt-4 p-4 bg-[#FAF9F7] border border-[#D8C9E8] text-center">
+                    <p className="font-serif-luxury text-base font-semibold text-[#4A3428]">
                       Terima kasih atas konfirmasi dan untaian doa Anda!
                     </p>
                   </div>
@@ -2123,30 +2238,30 @@ export default function App() {
             </RevealOnScroll>
 
             <RevealOnScroll className="mt-8 sm:mt-10">
-              <div className="border border-[#C5CCD6] bg-[#FFFFFF] p-5 sm:p-6 max-h-80 overflow-y-auto space-y-4">
-                <p className="font-sans-refined text-[9px] uppercase tracking-[0.28em] text-[#1B2A49] border-b border-[#C5CCD6] pb-2">
+              <div className="border border-[#D8C9E8] bg-[#FFFFFF] p-5 sm:p-6 max-h-80 overflow-y-auto space-y-4">
+                <p className="font-sans-refined text-[9px] uppercase tracking-[0.28em] text-[#4A3428] border-b border-[#D8C9E8] pb-2">
                   Untaian Doa Restu ({wishes.length})
                 </p>
                 {wishes.map((w) => (
-                  <div key={w.id} className="pb-3.5 border-b border-[#C5CCD6]/50 last:border-none">
+                  <div key={w.id} className="pb-3.5 border-b border-[#D8C9E8]/50 last:border-none">
                     <div className="flex items-center justify-between gap-2">
-                      <span className="font-serif-luxury font-semibold text-sm text-[#1B2A49]">
+                      <span className="font-serif-luxury font-semibold text-sm text-[#4A3428]">
                         {w.name}
                       </span>
                       <span
                         className={`font-sans-refined text-[8px] uppercase tracking-widest px-2 py-0.5 border ${
                           w.attendance === 'Hadir'
-                            ? 'bg-[#AEBFD6]/30 text-[#1B2A49] border-[#AEBFD6]'
-                            : 'bg-[#F5F5F5] text-[#A8ADB5] border-[#C5CCD6]'
+                            ? 'bg-[#D8C9E8]/40 text-[#4A3428] border-[#D8C9E8]'
+                            : 'bg-[#FAF9F7] text-[#A77B4D] border-[#D8C9E8]'
                         }`}
                       >
                         {w.attendance}
                       </span>
                     </div>
-                    <p className="font-serif-luxury italic text-xs sm:text-sm text-[#1B2A49]/85 mt-1.5 leading-relaxed">
+                    <p className="font-serif-luxury italic text-xs sm:text-sm text-[#4A3428]/85 mt-1.5 leading-relaxed">
                       “{w.message}”
                     </p>
-                    <span className="block font-sans-refined text-[8px] text-[#A8ADB5] mt-1">
+                    <span className="block font-sans-refined text-[8px] text-[#A77B4D] mt-1">
                       {w.createdAt}
                     </span>
                   </div>
@@ -2154,32 +2269,71 @@ export default function App() {
               </div>
             </RevealOnScroll>
 
-            {/* TANDA KASIH PERNIKAHAN — MENGGUNAKAN FOTO QRIS SAJA */}
+            {/* TANDA KASIH PERNIKAHAN — REKENING BRI & MANDIRI + FOTO QRIS (SESUAI REVISI 3) */}
             <RevealOnScroll className="mt-14 sm:mt-16 text-center">
-              <p className="font-sans-refined text-[9px] uppercase tracking-[0.3em] text-[#1B2A49]/75">
+              <p className="font-sans-refined text-[9px] uppercase tracking-[0.3em] text-[#A77B4D]">
                 Wedding Gift
               </p>
-              <h3 className="font-serif-luxury text-2xl sm:text-3xl text-[#1B2A49] mt-1">
+              <h3 className="font-serif-luxury text-2xl sm:text-3xl text-[#4A3428] mt-1">
                 Tanda Kasih Pernikahan
               </h3>
-              <p className="font-serif-luxury italic text-xs sm:text-sm text-[#1B2A49]/75 mt-2 max-w-md mx-auto leading-relaxed">
+              <p className="font-serif-luxury italic text-xs sm:text-sm text-[#4A3428]/75 mt-2 max-w-md mx-auto leading-relaxed">
                 Doa restu Anda merupakan karunia terindah bagi kami. Namun apabila Bapak/Ibu/Saudara/i
-                ingin memberikan tanda kasih secara digital, dapat melalui pindai kode QRIS berikut:
+                ingin memberikan tanda kasih secara digital, dapat melalui rekening atau pindai QRIS berikut:
               </p>
 
-              <div className="mt-6 max-w-[360px] mx-auto bg-[#FFFFFF] border border-[#C5CCD6] p-5 sm:p-7 shadow-xl relative">
-                <div className="border border-[#1B2A49]/20 p-4 sm:p-5 bg-[#F8F9FA]">
-                  <div className="flex items-center justify-between border-b border-[#C5CCD6] pb-2.5 mb-4">
-                    <span className="font-sans-refined text-[9px] font-semibold uppercase tracking-[0.24em] text-[#1B2A49]">
+              {/* Daftar Nomor Rekening BRI & Mandiri */}
+              <div className="space-y-4 max-w-[400px] mx-auto mt-6">
+                {config.gifts.map((gift, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-[#FFFFFF] border border-[#D8C9E8] p-4 sm:p-5 shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-left relative"
+                  >
+                    <div>
+                      <span className="inline-block font-sans-refined text-[9px] uppercase tracking-[0.22em] text-[#A77B4D] font-semibold">
+                        {gift.bankName}
+                      </span>
+                      <p className="font-serif-luxury text-lg sm:text-xl font-semibold text-[#4A3428] tracking-wider mt-1">
+                        {gift.accountNumber}
+                      </p>
+                      <p className="font-serif-luxury italic text-xs text-[#4A3428]/75">
+                        {gift.accountHolder}
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => handleCopyAccount(gift.accountNumber, idx)}
+                      className="min-h-[40px] shrink-0 inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[9px] uppercase tracking-widest hover:bg-[#35241B] transition-colors"
+                    >
+                      {copiedAccount === idx ? (
+                        <>
+                          <Check className="w-3 h-3 text-[#D8C9E8]" />
+                          <span>Tersalin</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3 h-3 text-[#D8C9E8]" />
+                          <span>Salin Rekening</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              {/* Kartu QRIS */}
+              <div className="mt-6 max-w-[360px] mx-auto bg-[#FFFFFF] border border-[#D8C9E8] p-5 sm:p-7 shadow-xl relative">
+                <div className="border border-[#A77B4D]/30 p-4 sm:p-5 bg-[#FAF9F7]">
+                  <div className="flex items-center justify-between border-b border-[#D8C9E8] pb-2.5 mb-4">
+                    <span className="font-sans-refined text-[9px] font-semibold uppercase tracking-[0.24em] text-[#4A3428]">
                       QRIS • ALL PAYMENT
                     </span>
-                    <QrCode className="w-4 h-4 text-[#1B2A49]" />
+                    <QrCode className="w-4 h-4 text-[#A77B4D]" />
                   </div>
 
-                  {/* Frame Gambar QRIS (Ketuk untuk memperbesar) */}
                   <div
                     onClick={() => setIsQrisZoomOpen(true)}
-                    className="group relative aspect-square w-full max-w-[240px] mx-auto bg-[#FFFFFF] border border-[#C5CCD6] p-3 flex items-center justify-center cursor-pointer overflow-hidden shadow-inner"
+                    className="group relative aspect-square w-full max-w-[240px] mx-auto bg-[#FFFFFF] border border-[#D8C9E8] p-3 flex items-center justify-center cursor-pointer overflow-hidden shadow-inner"
                   >
                     {!qrisImageError ? (
                       <img
@@ -2190,22 +2344,22 @@ export default function App() {
                       />
                     ) : (
                       <div className="text-center p-4">
-                        <QrCode className="w-24 h-24 text-[#1B2A49]/80 mx-auto mb-2 stroke-[1.2]" />
-                        <p className="font-sans-refined text-[9px] uppercase tracking-[0.2em] text-[#1B2A49]">
+                        <QrCode className="w-24 h-24 text-[#4A3428]/80 mx-auto mb-2 stroke-[1.2]" />
+                        <p className="font-sans-refined text-[9px] uppercase tracking-[0.2em] text-[#4A3428]">
                           Foto QRIS
                         </p>
-                        <p className="font-serif-luxury italic text-xs text-[#A8ADB5] mt-1">
+                        <p className="font-serif-luxury italic text-xs text-[#A77B4D] mt-1">
                           Simpan file foto QRIS Anda di folder{' '}
-                          <code className="text-[#1B2A49] font-semibold">public/qris.jpg</code>
+                          <code className="text-[#4A3428] font-semibold">public/qris.png</code>
                         </p>
                       </div>
                     )}
                   </div>
 
-                  <p className="font-serif-luxury font-semibold text-sm sm:text-base text-[#1B2A49] mt-4">
+                  <p className="font-serif-luxury font-semibold text-sm sm:text-base text-[#4A3428] mt-4">
                     {config.qrisGift.merchantName}
                   </p>
-                  <p className="font-serif-luxury italic text-[11px] sm:text-xs text-[#1B2A49]/75 mt-1 leading-relaxed">
+                  <p className="font-serif-luxury italic text-[11px] sm:text-xs text-[#4A3428]/75 mt-1 leading-relaxed">
                     {config.qrisGift.note}
                   </p>
 
@@ -2213,7 +2367,7 @@ export default function App() {
                     <button
                       type="button"
                       onClick={() => setIsQrisZoomOpen(true)}
-                      className="min-h-[40px] inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-[#1B2A49] text-[#1B2A49] font-sans-refined text-[9px] uppercase tracking-widest hover:bg-[#1B2A49] hover:text-[#F5F5F5] transition-colors"
+                      className="min-h-[40px] inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-[#4A3428] text-[#4A3428] font-sans-refined text-[9px] uppercase tracking-widest hover:bg-[#4A3428] hover:text-[#FAF9F7] transition-colors"
                     >
                       <Maximize2 className="w-3 h-3" />
                       <span>Perbesar</span>
@@ -2221,10 +2375,10 @@ export default function App() {
 
                     <a
                       href={config.qrisGift.imageUrl}
-                      download="QRIS-Tiara-Rifqi.jpg"
-                      className="min-h-[40px] inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-[#1B2A49] text-[#F5F5F5] font-sans-refined text-[9px] uppercase tracking-widest hover:bg-[#101A30] transition-colors"
+                      download="QRIS-Tiara-Rifqi.png"
+                      className="min-h-[40px] inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[9px] uppercase tracking-widest hover:bg-[#35241B] transition-colors"
                     >
-                      <Download className="w-3 h-3 text-[#AEBFD6]" />
+                      <Download className="w-3 h-3 text-[#D8C9E8]" />
                       <span>Unduh QRIS</span>
                     </a>
                   </div>
@@ -2234,15 +2388,15 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION 9 — CLOSING */}
+        {/* SECTION 9 — CLOSING & SUPPORT BY PT. MUSTDHIYA TEKNOLOGI INDONESIA */}
         <footer
           id="section-closing"
-          className="relative min-h-[520px] sm:min-h-[620px] flex items-center justify-center text-center text-[#F5F5F5] overflow-hidden bg-[#0D1526]"
+          className="relative min-h-[540px] sm:min-h-[640px] flex flex-col items-center justify-between text-center text-[#FAF9F7] overflow-hidden bg-[#2D1F18] pt-20 pb-28 sm:pb-12 px-5"
         >
           <img
             src={config.closingPhoto}
             alt="The Beginning of Forever"
-            className="absolute inset-0 w-full h-full object-cover object-center opacity-50 scale-105"
+            className="absolute inset-0 w-full h-full object-cover object-center opacity-45 scale-105"
             loading="lazy"
             decoding="async"
           />
@@ -2250,29 +2404,60 @@ export default function App() {
             className="absolute inset-0"
             style={{
               background:
-                'linear-gradient(to bottom, rgba(13, 21, 38, 0.88) 0%, rgba(27, 42, 73, 0.62) 45%, rgba(10, 16, 30, 0.96) 100%)',
+                'linear-gradient(to bottom, rgba(45, 31, 24, 0.88) 0%, rgba(74, 52, 40, 0.68) 45%, rgba(32, 21, 16, 0.96) 100%)',
             }}
           />
-          <RevealOnScroll className="relative z-10 max-w-[480px] px-5 py-20">
-            <p className="font-sans-refined text-[9px] sm:text-[10px] uppercase tracking-[0.4em] text-[#AEBFD6]">
+
+          <RevealOnScroll className="relative z-10 max-w-[480px] my-auto">
+            <p className="font-sans-refined text-[9px] sm:text-[10px] uppercase tracking-[0.4em] text-[#D8C9E8]">
               The Beginning of Forever
             </p>
-            <h2 className="font-script text-4xl sm:text-5xl md:text-6xl text-[#F5F5F5] my-4 drop-shadow-md">
+            <h2 className="font-script text-4xl sm:text-5xl md:text-6xl text-[#FAF9F7] my-4 drop-shadow-md">
               {config.couple.brideShort} &amp; {config.couple.groomShort}
             </h2>
-            <p className="font-sans-refined text-[10px] uppercase tracking-[0.35em] text-[#AEBFD6] mb-6">
+            <p className="font-sans-refined text-[10px] uppercase tracking-[0.35em] text-[#D8C9E8] mb-6">
               {config.weddingDate.dotDate}
             </p>
-            <div className="w-14 h-[1px] bg-[#AEBFD6]/50 mx-auto mb-6" />
-            <p className="font-serif-luxury italic text-sm sm:text-base text-[#F5F5F5]/90 leading-relaxed">
+            <div className="w-14 h-[1px] bg-[#D8C9E8]/50 mx-auto mb-6" />
+            <p className="font-serif-luxury italic text-sm sm:text-base text-[#FAF9F7]/90 leading-relaxed">
               Merupakan suatu kebahagiaan dan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i
               berkenan hadir dan memberikan doa restu. Terima kasih atas segala perhatian dan kasih
               sayang yang diberikan.
             </p>
             <div className="mt-8 flex justify-center">
-              <NavySerenityFloralCrest className="w-36 h-20" />
+              <ChocolateLilacFloralCrest className="w-36 h-20" />
             </div>
           </RevealOnScroll>
+
+          {/* Credit & Support: PT. MUSTDHIYA TEKNOLOGI INDONESIA */}
+          <div className="relative z-10 mt-12 pt-6 border-t border-[#D8C9E8]/25 w-full max-w-md flex flex-col items-center">
+            <p className="font-sans-refined text-[8px] uppercase tracking-[0.28em] text-[#D8C9E8]/75 mb-2">
+              Digital Invitation Supported By
+            </p>
+            <a
+              href={config.support.websiteUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="group inline-flex flex-col sm:flex-row items-center gap-2.5 px-4 py-2 rounded-full bg-[#FAF9F7]/10 hover:bg-[#FAF9F7]/20 border border-[#D8C9E8]/30 transition-all"
+            >
+              <img
+                src={config.support.logoUrl}
+                alt={config.support.companyName}
+                className="w-6 h-6 object-contain rounded-sm"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
+              <div className="text-center sm:text-left">
+                <span className="block font-sans-refined text-[9px] sm:text-[10px] font-semibold tracking-[0.2em] text-[#FAF9F7]">
+                  {config.support.companyName}
+                </span>
+                <span className="block font-serif-luxury italic text-[11px] text-[#D8C9E8] group-hover:underline">
+                  {config.support.websiteLabel}
+                </span>
+              </div>
+            </a>
+          </div>
         </footer>
       </div>
 
@@ -2285,7 +2470,7 @@ export default function App() {
           className="fixed bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 z-40 w-[calc(100vw-1rem)] max-w-[420px] sm:max-w-[660px]"
         >
           {isMobileMenuOpen && (
-            <div className="sm:hidden mb-2 p-3 rounded-2xl bg-[#101A30]/95 backdrop-blur-xl border border-[#AEBFD6]/40 shadow-2xl grid grid-cols-3 gap-2">
+            <div className="sm:hidden mb-2 p-3 rounded-2xl bg-[#35241B]/95 backdrop-blur-xl border border-[#D8C9E8]/40 shadow-2xl grid grid-cols-3 gap-2">
               {NAV_ITEMS.map((item) => {
                 const IconComponent = item.icon;
                 const isActive = activeSection === item.id;
@@ -2295,8 +2480,8 @@ export default function App() {
                     onClick={() => scrollToSection(item.id)}
                     className={`flex flex-col items-center justify-center py-2.5 px-2 rounded-xl border text-center transition-all ${
                       isActive
-                        ? 'bg-[#AEBFD6] text-[#1B2A49] border-[#F5F5F5] font-semibold'
-                        : 'bg-[#1B2A49]/60 text-[#F5F5F5] border-[#AEBFD6]/25'
+                        ? 'bg-[#D8C9E8] text-[#4A3428] border-[#FAF9F7] font-semibold'
+                        : 'bg-[#4A3428]/60 text-[#FAF9F7] border-[#D8C9E8]/25'
                     }`}
                   >
                     <IconComponent className="w-4 h-4 mb-1" />
@@ -2309,7 +2494,7 @@ export default function App() {
             </div>
           )}
 
-          <div className="flex items-center justify-between gap-1 sm:gap-1.5 px-2 sm:px-3.5 py-1.5 sm:py-2 rounded-2xl sm:rounded-full bg-[#101A30]/95 backdrop-blur-xl border border-[#AEBFD6]/40 shadow-[0_12px_35px_rgba(0,0,0,0.65)]">
+          <div className="flex items-center justify-between gap-1 sm:gap-1.5 px-2 sm:px-3.5 py-1.5 sm:py-2 rounded-2xl sm:rounded-full bg-[#35241B]/95 backdrop-blur-xl border border-[#D8C9E8]/45 shadow-[0_12px_35px_rgba(45,31,24,0.65)]">
             <div className="flex items-center justify-around flex-1 gap-0.5 sm:gap-1 overflow-x-auto no-scrollbar">
               {NAV_ITEMS.map((nav) => {
                 const IconComponent = nav.icon;
@@ -2320,13 +2505,13 @@ export default function App() {
                     onClick={() => scrollToSection(nav.id)}
                     className={`group flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 flex-1 sm:flex-initial px-1.5 sm:px-3 py-1.5 sm:py-2 rounded-xl sm:rounded-full transition-all duration-300 min-w-[44px] ${
                       isActive
-                        ? 'bg-[#AEBFD6] text-[#1B2A49] shadow-sm font-semibold'
-                        : 'text-[#C5CCD6] hover:text-[#F5F5F5] hover:bg-[#1B2A49]'
+                        ? 'bg-[#D8C9E8] text-[#4A3428] shadow-sm font-semibold'
+                        : 'text-[#FAF9F7]/80 hover:text-[#FAF9F7] hover:bg-[#4A3428]'
                     }`}
                   >
                     <IconComponent
                       className={`w-3.5 h-3.5 shrink-0 ${
-                        isActive ? 'text-[#1B2A49]' : 'text-[#AEBFD6]'
+                        isActive ? 'text-[#4A3428]' : 'text-[#D8C9E8]'
                       }`}
                     />
                     <span className="font-sans-refined text-[8px] sm:text-[10px] uppercase tracking-[0.06em] sm:tracking-[0.16em] leading-tight whitespace-nowrap">
@@ -2337,12 +2522,12 @@ export default function App() {
               })}
             </div>
 
-            <div className="w-[1px] h-6 bg-[#AEBFD6]/25 mx-0.5 shrink-0" />
+            <div className="w-[1px] h-6 bg-[#D8C9E8]/25 mx-0.5 shrink-0" />
 
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-              className="sm:hidden w-9 h-9 shrink-0 rounded-xl flex items-center justify-center border border-[#AEBFD6]/35 bg-[#1B2A49] text-[#AEBFD6]"
+              className="sm:hidden w-9 h-9 shrink-0 rounded-xl flex items-center justify-center border border-[#D8C9E8]/35 bg-[#4A3428] text-[#D8C9E8]"
               aria-label="Menu Bagian"
             >
               <Menu className="w-4 h-4" />
@@ -2353,8 +2538,8 @@ export default function App() {
               onClick={toggleMusic}
               className={`w-9 h-9 shrink-0 rounded-xl sm:rounded-full flex items-center justify-center border transition-all ${
                 isPlayingMusic
-                  ? 'bg-[#AEBFD6] border-[#F5F5F5] text-[#1B2A49]'
-                  : 'bg-[#1B2A49] border-[#AEBFD6]/40 text-[#AEBFD6]'
+                  ? 'bg-[#D8C9E8] border-[#FAF9F7] text-[#4A3428]'
+                  : 'bg-[#4A3428] border-[#D8C9E8]/40 text-[#D8C9E8]'
               }`}
               aria-label={isPlayingMusic ? 'Matikan musik' : 'Putar musik'}
             >
@@ -2368,26 +2553,26 @@ export default function App() {
       {selectedPhoto && (
         <div
           onClick={() => setSelectedPhoto(null)}
-          className="fixed inset-0 z-50 bg-[#0A101E]/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8"
+          className="fixed inset-0 z-50 bg-[#241812]/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative max-w-3xl w-full bg-fine-paper p-3 sm:p-5 border border-[#C5CCD6] shadow-2xl"
+            className="relative max-w-3xl w-full bg-fine-paper p-3 sm:p-5 border border-[#D8C9E8] shadow-2xl"
           >
             <button
               onClick={() => setSelectedPhoto(null)}
-              className="absolute -top-4 -right-4 w-9 h-9 rounded-full bg-[#1B2A49] text-[#F5F5F5] border border-[#AEBFD6] flex items-center justify-center shadow-lg"
+              className="absolute -top-4 -right-4 w-9 h-9 rounded-full bg-[#4A3428] text-[#FAF9F7] border border-[#D8C9E8] flex items-center justify-center shadow-lg"
             >
               <X className="w-4 h-4" />
             </button>
-            <div className="max-h-[75vh] overflow-hidden bg-[#101A30]">
+            <div className="max-h-[75vh] overflow-hidden bg-[#35241B]">
               <img
                 src={selectedPhoto.url}
                 alt={selectedPhoto.caption}
                 className="w-full h-full object-contain max-h-[75vh]"
               />
             </div>
-            <p className="font-serif-luxury italic text-sm text-[#1B2A49] text-center mt-3">
+            <p className="font-serif-luxury italic text-sm text-[#4A3428] text-center mt-3">
               {selectedPhoto.caption}
             </p>
           </div>
@@ -2398,22 +2583,22 @@ export default function App() {
       {isQrisZoomOpen && (
         <div
           onClick={() => setIsQrisZoomOpen(false)}
-          className="fixed inset-0 z-50 bg-[#0A101E]/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8"
+          className="fixed inset-0 z-50 bg-[#241812]/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative max-w-md w-full bg-[#FFFFFF] p-5 sm:p-7 border border-[#C5CCD6] shadow-2xl text-center"
+            className="relative max-w-md w-full bg-[#FFFFFF] p-5 sm:p-7 border border-[#D8C9E8] shadow-2xl text-center"
           >
             <button
               onClick={() => setIsQrisZoomOpen(false)}
-              className="absolute -top-4 -right-4 w-9 h-9 rounded-full bg-[#1B2A49] text-[#F5F5F5] border border-[#AEBFD6] flex items-center justify-center shadow-lg"
+              className="absolute -top-4 -right-4 w-9 h-9 rounded-full bg-[#4A3428] text-[#FAF9F7] border border-[#D8C9E8] flex items-center justify-center shadow-lg"
             >
               <X className="w-4 h-4" />
             </button>
-            <p className="font-sans-refined text-[9px] uppercase tracking-[0.28em] text-[#1B2A49]/75 mb-3">
+            <p className="font-sans-refined text-[9px] uppercase tracking-[0.28em] text-[#A77B4D] mb-3">
               {config.qrisGift.title}
             </p>
-            <div className="aspect-square w-full bg-[#F8F9FA] border border-[#C5CCD6] p-3 flex items-center justify-center">
+            <div className="aspect-square w-full bg-[#FAF9F7] border border-[#D8C9E8] p-3 flex items-center justify-center">
               {!qrisImageError ? (
                 <img
                   src={config.qrisGift.imageUrl}
@@ -2421,10 +2606,10 @@ export default function App() {
                   className="w-full h-full object-contain"
                 />
               ) : (
-                <QrCode className="w-32 h-32 text-[#1B2A49]" />
+                <QrCode className="w-32 h-32 text-[#4A3428]" />
               )}
             </div>
-            <p className="font-serif-luxury font-semibold text-base text-[#1B2A49] mt-3">
+            <p className="font-serif-luxury font-semibold text-base text-[#4A3428] mt-3">
               {config.qrisGift.merchantName}
             </p>
           </div>
@@ -2434,10 +2619,10 @@ export default function App() {
       {/* MODAL DAFTAR 39 LINK TAMU (KHUSUS MODE ADMIN ?admin=mdt) */}
       {isGuestListModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex justify-end">
-          <div className="w-full max-w-md bg-[#F5F5F5] text-[#1B2A49] h-full overflow-y-auto p-6 sm:p-8 shadow-2xl border-l border-[#C5CCD6]">
-            <div className="flex items-center justify-between border-b border-[#C5CCD6] pb-4 mb-5">
+          <div className="w-full max-w-md bg-[#FAF9F7] text-[#4A3428] h-full overflow-y-auto p-6 sm:p-8 shadow-2xl border-l border-[#D8C9E8]">
+            <div className="flex items-center justify-between border-b border-[#D8C9E8] pb-4 mb-5">
               <div>
-                <p className="font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#1B2A49]/70">
+                <p className="font-sans-refined text-[9px] uppercase tracking-[0.25em] text-[#A77B4D]">
                   Whitelisted Guests ({INVITED_GUESTS.length})
                 </p>
                 <h3 className="font-serif-luxury text-2xl font-semibold">
@@ -2446,7 +2631,7 @@ export default function App() {
               </div>
               <button
                 onClick={() => setIsGuestListModalOpen(false)}
-                className="p-2 text-[#1B2A49] hover:bg-[#E4E9F0] rounded-full"
+                className="p-2 text-[#4A3428] hover:bg-[#F3EDF9] rounded-full"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -2458,20 +2643,20 @@ export default function App() {
                 return (
                   <div
                     key={guest}
-                    className="bg-[#FFFFFF] border border-[#C5CCD6] p-3 flex items-center justify-between gap-2"
+                    className="bg-[#FFFFFF] border border-[#D8C9E8] p-3 flex items-center justify-between gap-2"
                   >
                     <div className="truncate">
-                      <p className="font-serif-luxury font-semibold text-sm text-[#1B2A49]">
+                      <p className="font-serif-luxury font-semibold text-sm text-[#4A3428]">
                         {idx + 1}. {guest}
                       </p>
-                      <p className="font-sans-refined text-[10px] text-[#889BB5] truncate">
+                      <p className="font-sans-refined text-[10px] text-[#A77B4D] truncate">
                         wedding.mustdhiya.com/{slug}
                       </p>
                     </div>
                     <button
                       type="button"
                       onClick={() => handleCopyGuestUrl(guest)}
-                      className="shrink-0 px-3 py-1.5 bg-[#1B2A49] text-[#F5F5F5] font-sans-refined text-[9px] uppercase tracking-wider"
+                      className="shrink-0 px-3 py-1.5 bg-[#4A3428] text-[#FAF9F7] font-sans-refined text-[9px] uppercase tracking-wider"
                     >
                       {copiedGuestLink === guest ? 'Tersalin' : 'Salin'}
                     </button>
